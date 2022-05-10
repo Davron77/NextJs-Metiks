@@ -3,7 +3,17 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'MyriadPro-bold';
+  src: local('MyriadPro'),
+    url('/public/MyriadPro/MyriadPro-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
 
 body {
-  font-family: 'Maven Pro', sans-serif;
+  font-family: 'MyriadPro', sans-serif;
+}
+
+.btn {
+  @apply cursor-pointer rounded-sm bg-black py-2.5 px-4 text-white;
 }
