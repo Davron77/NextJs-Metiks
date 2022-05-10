@@ -3,11 +3,16 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap');
+
 @font-face {
   font-family: 'MyriadPro-bold';
   src: local('MyriadPro'),
     url('/public/MyriadPro/MyriadPro-Bold.ttf') format('truetype');
   font-weight: bold;
+}
+@font-face {
+  font-family: 'BEBASNEUE';
+  src: local('BEBASNEUE'), url('/public/BEBASNEUE/BEBASNEUE-BOLD.OTF');
 }
 
 body {
@@ -16,4 +21,18 @@ body {
 
 .btn {
   @apply cursor-pointer rounded-sm bg-black py-2.5 px-4 text-white;
+}
+
+.info h2 {
+  font-family: 'BEBASNEUE', sans-serif;
+}
+
+.footer-menu {
+  @apply bg-black text-white;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
+}
+
+.footer-social {
+  @apply bg-black text-white;
+  height: 60px;
 }
