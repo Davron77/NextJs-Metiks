@@ -3,20 +3,21 @@ import Image from 'next/image'
 import Logo from '../public/logo.svg'
 import Link from 'next/link'
 // IMPORT ICONS
-import {
-  SearchIcon,
-  ShoppingCartIcon,
-  UserIcon,
-} from '@heroicons/react/outline'
+import { DeviceMobileIcon } from '@heroicons/react/outline'
+import { LocationMarkerIcon } from '@heroicons/react/solid'
 
 import { FaFacebook, FaTelegram, FaInstagram } from 'react-icons/fa'
+import Facebook from '../public/Facebook.svg'
+import Telegram from '../public/Telegram.svg'
+import Instagram from '../public/Instagram.svg'
 
 const navigation = [
-  { name: 'Товары', href: '#', current: false },
+  { name: 'Каталог', href: '#', current: false },
+  { name: 'О нас', href: '#', current: false },
   { name: 'Услуги', href: '#', current: false },
-  { name: 'Калькулятор', href: '#', current: false },
   { name: 'Производство', href: '#', current: false },
-  { name: 'O компании', href: '#', current: false },
+  { name: 'Калькулятор', href: '#', current: false },
+  { name: 'Где купить', href: '#', current: false },
   { name: 'Контакт', href: '#', current: false },
 ]
 
@@ -24,9 +25,9 @@ function Footer() {
   return (
     <div className="footer w-full bg-black text-white">
       <div className="footer-menu">
-        <div className="mx-auto mt-16 mb-12 h-20 max-w-7xl px-2 sm:px-6">
-          <div className="flex h-full justify-between">
-            <div className="flex items-center justify-start">
+        <div className="mx-auto mt-16 mb-12 h-full max-w-7xl px-2 sm:px-6 lg:h-24">
+          <div className="flex h-full flex-wrap justify-between">
+            <div className="flex w-32 items-center justify-start lg:w-40 xl:w-56">
               <Link href="/">
                 <Image
                   className="cursor-pointer"
@@ -36,16 +37,14 @@ function Footer() {
               </Link>
             </div>
             <div className="flex items-center justify-center">
-              <div className="flex space-x-10">
+              <div className="flex flex-wrap space-x-3 xl:space-x-10">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     className={
-                      (item.current
-                        ? 'bg-gray-900 text-white'
-                        : 'text-black hover:border-black',
-                      'space-x-10 border-b-2 border-transparent text-lg font-semibold transition duration-300')
+                      (item.current ? 'text-white' : 'text-black',
+                      'space-x-10 border-b-2 border-transparent text-lg font-normal')
                     }
                     aria-current={item.current ? 'page' : undefined}
                   >
@@ -54,22 +53,34 @@ function Footer() {
                 ))}
               </div>
             </div>
-            <div className="flex items-center justify-end">
-              <SearchIcon
-                className="cursor-pointer hover:text-slate-400"
-                width={20}
-                height={20}
-              />
-              <ShoppingCartIcon
-                className="ml-5 cursor-pointer hover:text-slate-400"
-                width={20}
-                height={20}
-              />
-              <UserIcon
-                className="ml-5 cursor-pointer hover:text-slate-400"
-                width={20}
-                height={20}
-              />
+            <div className="flex flex-col items-start justify-end text-sm font-normal text-neutral-400">
+              <div className="mb-4 flex items-center justify-end">
+                <DeviceMobileIcon
+                  className="mr-2 text-white hover:text-slate-400"
+                  width={20}
+                  height={20}
+                />
+                <a
+                  className="border-b border-transparent hover:border-b-white"
+                  href="tel:+998998974504"
+                >
+                  Tel: +998 99 897 45 04
+                </a>
+              </div>
+              <div className="flex items-center justify-end">
+                <LocationMarkerIcon
+                  className="mr-2 text-white hover:text-slate-400"
+                  width={20}
+                  height={20}
+                />
+                <a
+                  className="border-b border-transparent hover:border-b-white"
+                  href="https://www.google.com/maps"
+                  target="_blank"
+                >
+                  Найти магазин
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -77,11 +88,40 @@ function Footer() {
       <div className="footer-social">
         <div className="mx-auto h-full max-w-7xl px-2 sm:px-6">
           <div className="flex h-full items-center justify-between">
-            <h4>© METIKS 2022</h4>
+            <h4 className="text-xs font-normal">© METIKS 2022</h4>
             <div className="flex">
-              <FaFacebook className="text-lg" />
-              <FaTelegram className="ml-5 text-lg" />
-              <FaInstagram className="ml-5 text-lg" />
+              <a href="https://www.facebook.com/" target="_blank">
+                <Image
+                  src={Facebook}
+                  className="hover:text-neutral-500"
+                  width={22}
+                  height={22}
+                />
+              </a>
+              <a
+                href="https://www.facebook.com/"
+                className="ml-5"
+                target="_blank"
+              >
+                <Image
+                  src={Telegram}
+                  className="hover:text-neutral-500"
+                  width={22}
+                  height={22}
+                />
+              </a>
+              <a
+                href="https://www.facebook.com/"
+                className="ml-5"
+                target="_blank"
+              >
+                <Image
+                  src={Instagram}
+                  className="hover:text-neutral-500"
+                  width={22}
+                  height={22}
+                />
+              </a>
             </div>
           </div>
         </div>

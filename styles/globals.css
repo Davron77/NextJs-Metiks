@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 
 @font-face {
   font-family: 'MyriadPro-bold';
@@ -17,15 +18,63 @@
 
 body {
   font-family: 'MyriadPro', sans-serif;
+  font-weight: 600;
 }
+
+/* TAILWIND CSS EDIT START */
+
+.max-w-7xl {
+  max-width: 85rem;
+}
+
+/* TAILWIND CSS EDIT END */
+
+/* CLASS VARIABLE START */
 
 .btn {
   @apply cursor-pointer rounded-sm bg-black py-2.5 px-4 text-white;
 }
 
+.font-Inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-Bebasneue {
+  font-family: 'BEBASNEUE', sans-serif;
+}
+
+/* CLASS VARIABLE END */
+
+/* COMPONENTS START */
+
+/* HEADER COMPONENTS START */
+
+select:focus-visible {
+  outline: none;
+}
+
+.navbar-mobile {
+  @apply absolute left-0 top-20 z-10 w-4/5 bg-black opacity-0;
+  transform: translateX(-100%);
+  transition: all 0.5s ease-in;
+}
+
+.active-navbar-mobile {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* HEADER COMPONENTS END */
+
+/* INFO COMPONENTS START */
+
 .info h2 {
   font-family: 'BEBASNEUE', sans-serif;
 }
+
+/* INFO COMPONENTS END */
+
+/* FOOTER COMPONENTS START */
 
 .footer-menu {
   @apply bg-black text-white;
@@ -35,4 +84,16 @@ body {
 .footer-social {
   @apply bg-black text-white;
   height: 60px;
+}
+
+.footer-social h4 {
+  font-family: 'Inter', sans-serif;
+}
+
+/* FOOTER COMPONENTS END */
+
+/* COMPONENTS END */
+
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
