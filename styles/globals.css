@@ -2,18 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
-
-@font-face {
-  font-family: 'MyriadPro-bold';
-  src: local('MyriadPro'),
-    url('/public/MyriadPro/MyriadPro-Bold.ttf') format('truetype');
-  font-weight: bold;
-}
-@font-face {
-  font-family: 'BEBASNEUE';
-  src: local('BEBASNEUE'), url('/public/BEBASNEUE/BEBASNEUE-BOLD.OTF');
+@layer base {
+  html {
+    font-family: 'MyriadPro', sans-serif !important;
+  }
 }
 
 body {
@@ -35,12 +27,28 @@ body {
   @apply cursor-pointer rounded-sm bg-black py-2.5 px-4 text-white;
 }
 
+.btn-radius-none {
+  border-radius: 0 !important;
+}
+
+.bottom-20-1 {
+  bottom: 20%;
+}
+
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 .font-Inter {
   font-family: 'Inter', sans-serif;
 }
 
-.font-Bebasneue {
-  font-family: 'BEBASNEUE', sans-serif;
+.font-Bebas {
+  font-family: 'BEBASNEUE';
+}
+
+.product-shadow:hover {
+  filter: drop-shadow(0px 2px 12px rgba(0, 0, 0, 0.14));
 }
 
 /* CLASS VARIABLE END */
@@ -53,10 +61,14 @@ select:focus-visible {
   outline: none;
 }
 
+.header-shadow {
+  box-shadow: 0px 1px 2px rgba(255, 255, 255, 0.2);
+}
+
 .navbar-mobile {
-  @apply absolute left-0 top-20 z-10 w-4/5 bg-black opacity-0;
+  @apply absolute left-0 z-10 h-screen w-4/5 bg-black opacity-0;
   transform: translateX(-100%);
-  transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in-out;
 }
 
 .active-navbar-mobile {
@@ -66,10 +78,18 @@ select:focus-visible {
 
 /* HEADER COMPONENTS END */
 
+/* CATALOG COMPONENTS START */
+
+.Catalog-text-hover:hover {
+  color: #434343;
+}
+
+/* CATALOG COMPONENTS END */
+
 /* INFO COMPONENTS START */
 
 .info h2 {
-  font-family: 'BEBASNEUE', sans-serif;
+  @apply font-Bebas;
 }
 
 /* INFO COMPONENTS END */

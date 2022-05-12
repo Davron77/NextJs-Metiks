@@ -32,7 +32,7 @@ export default function Info() {
     <div className="info">
       <div className="w-full">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="lg:py-30 mx-auto max-w-2xl sm:py-24 lg:max-w-none">
+          <div className="lg:py-30 mx-auto max-w-2xl py-24 lg:max-w-none">
             <div className="mt-6 space-y-12 lg:grid lg:grid-cols-4 lg:gap-x-16 lg:space-y-0">
               {callouts.map((callout) => (
                 <div key={callout.name} className="group relative text-center">

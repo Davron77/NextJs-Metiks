@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'BEBASNEUE';
+  src: url('./BEBASNEUE/BEBASNEUE-BOLD.OTF');
+}
+
+@font-face {
+  font-family: 'MyriadPro';
+  src: url('./MyriadPro/MyriadPro-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'MyriadPro';
+  src: url('./MyriadPro/MyriadPro-Semibold.ttf');
+  font-weight: 600;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
