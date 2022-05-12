@@ -1,9 +1,13 @@
 import products from '../products/products'
 import { FaAngleRight } from 'react-icons/fa'
 
-export default function Catalog() {
+export default function Catalog({ isOpenCatalog }) {
   return (
-    <div className="bg-white">
+    <div
+      className={`absolute left-0 right-0 top-48 z-10 scale-0 bg-white opacity-0 transition duration-500 ease-in-out ${
+        isOpenCatalog ? 'scale-100 opacity-100' : ''
+      }`}
+    >
       <div className="mx-auto max-w-7xl py-12 px-2 sm:px-6">
         <h2 className="sr-only">Products</h2>
 

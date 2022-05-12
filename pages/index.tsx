@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         isOpenCatalog={isOpenCatalog}
         setIsOpenCatalog={setIsOpenCatalog}
       />
-      {isOpenCatalog ? <Catalog /> : ''}
+      <Catalog isOpenCatalog={isOpenCatalog} />
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold uppercase">Metiks</h1>
       </main>
