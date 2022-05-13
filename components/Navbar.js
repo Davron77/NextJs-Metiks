@@ -1,7 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import Link from 'next/link'
 import Image from 'next/image'
-import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import CatalogIcon from '../public/catalog.svg'
 import navigation from '../navigation/menu'
@@ -23,7 +22,7 @@ export default function Navbar({ isOpenCatalog, setIsOpenCatalog }) {
               <div className="relative flex h-full items-center justify-between px-0 lg:h-16">
                 <div className="flex basis-full lg:basis-0">
                   <div
-                    className="btn btn-radius-none flex w-full justify-center lg:w-32"
+                    className="btn flex w-full justify-center rounded-none lg:w-32"
                     onClick={() => setIsOpenCatalog((prev) => !prev)}
                   >
                     <span className="font-medium lg:font-semibold">
@@ -33,19 +32,18 @@ export default function Navbar({ isOpenCatalog, setIsOpenCatalog }) {
                   </div>
                 </div>
                 <div className="flex-2 justify-centern hidden items-center sm:items-stretch sm:justify-start lg:block">
-                  <div className="flex flex-shrink-0 items-center"></div>
                   <div>
                     <div className="flex space-x-6 xl:space-x-10">
                       {navigation.map((item) => (
                         <a
                           key={item.name}
                           href={item.href}
-                          className={
-                            (item.current
-                              ? 'border-black '
-                              : 'text-black hover:border-black',
-                            'space-x-10 border-b-2 border-transparent text-lg font-semibold transition duration-300')
-                          }
+                          className={classNames(
+                            item.current
+                              ? 'border-black'
+                              : 'hover:border-black',
+                            'border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out'
+                          )}
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}

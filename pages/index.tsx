@@ -4,9 +4,10 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Info from '../components/Info'
+import { useState } from 'react'
 import Footer from '../components/Footer'
 import Catalog from '../components/Catalog'
-import { useState } from 'react'
+import HomeBanner from '../components/HomeBanner'
 
 const Home: NextPage = () => {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false)
@@ -23,8 +24,8 @@ const Home: NextPage = () => {
         setIsOpenCatalog={setIsOpenCatalog}
       />
       <Catalog isOpenCatalog={isOpenCatalog} />
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold uppercase">Metiks</h1>
+      <main className="w-full">
+        <HomeBanner />
       </main>
       <Info />
       <Footer />

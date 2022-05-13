@@ -24,11 +24,12 @@ body {
 /* CLASS VARIABLE START */
 
 .btn {
-  @apply cursor-pointer rounded-sm bg-black py-2.5 px-4 text-white;
+  @apply cursor-pointer bg-black py-2.5 px-4 text-white;
 }
 
-.btn-radius-none {
-  border-radius: 0 !important;
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: all 0.3s ease-in-out;
 }
 
 .bottom-20-1 {
@@ -114,6 +115,49 @@ select:focus-visible {
 
 /* COMPONENTS END */
 
+/* SLIDER HOME COMPONENTS START */
+
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.swiper {
+  width: 900px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-pagination-bullet {
+  height: 15px !important;
+  width: 15px !important;
+  opacity: 1 !important;
+  background: #cbcbcb !important;
+  transition: all 0.3s ease-in-out;
+  margin: 0 8px !important;
+}
+.swiper-pagination-bullet-active {
+  width: 46px !important;
+  height: 15px !important;
+  border-radius: 15px !important;
+  color: #fff;
+  background: #fff !important;
+}
+/* SLIDER HOME COMPONENTS END */

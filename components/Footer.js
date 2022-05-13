@@ -59,7 +59,7 @@ function Footer() {
                   height={20}
                 />
                 <a
-                  className="border-b border-transparent hover:border-b-white"
+                  className="border-b border-transparent transition-all duration-500 ease-in-out hover:border-b-white"
                   href="tel:+998998974504"
                 >
                   Tel: +998 99 897 45 04
