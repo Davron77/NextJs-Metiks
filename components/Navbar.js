@@ -35,7 +35,7 @@ export default function Navbar({ isOpenCatalog, setIsOpenCatalog }) {
                   <div>
                     <div className="flex space-x-6 xl:space-x-10">
                       {navigation.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
                           href={item.href}
                           className={classNames(
@@ -47,7 +47,7 @@ export default function Navbar({ isOpenCatalog, setIsOpenCatalog }) {
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
