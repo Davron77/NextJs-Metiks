@@ -25,7 +25,7 @@ function Footer() {
   return (
     <div className="footer w-full bg-black text-white">
       <div className="footer-menu">
-        <div className="mx-auto mt-16 mb-12 h-full max-w-7xl px-10 lg:h-24 lg:px-6">
+        <div className="mx-auto mb-12 h-full max-w-7xl px-10 pt-16 lg:h-24 lg:px-6">
           <div className="block h-full flex-wrap justify-between md:flex">
             <div className="flex w-32 items-center justify-start lg:w-40 xl:w-56">
               <Link href="/">

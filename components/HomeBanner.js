@@ -2,18 +2,19 @@ import React from 'react'
 import SliderHome from './SliderHome'
 import { DeviceMobileIcon } from '@heroicons/react/outline'
 import { LocationMarkerIcon, ArrowRightIcon } from '@heroicons/react/solid'
-import { FaFacebookF, FaTelegramPlane, AiFillInstagram } from 'react-icons/fa'
+import { FaFacebookF, FaTelegramPlane } from 'react-icons/fa'
+import { AiFillInstagram } from 'react-icons/ai'
 
 function HomeBanner() {
   return (
-    <div className="bg-gray-50">
-      <div className="mx-auto max-w-[1440px] gap-5 lg:flex lg:items-center lg:justify-between lg:rounded-sm">
+    <div>
+      <div className="mx-auto max-w-[1440px] gap-5 lg:flex">
         <div className="flex-2">
           <SliderHome />
         </div>
         <div>
-          <div className="h-[412px] flex-1 bg-black px-[50px] py-11 text-white">
-            <h1 className="font-Bebas text-[44px] font-bold leading-[50px]">
+          <div className="h-full flex-1 bg-black p-7 text-white lg:h-[412px] lg:px-[50px] lg:py-11">
+            <h1 className="font-Bebas text-3xl font-bold leading-[50px] lg:text-[44px]">
               Лучший{' '}
               <span className="text-neutral-400">
                 способ купить товары толЬка у нас.
@@ -22,7 +23,7 @@ function HomeBanner() {
             <div className=" mt-14">
               <div className="flex">
                 <img
-                  className="h-15 w-15 rounded-full"
+                  className="h-12 w-12 rounded-full lg:h-16 lg:w-16"
                   src="/user.png"
                   alt="user"
                 />
@@ -46,11 +47,7 @@ function HomeBanner() {
                 </div>
               </div>
               <div className="mt-10 flex">
-                <LocationMarkerIcon
-                  className="text-white hover:text-slate-400"
-                  width={60}
-                  height={60}
-                />
+                <LocationMarkerIcon className="h-12 w-12 text-white hover:text-slate-400 lg:h-16 lg:w-16" />
                 <div className=" flex flex-col justify-center pl-3">
                   <h5 className=" text-xl font-bold tracking-wide">
                     Адрес магазина
@@ -69,9 +66,19 @@ function HomeBanner() {
               </div>
             </div>
           </div>
-          <div className=" h-[72px] bg-[#E2E2E2]">
-            <FaFacebookF />
-            <FaTelegramPlane />
+          <div className="flex h-[72px] items-center justify-evenly bg-[#E2E2E2]">
+            <div className="flex">
+              <FaFacebookF className=" mt-1 mr-2" />
+              <span>Facebook</span>
+            </div>
+            <div className="flex">
+              <FaTelegramPlane className=" mt-1 mr-2" />
+              <span>Telegram</span>
+            </div>
+            <div className="flex">
+              <AiFillInstagram className=" mt-1 mr-2" />
+              <span>Instagram</span>
+            </div>
           </div>
         </div>
       </div>

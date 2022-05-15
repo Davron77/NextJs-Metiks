@@ -121,10 +121,6 @@ select:focus-visible {
   display: block;
 }
 
-.swiper {
-  width: 900px;
-}
-
 .swiper-slide {
   text-align: center;
   font-size: 18px;

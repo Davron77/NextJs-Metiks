@@ -29,7 +29,7 @@ const callouts = [
 
 export default function Info() {
   return (
-    <div className="info">
+    <div className="info bg-[#F5F5F5]">
       <div className="w-full">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="lg:py-30 mx-auto max-w-2xl py-24 lg:max-w-none">

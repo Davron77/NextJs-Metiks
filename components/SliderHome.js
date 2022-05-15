@@ -1,11 +1,8 @@
-import React, { useRef, useState } from 'react'
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 // import required modules
@@ -24,19 +21,19 @@ export default function SliderHome() {
           delay: 1000,
         }}
         modules={[EffectFade, Autoplay, Pagination]}
-        className="mySwiper"
+        className="mySwiper w-full lg:w-[900px]"
       >
         <SwiperSlide>
-          <img className="w-[900px]" src="/home-banner.png" />
+          <img className=" w-full" src="/home-banner.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="w-[900px]" src="/home-banner.png" />
+          <img className=" w-full" src="/home-banner.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="w-[900px]" src="/home-banner.png" />
+          <img className=" w-full" src="/home-banner.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="w-[900px]" src="/home-banner.png" />
+          <img className=" w-full" src="/home-banner.png" />
         </SwiperSlide>
       </Swiper>
     </>

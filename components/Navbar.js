@@ -1,15 +1,19 @@
-/* This example requires Tailwind CSS v2.0+ */
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import CatalogIcon from '../public/catalog.svg'
+import { Disclosure, Menu } from '@headlessui/react'
 import navigation from '../navigation/menu'
+import Catalog from './Catalog'
+// Icons
+import CatalogIcon from '../public/catalog.svg'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar({ isOpenCatalog, setIsOpenCatalog }) {
+export default function Navbar() {
+  const [isOpenCatalog, setIsOpenCatalog] = useState(false)
+
   return (
     <>
       <Disclosure
@@ -68,6 +72,7 @@ export default function Navbar({ isOpenCatalog, setIsOpenCatalog }) {
           </>
         )}
       </Disclosure>
+      <Catalog isOpenCatalog={isOpenCatalog} />
     </>
   )
 }
