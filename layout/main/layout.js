@@ -1,8 +1,7 @@
-import { useState } from 'react'
-import Header from '../components/Header'
-import Navbar from '../components/Navbar'
-import Info from '../components/Info'
-import Footer from '../components/Footer'
+import Header from '../Header'
+import Navbar from '../Navbar'
+import Info from '../Info'
+import Footer from '../Footer'
 
 export const WithLayout = (Component) => {
   return (props) => (

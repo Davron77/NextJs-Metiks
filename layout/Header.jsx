@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Logo from '../public/svg/logo.svg'
 import Link from 'next/link'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
 import navigation from '../navigation/menu'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 // IMPORT ICONS

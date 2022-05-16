@@ -24,7 +24,19 @@ body {
 /* CLASS VARIABLE START */
 
 .page-title {
-  @apply font-Bebas text-[44px];
+  @apply flex justify-between;
+}
+
+.page-title h1 {
+  @apply font-Bebas text-[22px] sm:text-[44px];
+}
+
+.page-title span {
+  @apply text-neutral-600;
+}
+
+.page-title a {
+  @apply flex items-center text-sm text-neutral-500 sm:text-lg;
 }
 
 .btn {
@@ -160,4 +172,31 @@ select:focus-visible {
   color: #fff;
   background: #fff !important;
 }
+
+.Recommendations .swiper-button-prev,
+.swiper-rtl .swiper-button-next,
+.Recommendations .swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  color: #6e6e73;
+  background: transparent;
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(110, 110, 115, 0.4);
+  border-radius: 50%;
+  bottom: 0;
+  top: 93%;
+}
+
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  left: 80px !important;
+}
+
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after,
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  font-size: 18px !important;
+}
+
 /* SLIDER HOME COMPONENTS END */

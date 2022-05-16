@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Disclosure, Menu } from '@headlessui/react'
 import navigation from '../navigation/menu'
-import Catalog from './Catalog'
+import Catalog from '../layout/Catalog'
 // Icons
 import CatalogIcon from '../public/svg/catalog.svg'
 

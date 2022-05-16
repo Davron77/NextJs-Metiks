@@ -15,4 +15,10 @@
   font-weight: 600;
 }
 
+@font-face {
+  font-family: 'MyriadPro';
+  src: url('./MyriadPro/MyriadPro-Regular.ttf');
+  font-weight: 400;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
