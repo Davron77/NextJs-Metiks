@@ -23,6 +23,10 @@ body {
 
 /* CLASS VARIABLE START */
 
+.page-title {
+  @apply font-Bebas text-[44px];
+}
+
 .btn {
   @apply cursor-pointer bg-black py-2.5 px-4 text-white;
 }

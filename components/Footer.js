@@ -1,15 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
-import Logo from '../public/logo.svg'
+import Logo from '../public/svg/logo.svg'
 import Link from 'next/link'
 // IMPORT ICONS
 import { DeviceMobileIcon } from '@heroicons/react/outline'
 import { LocationMarkerIcon } from '@heroicons/react/solid'
-
-import { FaFacebook, FaTelegram, FaInstagram } from 'react-icons/fa'
-import Facebook from '../public/Facebook.svg'
-import Telegram from '../public/Telegram.svg'
-import Instagram from '../public/Instagram.svg'
+import Facebook from '../public/svg/Facebook.svg'
+import Telegram from '../public/svg/Telegram.svg'
+import Instagram from '../public/svg/Instagram.svg'
 
 const navigation = [
   { name: 'Каталог', href: '#', current: false },
@@ -38,17 +36,17 @@ function Footer() {
             </div>
             <div className="my-9 grid grid-cols-2 flex-wrap items-center justify-center gap-2 gap-x-8 md:my-0 lg:flex lg:gap-0 lg:space-x-3 xl:space-x-10">
               {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={
-                    (item.current ? 'text-white' : 'text-black',
-                    'space-x-10 border-b-2 border-transparent text-lg font-normal')
-                  }
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </a>
+                <Link key={item.name} href={item.href}>
+                  <a
+                    className={
+                      (item.current ? 'text-white' : 'text-black',
+                      'space-x-10 border-b-2 border-transparent text-lg font-normal')
+                    }
+                    aria-current={item.current ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </a>
+                </Link>
               ))}
             </div>
             <div className="font-Inter flex flex-col items-start justify-center text-sm font-normal text-neutral-400 lg:justify-end">

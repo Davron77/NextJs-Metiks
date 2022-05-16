@@ -1,13 +1,17 @@
 import React from 'react'
-import { WithLayout } from '../layout/layout'
-import HomeBanner from '../components/HomeBanner'
+import Head from 'next/head'
+import type { NextPage } from 'next'
 
-const Landing = () => {
+const Products: NextPage = () => {
   return (
-    <div>
-      <h1>All Products</h1>
-    </div>
+    <>
+      <Head>
+        <title>Metiks | All-Products</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <h1>Products</h1>
+    </>
   )
 }
 
-export default WithLayout(Landing)
+export default Products

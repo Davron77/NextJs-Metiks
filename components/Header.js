@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import Logo from '../public/logo.svg'
+import Logo from '../public/svg/logo.svg'
 import Link from 'next/link'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import navigation from '../navigation/menu'
@@ -62,11 +62,7 @@ function Header() {
             </div>
             <div className="flex w-36 items-center justify-center lg:w-full">
               <Link href="/">
-                <Image
-                  className="cursor-pointer"
-                  src={Logo}
-                  alt="Picture of the author"
-                />
+                <Image className="cursor-pointer" src={Logo} alt="Logo" />
               </Link>
             </div>
             <div className="flex items-center justify-end">

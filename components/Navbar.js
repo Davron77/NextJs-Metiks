@@ -5,7 +5,7 @@ import { Disclosure, Menu } from '@headlessui/react'
 import navigation from '../navigation/menu'
 import Catalog from './Catalog'
 // Icons
-import CatalogIcon from '../public/catalog.svg'
+import CatalogIcon from '../public/svg/catalog.svg'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -39,18 +39,18 @@ export default function Navbar() {
                   <div>
                     <div className="flex space-x-6 xl:space-x-10">
                       {navigation.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'border-black'
-                              : 'hover:border-black',
-                            'border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          {item.name}
+                        <Link key={item.name} href={item.href}>
+                          <a
+                            className={classNames(
+                              item.current
+                                ? 'border-black'
+                                : 'hover:border-black',
+                              'border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out'
+                            )}
+                            aria-current={item.current ? 'page' : undefined}
+                          >
+                            {item.name}
+                          </a>
                         </Link>
                       ))}
                     </div>

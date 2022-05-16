@@ -1,4 +1,4 @@
-import products from '../products/products'
+import products from '../data/data-catalog'
 import { FaAngleRight } from 'react-icons/fa'
 
 export default function Catalog({ isOpenCatalog }) {
