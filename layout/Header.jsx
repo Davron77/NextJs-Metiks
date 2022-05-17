@@ -93,20 +93,19 @@ function Header() {
               <div className="relative h-screen">
                 <div className="space-y-1 px-10 pt-2 pb-3">
                   {navigation.map((item) => (
-                    <div
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className={
-                        (item.current
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block rounded-md py-2 text-base font-semibold')
-                      }
-                      aria-current={item.current ? 'page' : undefined}
-                    >
-                      {item.name}
-                    </div>
+                    <Link key={item.name} href={item.href}>
+                      <a
+                        className={
+                          (item.current
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'block rounded-md py-2 text-base font-semibold')
+                        }
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </a>
+                    </Link>
                   ))}
                   <div
                     href="#"

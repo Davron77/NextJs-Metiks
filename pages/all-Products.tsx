@@ -1,17 +1,28 @@
 import React from 'react'
 import Head from 'next/head'
 import type { NextPage } from 'next'
+import ProductBanner from '../components/ProductBanner'
+import Products from '../components/Products'
+import Bestsellers from '../components/Bestsellers'
+import Interested from '../components/Interested'
+import SliderInstagram from '../components/SliderInstagram'
+import VideoContent from '../components/VideoContent'
 
-const Products: NextPage = () => {
+const AllProducts: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Metiks | All-Products</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Metiks</title>
+        <link rel="icon" href="/m.png" />
       </Head>
-      <h1>Products</h1>
+      <ProductBanner />
+      <Products />
+      <Bestsellers />
+      <Interested />
+      <SliderInstagram />
+      <VideoContent />
     </>
   )
 }
 
-export default Products
+export default AllProducts

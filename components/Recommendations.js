@@ -54,11 +54,7 @@ function Recommendations() {
                 <SwiperSlide key={item.id}>
                   <div className="max-w-[530px] rounded-lg bg-black p-8 text-white">
                     <div className="flex">
-                      <IoIosStar className=" mr-3 h-7 w-7 text-[#F7C435]" />
-                      <IoIosStar className=" mr-3 h-7 w-7 text-[#F7C435]" />
-                      <IoIosStar className=" mr-3 h-7 w-7 text-[#F7C435]" />
-                      <IoIosStar className=" mr-3 h-7 w-7 text-[#F7C435]" />
-                      <IoIosStar className=" mr-3 h-7 w-7" />
+                      { Array(5).fill(0).map((e, i) => <IoIosStar className={` mr-3 h-7 w-7 ${(i + 1) <= item.rate && 'text-[#F7C435]'}`} /> )}
                     </div>
                     <div className=" mt-5 text-left text-sm sm:text-lg">
                       <span>{item.description}</span>
