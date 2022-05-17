@@ -18,22 +18,34 @@ export default function SliderHome() {
           clickable: true,
         }}
         autoplay={{
-          delay: 1000,
+          delay: 100000,
         }}
         modules={[EffectFade, Autoplay, Pagination]}
-        className="mySwiper w-full lg:w-[900px]"
+        className="mySwiper w-full"
       >
         <SwiperSlide>
-          <img className=" w-full" src="/home-banner.png" />
+          <img
+            className=" h-[300px] w-full object-cover sm:h-[500px]"
+            src="/home-banner.png"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img className=" w-full" src="/home-banner.png" />
+          <img
+            className=" h-[300px] w-full object-cover sm:h-[500px]"
+            src="/home-banner.png"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img className=" w-full" src="/home-banner.png" />
+          <img
+            className=" h-[300px] w-full object-cover sm:h-[500px]"
+            src="/home-banner.png"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img className=" w-full" src="/home-banner.png" />
+          <img
+            className=" h-[300px] w-full object-cover sm:h-[500px]"
+            src="/home-banner.png"
+          />
         </SwiperSlide>
       </Swiper>
     </>

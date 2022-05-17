@@ -4,14 +4,14 @@ import { FaAngleRight } from 'react-icons/fa'
 export default function Catalog({ isOpenCatalog }) {
   return (
     <div
-      className={`absolute left-0 right-0 top-[125px] z-10 scale-0 bg-white opacity-0 transition duration-500 ease-in-out lg:top-[185px] ${
-        isOpenCatalog ? 'scale-100 opacity-100' : ''
+      className={`absolute left-0 right-0 z-10 scale-0 bg-white opacity-0 transition duration-700 ease-in-out lg:top-[185px] ${
+        isOpenCatalog ? 'top-[125px] scale-100 opacity-100' : ''
       }`}
     >
       <div className="mx-auto max-w-7xl py-12 px-2 sm:px-6">
         <h2 className="sr-only">Products</h2>
 
-        <div className="font-Bebas grid grid-cols-1 gap-y-10 gap-x-6 transition-all delay-150 ease-in-out sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        <div className="font-Bebas grid grid-cols-1 gap-y-5 gap-x-6 transition-all delay-150 ease-in-out sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
             <a key={product.id} href={product.href} className="group">
               <div className="aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8 w-full overflow-hidden rounded-lg group-hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]">

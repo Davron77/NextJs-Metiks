@@ -9,11 +9,11 @@ function HomeBanner() {
   return (
     <div>
       <div className="mx-auto max-w-[1440px] gap-5 lg:flex">
-        <div className="flex-2">
+        <div className="flex-initial lg:w-[54%] xl:w-3/5">
           <SliderHome />
         </div>
-        <div>
-          <div className="h-full flex-1 bg-black p-7 text-white lg:h-[412px] lg:px-[50px] lg:py-11">
+        <div className="flex-initial">
+          <div className="h-full flex-1 bg-black p-7 text-white lg:h-[428px] lg:px-[50px] lg:py-11">
             <h1 className="font-Bebas text-3xl font-bold leading-[50px] lg:text-[44px]">
               Лучший{' '}
               <span className="text-neutral-400">

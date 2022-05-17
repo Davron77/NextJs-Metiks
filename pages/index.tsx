@@ -13,7 +13,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Metiks</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/m.png" />
       </Head>
       <HomeBanner />
       <Products />

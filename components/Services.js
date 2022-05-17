@@ -13,7 +13,7 @@ export default function Service() {
             Посмотреть все <ChevronRightIcon className=" h-5 w-5" />
           </a>
         </div>
-        <div className="grid grid-cols-1 gap-y-10 gap-x-6 transition-all delay-150 ease-in-out lg:grid-cols-2 xl:gap-x-8">
+        <div className="grid grid-cols-1 gap-y-5 gap-x-6 transition-all delay-150 ease-in-out sm:gap-y-10 lg:grid-cols-2 xl:gap-x-8">
           {Services.map((service) => (
             <a
               key={service.id}

@@ -5,7 +5,7 @@ export default function Info() {
   return (
     <div className="info bg-[#F5F5F5]">
       <div className="w-full">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-12 max-w-7xl px-4 sm:mt-24 sm:px-6 lg:px-8">
           <div className="lg:py-30 mx-auto max-w-2xl py-24 lg:max-w-none">
             <div className="mt-6 space-y-12 lg:grid lg:grid-cols-4 lg:gap-x-16 lg:space-y-0">
               {InfoCard.map((item) => (

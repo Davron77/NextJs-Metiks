@@ -14,9 +14,9 @@ import {
 import { LocationMarkerIcon } from '@heroicons/react/solid'
 
 const options = [
-  { name: 'Ru', value: 'Ru', active: 'true' },
-  { name: 'Uz', value: 'Uz', active: 'false' },
-  { name: 'En', value: 'En', active: 'false' },
+  { name: 'RU', value: 'RU', active: 'true' },
+  { name: 'UZ', value: 'UZ', active: 'false' },
+  { name: 'EN', value: 'EN', active: 'false' },
 ]
 
 function Header() {
@@ -30,7 +30,7 @@ function Header() {
             <div className="flex items-center justify-start">
               <select
                 className={`bg-black lg:block ${
-                  openMenu ? 'absolute left-3/4 flex' : 'hidden'
+                  openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
                 }`}
               >
                 {options.map((item) => {
@@ -66,17 +66,19 @@ function Header() {
             </div>
             <div className="flex items-center justify-end">
               <SearchIcon
-                className="cursor-pointer hover:text-neutral-500"
+                className={`cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500 ${
+                  openMenu ? 'h-0 opacity-0' : ''
+                }`}
                 width={24}
                 height={24}
               />
               <ShoppingCartIcon
-                className="ml-5 cursor-pointer hover:text-neutral-500"
+                className="ml-5 cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500"
                 width={24}
                 height={24}
               />
               <UserIcon
-                className="ml-5 cursor-pointer hover:text-neutral-500"
+                className="ml-5 cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500"
                 width={24}
                 height={24}
               />

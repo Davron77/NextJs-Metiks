@@ -13,7 +13,7 @@ export default function Products() {
             Посмотреть все <ChevronRightIcon className=" h-5 w-5" />
           </a>
         </div>
-        <div className="grid grid-cols-1 gap-y-10 gap-x-6 transition-all delay-150 ease-in-out sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+        <div className="grid grid-cols-1 gap-y-5 gap-x-6 transition-all delay-150 ease-in-out sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3 xl:gap-x-8">
           {products.map((product) => (
             <a
               key={product.id}
