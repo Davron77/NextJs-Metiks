@@ -128,6 +128,35 @@ select:focus-visible {
 }
 
 /* FOOTER COMPONENTS END */
+/* FORM START */
+
+form input {
+  @apply mt-2.5 rounded-sm py-[10px] px-4 text-base invalid:border-pink-500;
+  color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  @apply mt-5 text-sm;
+}
+
+form input::placeholder {
+  @apply text-lg;
+}
+
+form input:focus-visible {
+  outline: black auto 1px;
+}
+
+.invalid {
+  border: 1px solid #ee1313;
+}
+
+.form-title {
+  @apply font-Bebas text-center text-[44px] text-black;
+}
+
+/* FORM END */
 
 /* COMPONENTS END */
 

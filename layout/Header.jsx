@@ -12,6 +12,8 @@ import {
   DeviceMobileIcon,
 } from '@heroicons/react/outline'
 import { LocationMarkerIcon } from '@heroicons/react/solid'
+//Portal
+import Modal from '../layout/Modal'
 
 const options = [
   { name: 'RU', value: 'RU', active: 'true' },
@@ -20,6 +22,7 @@ const options = [
 ]
 
 function Header() {
+  const [isModal, setIsModal] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
 
   return (
@@ -78,6 +81,7 @@ function Header() {
                 height={24}
               />
               <UserIcon
+                onClick={() => setIsModal(true)}
                 className="ml-5 cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500"
                 width={24}
                 height={24}
@@ -95,6 +99,7 @@ function Header() {
                   {navigation.map((item) => (
                     <Link key={item.name} href={item.href}>
                       <a
+                        onClick={() => setOpenMenu(false)}
                         className={
                           (item.current
                             ? 'bg-gray-900 text-white'
@@ -149,6 +154,7 @@ function Header() {
           </div>
         </div>
       </div>
+      <Modal open={isModal} setOpen={setIsModal} />
     </>
   )
 }
