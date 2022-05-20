@@ -8,6 +8,9 @@ const SliderProducts = [
     price: 7500000,
     isNew: false,
     discount: -25,
+    color: 'RAL 8017',
+    product: 'ММК',
+    Thickness: 0.5,
   },
   {
     id: 2,
@@ -18,6 +21,9 @@ const SliderProducts = [
     price: 7500000,
     isNew: false,
     discount: 0,
+    color: 'RAL 8017',
+    product: 'ММК',
+    Thickness: 0.5,
   },
   {
     id: 3,
@@ -28,6 +34,9 @@ const SliderProducts = [
     price: 7500000,
     isNew: false,
     discount: 0,
+    color: 'RAL 8017',
+    product: 'ММК',
+    Thickness: 0.5,
   },
   {
     id: 4,
@@ -38,6 +47,9 @@ const SliderProducts = [
     price: 7500000,
     isNew: true,
     discount: 0,
+    color: 'RAL 8017',
+    product: 'ММК',
+    Thickness: 0.5,
   },
   {
     id: 5,
@@ -48,6 +60,9 @@ const SliderProducts = [
     price: 7500000,
     isNew: false,
     discount: 0,
+    color: 'RAL 8017',
+    product: 'ММК',
+    Thickness: 0.5,
   },
 ]
 

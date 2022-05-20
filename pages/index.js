@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import type { NextPage } from 'next'
 import HomeBanner from '../components/HomeBanner'
 import Products from '../components/Products'
 import Services from '../components/Services'
@@ -8,7 +7,7 @@ import Recommendations from '../components/Recommendations'
 import SliderInstagram from '../components/SliderInstagram'
 import VideoContent from '../components/VideoContent'
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <>
       <Head>

@@ -25,7 +25,7 @@ export default function Login({ isUser, setIsUser }) {
         <div className="w-[320px] p-[30px]">
           <div className="flex">
             <img
-              className="h-12 w-12 rounded-full lg:h-16 lg:w-16"
+              className="h-12 w-12 rounded-full ring ring-[#434343] lg:h-16 lg:w-16"
               src="/user.png"
               alt="user"
             />
@@ -33,7 +33,7 @@ export default function Login({ isUser, setIsUser }) {
               <h5 className=" text-xl font-bold tracking-wide">Одилов Кадыр</h5>
               <div className="mt-1 flex">
                 <a
-                  className="border-b border-transparent text-neutral-400 transition-all duration-500 ease-in-out hover:border-b-white"
+                  className="border-b border-transparent text-[#434343] transition-all duration-500 ease-in-out hover:border-b-white"
                   href="tel:+998998974504"
                 >
                   +998 (99) 897 45 04
@@ -41,12 +41,15 @@ export default function Login({ isUser, setIsUser }) {
               </div>
             </div>
           </div>
-          <button className="btn mt-[30px] flex w-full rounded-sm">
+          <button
+            className="btn mt-[30px] flex w-full rounded-sm"
+            onClick={() => setIsUser(false)}
+          >
             <MdExitToApp className=" mr-2 text-2xl" /> Выйти
           </button>
         </div>
       ) : (
-        <div className=" py-[40px] px-[60px]">
+        <div className=" py-[40px] px-5 sm:px-[60px]">
           <div className="form-title">{isReg ? 'Регистрация' : 'Логин'}</div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="m-auto grid">

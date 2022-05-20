@@ -27,7 +27,7 @@ function Header() {
 
   return (
     <>
-      <div className="header header-shadow fixed top-0 z-50 w-full bg-black text-white lg:static">
+      <div className="header header-shadow fixed top-0 z-[9] w-full bg-black text-white lg:static">
         <div className="mx-auto h-20 max-w-7xl px-2 sm:px-6">
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">
@@ -75,11 +75,13 @@ function Header() {
                 width={24}
                 height={24}
               />
-              <ShoppingCartIcon
-                className="ml-5 cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500"
-                width={24}
-                height={24}
-              />
+              <Link href="/basket">
+                <ShoppingCartIcon
+                  className="ml-5 cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500"
+                  width={24}
+                  height={24}
+                />
+              </Link>
               <UserIcon
                 onClick={() => setIsModal(true)}
                 className="ml-5 cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500"

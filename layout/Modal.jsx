@@ -35,8 +35,8 @@ function Modal({ open, setOpen }) {
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div
-            className={`mx-auto flex max-w-7xl items-end px-4 text-center sm:items-center sm:p-0 sm:px-6 lg:px-8 ${
-              isUser ? 'h-5/6 justify-end' : 'min-h-full justify-center'
+            className={`mx-auto flex max-w-7xl items-center px-4 text-center sm:p-0 sm:px-6 lg:px-8 ${
+              isUser ? ' h-2/6 justify-end' : 'min-h-full justify-center'
             }`}
           >
             <Transition.Child

@@ -131,7 +131,7 @@ select:focus-visible {
 /* FORM START */
 
 form input {
-  @apply mt-2.5 rounded-sm py-[10px] px-4 text-base invalid:border-pink-500;
+  @apply mt-2.5 rounded-sm py-[10px] px-4 text-lg invalid:border-pink-500;
   color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
