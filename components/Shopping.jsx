@@ -87,8 +87,67 @@ function Shopping({ setCheck }) {
               </div>
             </div>
           </div>
+          <div>
+            <div className="m-auto mt-8 flex h-full max-w-3xl justify-between gap-2 xl:m-0 xl:mt-8 xl:h-[160px]">
+              <img
+                className="h-20 w-20 object-cover sm:h-40 sm:w-40"
+                src="/product/20.png"
+              />
+              <div className="lg:flex">
+                <div className="flex flex-col justify-between">
+                  <div className="font-bold">
+                    <p className="uppercase">Рулон из полимерным покрытием</p>
+                    <p className="text-[#434343]">ral 8017, ММК, 0.5MM</p>
+                  </div>
+                  <div className="flex flex-col gap-y-2.5 text-xs uppercase text-[#434343]">
+                    <span>Цвет: RAL 8017</span>
+                    <span>Производство: ММК</span>
+                    <span>Толщина: 0,5</span>
+                  </div>
+                </div>
+                <div className="mt-3 flex max-w-[220px] flex-col justify-between lg:mt-0 lg:pl-8">
+                  <div>
+                    <p className="font-normal text-[#434343]">
+                      Общая стоимость
+                    </p>
+                    <span className="font-Bebas text-[32px] ">
+                      152 000 000 UZS
+                    </span>
+                  </div>
+                  <div>
+                    <p className="font-normal text-[#434343]">
+                      Количество товара
+                    </p>
+                    <div className=" mt-2 flex h-11 w-32 justify-between rounded-sm border-2 border-[#434343] p-2">
+                      <button onClick={() => setCount(count - 1)}>
+                        <AiOutlineMinus />
+                      </button>
+                      <input
+                        type="text"
+                        value={count}
+                        onChange={handleOnChange}
+                        className="w-11 text-center outline-none"
+                      />
+                      <button onClick={() => setCount(count + 1)}>
+                        <AiOutlinePlus />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-end sm:pl-10">
+                <div className="h-7 w-7 cursor-pointer rounded-sm bg-black p-0.5 text-white">
+                  <BsCheck2 className="text-2xl" />
+                </div>
+                <div className="mt-2.5 h-7 w-7 cursor-pointer rounded-sm bg-red-600 p-0.5 text-white">
+                  <TrashIcon className="h-6" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="m-auto mt-7 max-w-[500px] rounded p-[30px] xl:m-0 xl:shadow-[0_2px_12px_rgba(0,0,0,0.14)]">
+        <div className="m-auto mt-7 max-h-[292px] max-w-[500px] rounded p-[30px] xl:m-0 xl:shadow-[0_2px_12px_rgba(0,0,0,0.14)]">
           <div
             className="page-title pb -4 flex items-center border-t-2 border-[#EDEDED]
           pt-4 xl:border-t-0 xl:border-b-2 xl:pt-0"
