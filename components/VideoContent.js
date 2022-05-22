@@ -1,7 +1,7 @@
 export default function VideoContent() {
   return (
     <div>
-      <div className="mx-auto max-w-[1440px] pt-12">
+      <div className="mx-auto max-w-[1440px]">
         <div className="lg:flex">
           <div className="flex basis-1/2 flex-row justify-center bg-black pt-8 pb-10 text-white sm:py-28">
             <div>

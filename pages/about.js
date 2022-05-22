@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
-import ProductionInfo from '../components/ProductionInfo'
+import AboutInfo from '../components/AboutInfo'
+import PageTitle from '../components/pageTitle'
+import VideoContent from '../components/VideoContent'
 
 const About = () => {
   const page = 'О компании'
+  const title = 'кОМПАНИя metiks '
 
   return (
     <>
@@ -13,7 +16,9 @@ const About = () => {
         <link rel="icon" href="/m.png" />
       </Head>
       <Breadcrumb page={page} />
-      <ProductionInfo />
+      <PageTitle title={title} />
+      <VideoContent />
+      <AboutInfo />
     </>
   )
 }

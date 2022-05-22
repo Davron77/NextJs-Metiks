@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
-import ProductionInfo from '../components/ProductionInfo'
-import Banner from '../components/Banner'
 import PageTitle from '../components/pageTitle'
+import SliderInstagram from '../components/SliderInstagram'
+import ContactBanner from '../components/ContactBanner'
+import ContactForm from '../components/ContactForm'
 
-const Production = () => {
-  const page = 'Производство'
-  const urlIma = '/production-banner.png'
-  const title = 'Производство metiks'
+const About = () => {
+  const page = 'Контакты'
+  const title = 'наши Контакты'
 
   return (
     <>
@@ -18,10 +18,11 @@ const Production = () => {
       </Head>
       <Breadcrumb page={page} />
       <PageTitle title={title} />
-      <Banner urlIma={urlIma} />
-      <ProductionInfo />
+      <ContactBanner />
+      <ContactForm />
+      <SliderInstagram />
     </>
   )
 }
 
-export default Production
+export default About

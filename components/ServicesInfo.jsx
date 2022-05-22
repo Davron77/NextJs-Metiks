@@ -4,15 +4,10 @@ function ServicesInfo() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div>
-        <h1 className=" font-Bebas my-7 text-center text-[40px] font-bold">
-          наши Услуги
-        </h1>
-      </div>
-      <div>
-        <div className="flex gap-10">
-          <img src="/page-img/1.png" />
+        <div className="grid-cols-2 gap-10 lg:grid">
+          <img className="mb-5 w-full lg:mb-0" src="/page-img/1.png" />
           <div className="text-[#434343]">
-            <h3 className=" font-Bebas mb-5 text-[40px] font-bold leading-[50px] text-black">
+            <h3 className=" font-Bebas mb-5 text-[20px] font-bold leading-[26px] text-black sm:text-[40px] sm:leading-[50px]">
               Компания "Metiks" предоставляет услуги по продольно-поперечной
               резке металла.
             </h3>
@@ -40,10 +35,10 @@ function ServicesInfo() {
             </p>
           </div>
         </div>
-        <div className="mt-12 flex gap-10">
-          <img src="/page-img/2.png" />
+        <div className="mt-12 grid-cols-2 gap-10 lg:grid">
+          <img className="mb-5 w-full lg:mb-0" src="/page-img/2.png" />
           <div className="text-[#434343]">
-            <h3 className=" font-Bebas mb-5 text-[40px] font-bold leading-[50px] text-black">
+            <h3 className=" font-Bebas mb-5 text-[20px] font-bold leading-[26px] text-black sm:text-[40px] sm:leading-[50px]">
               Воспользуйтесь нашим сервисом доставки образцов по всей
               Узбекистана.
             </h3>
