@@ -4,8 +4,8 @@ import { FaAngleRight } from 'react-icons/fa'
 export default function Catalog({ isOpenCatalog }) {
   return (
     <div
-      className={`absolute left-0 right-0 z-10 scale-0 bg-white opacity-0 transition duration-700 ease-in-out lg:top-[185px] ${
-        isOpenCatalog ? 'top-[125px] scale-100 opacity-100' : ''
+      className={`left-0 right-0 z-10 bg-white transition duration-700 ease-in-out lg:top-[185px] ${
+        isOpenCatalog ? 'catalogAnimation top-[125px] block' : 'hidden'
       }`}
     >
       <div className="mx-auto max-w-7xl py-12 px-2 sm:px-6">
@@ -33,4 +33,12 @@ export default function Catalog({ isOpenCatalog }) {
       </div>
     </div>
   )
+}
+
+{
+  /* <div
+      className={`absolute left-0 right-0 z-10 scale-0 bg-white opacity-0 transition duration-700 ease-in-out lg:top-[185px] ${
+        isOpenCatalog ? 'top-[125px] scale-100 opacity-100' : ''
+      }`}
+    ></div> */
 }

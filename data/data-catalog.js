@@ -1,4 +1,4 @@
-const products = [
+const catalog = [
   {
     id: 1,
     name: 'Профнастил и Аксессуары для кровли',
@@ -19,7 +19,7 @@ const products = [
   },
   {
     id: 4,
-    name: 'Рулон из оцинкованной стали с полимерным покрытием',
+    name: 'Рулон из оцинкованной стали',
     href: '#',
     imageSrc: '/catalog/product-4.png',
   },
@@ -55,4 +55,4 @@ const products = [
   },
 ]
 
-export default products
+export default catalog

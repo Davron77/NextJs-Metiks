@@ -6,6 +6,7 @@ import Services from '../components/Services'
 import Recommendations from '../components/Recommendations'
 import SliderInstagram from '../components/SliderInstagram'
 import VideoContent from '../components/VideoContent'
+import ButtonCatalog from '../components/ButtonCatalog'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
         <title>Metiks</title>
         <link rel="icon" href="/m.png" />
       </Head>
+      <ButtonCatalog />
       <HomeBanner />
       <Products />
       <Services />

@@ -6,6 +6,7 @@ import Bestsellers from '../components/Bestsellers'
 import Interested from '../components/Interested'
 import SliderInstagram from '../components/SliderInstagram'
 import VideoContent from '../components/VideoContent'
+import ButtonCatalog from '../components/ButtonCatalog'
 
 const urlIma = '/Product-banner.png'
 
@@ -16,6 +17,7 @@ const AllProducts = () => {
         <title>Metiks</title>
         <link rel="icon" href="/m.png" />
       </Head>
+      <ButtonCatalog />
       <Banner urlIma={urlIma} />
       <Products />
       <Bestsellers />
