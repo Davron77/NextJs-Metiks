@@ -68,6 +68,18 @@ body {
   filter: drop-shadow(0px 2px 12px rgba(0, 0, 0, 0.14));
 }
 
+.checkout-radio input:checked + .checkout-card {
+  border: 2px solid #016059;
+}
+
+.category-radio input:checked + .category-card {
+  border: 2px solid #000000;
+}
+
+.checkout-radio input:checked + .checkout-card h4 {
+  color: #016059;
+}
+
 /* CLASS VARIABLE END */
 
 /* COMPONENTS START */
@@ -103,7 +115,12 @@ select:focus-visible {
 
 .catalogAnimation {
   animation-name: example;
-  animation-duration: 3s;
+  animation-duration: 1s;
+}
+
+.catalogAnimationend {
+  animation-name: exampleend;
+  animation-duration: 1s;
 }
 
 @keyframes example {
@@ -111,7 +128,15 @@ select:focus-visible {
     height: 0;
   }
   100% {
-    height: 1000px;
+    height: 100%;
+  }
+}
+@keyframes exampleend {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 0;
   }
 }
 
@@ -145,7 +170,7 @@ select:focus-visible {
 /* FORM START */
 
 form input {
-  @apply mt-2.5 rounded-sm py-[10px] px-4 text-lg invalid:border-pink-500;
+  @apply mt-2.5 rounded-sm py-[10px] px-4 text-lg;
   color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -158,9 +183,9 @@ form input::placeholder {
   @apply text-lg;
 }
 
-form input:focus-visible {
+/* form input:focus-visible {
   outline: black auto 1px;
-}
+} */
 
 .invalid {
   border: 1px solid #ee1313;

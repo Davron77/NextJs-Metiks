@@ -8,7 +8,8 @@ function Basket({ page }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-12 items-center justify-center text-sm text-[#434343]">
           <AiFillHome className="mr-2 text-[22px]" />
-          <Link href="/">Главная</Link> / {page}
+          <Link href="/">Главная</Link> /{' '}
+          <span className="truncate">{page}</span>
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ function Header() {
 
   return (
     <>
-      <div className="header header-shadow fixed top-0 z-[9] w-full bg-black text-white lg:static">
+      <div className="header header-shadow fixed top-0 z-[99] w-full bg-black text-white lg:static">
         <div className="mx-auto h-20 max-w-7xl px-2 sm:px-6">
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">

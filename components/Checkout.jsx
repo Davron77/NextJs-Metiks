@@ -26,38 +26,50 @@ function Checkout({ setCheck }) {
           <div>
             <div>
               <h3 className="mt-8 font-bold uppercase">Способ доставки</h3>
-              <div className="gap-5 sm:flex">
-                <div className="group my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center hover:border-[#016059]">
-                  <h4 className="font-Inter text-xl text-[#434343] group-hover:text-[#016059]">
-                    Транспортная услуги
-                  </h4>
-                  <p className="mt-3 text-[#00000066]">
-                    Удобная доставка в любую точку Узбекистана
-                  </p>
-                </div>
-                <div className="group my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center hover:border-[#016059]">
-                  <h4 className="font-Inter text-xl text-[#434343] group-hover:text-[#016059]">
-                    Самовывоз с завода
-                  </h4>
-                  <p className="mt-3 text-[#00000066]">
-                    Забрать товар можно со склада METIKS
-                  </p>
-                </div>
+              <div className="grid-cols-2 gap-5 sm:grid">
+                <label className="checkout-radio w-full cursor-pointer">
+                  <input type="radio" name="radio" className="hidden" checked />
+                  <div className="checkout-card my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center">
+                    <h4 className="font-Inter text-xl text-[#434343]">
+                      Транспортная услуги
+                    </h4>
+                    <p className="mt-3 text-[#00000066]">
+                      Удобная доставка в любую <br /> точку Узбекистана
+                    </p>
+                  </div>
+                </label>
+                <label className="checkout-radio w-full cursor-pointer">
+                  <input type="radio" name="radio" className="hidden" />
+                  <div className="checkout-card my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center">
+                    <h4 className="font-Inter text-xl text-[#434343]">
+                      Самовывоз с завода
+                    </h4>
+                    <p className="mt-3 text-[#00000066]">
+                      Забрать товар можно со <br /> склада METIKS
+                    </p>
+                  </div>
+                </label>
               </div>
             </div>
             <div>
               <h3 className="mt-8 font-bold uppercase">Способ доставки</h3>
-              <div className="gap-5 sm:flex">
-                <div className="group my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center hover:border-[#016059]">
-                  <h4 className="font-Inter text-xl text-[#434343] group-hover:text-[#016059]">
-                    Транспортная услуги
-                  </h4>
-                </div>
-                <div className="group my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center hover:border-[#016059]">
-                  <h4 className="font-Inter text-xl text-[#434343] group-hover:text-[#016059]">
-                    Самовывоз с завода
-                  </h4>
-                </div>
+              <div className="grid-cols-2 gap-5 sm:grid">
+                <label className="checkout-radio w-full cursor-pointer">
+                  <input type="radio" name="cash" className="hidden" checked />
+                  <div className="checkout-card my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center">
+                    <h4 className="font-Inter text-xl text-[#434343]">
+                      Наличными
+                    </h4>
+                  </div>
+                </label>
+                <label className="checkout-radio w-full cursor-pointer">
+                  <input type="radio" name="cash" className="hidden" />
+                  <div className="checkout-card my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center">
+                    <h4 className="font-Inter text-xl text-[#434343]">
+                      Картами
+                    </h4>
+                  </div>
+                </label>
               </div>
             </div>
             <div>
@@ -117,3 +129,27 @@ function Checkout({ setCheck }) {
 }
 
 export default Checkout
+
+{
+  /* <div>
+              <h3 className="mt-8 font-bold uppercase">Способ доставки</h3>
+              <div className="gap-5 sm:flex">
+                <div className="group my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center hover:border-[#016059]">
+                  <h4 className="font-Inter text-xl text-[#434343] group-hover:text-[#016059]">
+                    Транспортная услуги
+                  </h4>
+                  <p className="mt-3 text-[#00000066]">
+                    Удобная доставка в любую точку Узбекистана
+                  </p>
+                </div>
+                <div className="group my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center hover:border-[#016059]">
+                  <h4 className="font-Inter text-xl text-[#434343] group-hover:text-[#016059]">
+                    Самовывоз с завода
+                  </h4>
+                  <p className="mt-3 text-[#00000066]">
+                    Забрать товар можно со склада METIKS
+                  </p>
+                </div>
+              </div>
+            </div> */
+}

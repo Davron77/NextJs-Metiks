@@ -12,42 +12,52 @@ const colors = [
   {
     id: 1,
     color: '#E6D2B5',
+    is_correct: true,
   },
   {
     id: 2,
     color: '#861A22',
+    is_correct: false,
   },
   {
     id: 3,
     color: '#59191F',
+    is_correct: false,
   },
   {
     id: 4,
     color: '#6D342D',
+    is_correct: false,
   },
   {
     id: 5,
     color: '#792423',
+    is_correct: false,
   },
   {
     id: 6,
     color: '#27352A',
+    is_correct: false,
   },
   {
     id: 7,
     color: '#9B9B9B',
+    is_correct: false,
   },
   {
     id: 8,
     color: '#45494E',
+    is_correct: false,
   },
   {
     id: 9,
     color: '#442F29',
+    is_correct: false,
   },
   {
     id: 10,
     color: '#ECECE7',
+    is_correct: false,
   },
 ]
 
@@ -76,8 +86,38 @@ const discounts = [
 
 function Category({ open }) {
   return (
-    <div className={`hidden lg:flex `}>
+    <div
+      className={`overflow-hidden lg:flex ${
+        open
+          ? 'catalogAnimation absolute left-0 right-0 top-[125px]  z-10 flex justify-center bg-white px-4 pt-4'
+          : 'hidden'
+      }`}
+    >
       <Accordion allowZeroExpanded>
+        <AccordionItem dangerouslySetExpanded={true}>
+          <AccordionItemHeading>
+            <AccordionItemButton>Категория</AccordionItemButton>
+          </AccordionItemHeading>
+          <AccordionItemPanel>
+            <form action="#" className=" max-h-[200px] overflow-auto">
+              {catalog.map((item) => (
+                <div className="flex flex-row py-2">
+                  <input
+                    type="checkbox"
+                    id={item.id}
+                    name={item.id}
+                    value="Bike"
+                    className="mt-0 mr-2 h-[18px] w-[18px] outline-2"
+                  />
+                  <label className="m-0 text-[#434343]" for={item.id}>
+                    {item.name.slice(3)}
+                  </label>
+                  <br></br>
+                </div>
+              ))}
+            </form>
+          </AccordionItemPanel>
+        </AccordionItem>
         <AccordionItem dangerouslySetExpanded={true}>
           <AccordionItemHeading>
             <AccordionItemButton>Категория</AccordionItemButton>
@@ -136,11 +176,19 @@ function Category({ open }) {
           <AccordionItemPanel>
             <div className="grid grid-cols-5 gap-3">
               {colors.map((item) => (
-                <div
-                  key={item.id}
-                  className="h-[50px] w-[50px] cursor-pointer rounded-full"
-                  style={{ backgroundColor: `${item.color}` }}
-                ></div>
+                <label className="category-radio">
+                  <input
+                    type="radio"
+                    name="color"
+                    className="hidden"
+                    checked={item.is_correct}
+                  />
+                  <div
+                    key={item.id}
+                    className="category-card h-[50px] w-[50px] cursor-pointer rounded-full"
+                    style={{ backgroundColor: `${item.color}` }}
+                  ></div>
+                </label>
               ))}
             </div>
           </AccordionItemPanel>
