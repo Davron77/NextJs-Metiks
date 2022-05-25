@@ -18,7 +18,9 @@ export default function Navbar() {
     <>
       <Disclosure
         as="nav"
-        className={`w-full ${isOpenCatalog ? 'border-bottom ' : ''}`}
+        className={`w-full ${
+          isOpenCatalog ? 'border-bottom border-[#434343]' : ''
+        }`}
       >
         {({ open }) => (
           <>

@@ -80,6 +80,43 @@ body {
   color: #016059;
 }
 
+input[type='checkbox'] {
+  @apply h-4 w-4;
+}
+
+select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  background: url('http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png')
+    no-repeat right #ddd;
+}
+
+select::-ms-expand {
+  display: none !important;
+  background-color: #016059 !important;
+}
+
+.css-1nxb8fi-control {
+  @apply max-w-[184px];
+  border: 2px solid #434343 !important;
+  background: #f0f0f0 !important;
+  padding: 2px;
+}
+
+.css-1disym4-control {
+  border-width: 2px !important;
+  padding: 2px;
+}
+
+span.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+svg.css-tj5bde-Svg {
+  color: #434343;
+}
+
 /* CLASS VARIABLE END */
 
 /* COMPONENTS START */
@@ -365,5 +402,10 @@ form input::placeholder {
   .swiper-rtl .swiper-button-next {
     right: 60px !important;
     left: auto !important;
+  }
+  #product .swiper-button-prev,
+  .swiper-rtl .swiper-button-next {
+    right: 60px !important;
+    left: 10px !important;
   }
 }

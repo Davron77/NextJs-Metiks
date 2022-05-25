@@ -15,6 +15,7 @@
     "react-hook-form": "^7.31.1",
     "react-icons": "^4.3.1",
     "react-rating-stars-component": "^2.2.0",
+    "react-select": "^5.3.2",
     "swiper": "^8.1.4"
   },
   "devDependencies": {

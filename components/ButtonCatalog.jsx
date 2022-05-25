@@ -9,7 +9,7 @@ function ButtonCatalog() {
     <>
       <div
         className={`btn flex w-full justify-center rounded-none lg:hidden lg:border-b lg:border-transparent ${
-          isOpenCatalog ? 'lg:border-white' : ''
+          isOpenCatalog ? 'lg:border-black' : ''
         }`}
         onClick={() => setIsOpenCatalog((prev) => !prev)}
       >

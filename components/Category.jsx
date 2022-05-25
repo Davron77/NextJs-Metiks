@@ -218,6 +218,9 @@ function Category({ open }) {
           </AccordionItemPanel>
         </AccordionItem>
       </Accordion>
+      <div className="fixed bottom-[2%] mx-3 w-full px-5 lg:hidden">
+        <button className="btn w-full !bg-[#016059]">Преминить</button>
+      </div>
     </div>
   )
 }
