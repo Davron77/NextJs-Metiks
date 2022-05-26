@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Dialog, Transition } from '@headlessui/react'
 import Login from './Login'
 
-function Modal({ open, setOpen }) {
+function Modal({ open, setOpen, setUser, user }) {
   const [isBrowser, setIsBrowser] = useState(false)
   const [isUser, setIsUser] = useState(false)
 
@@ -17,7 +17,7 @@ function Modal({ open, setOpen }) {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="relative z-10"
+        className="relative z-[100]"
         initialFocus={cancelButtonRef}
         onClose={setOpen}
       >
@@ -50,7 +50,13 @@ function Modal({ open, setOpen }) {
             >
               <Dialog.Panel className="relative max-w-[420px] transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all">
                 <div className="bg-white">
-                  <Login isUser={isUser} setIsUser={setIsUser} />
+                  <Login
+                    isUser={isUser}
+                    setIsUser={setIsUser}
+                    setOpen={setOpen}
+                    setUser={setUser}
+                    user={user}
+                  />
                 </div>
               </Dialog.Panel>
             </Transition.Child>

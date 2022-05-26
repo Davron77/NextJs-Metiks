@@ -107,7 +107,7 @@ function Category({ open }) {
                     id={item.id}
                     name={item.id}
                     value="Bike"
-                    className="mt-0 mr-2 h-[18px] w-[18px] outline-2"
+                    className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
                   />
                   <label className="m-0 text-[#434343]" for={item.id}>
                     {item.name.slice(3)}
@@ -131,7 +131,7 @@ function Category({ open }) {
                     id={item.id}
                     name={item.id}
                     value="Bike"
-                    className="mt-0 mr-2 h-[18px] w-[18px] outline-2"
+                    className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
                   />
                   <label className="m-0 text-[#434343]" for={item.id}>
                     {item.name.slice(3)}

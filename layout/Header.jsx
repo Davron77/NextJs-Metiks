@@ -24,6 +24,7 @@ const options = [
 function Header() {
   const [isModal, setIsModal] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
+  const [user, setUser] = useState(null)
 
   return (
     <>
@@ -156,7 +157,12 @@ function Header() {
           </div>
         </div>
       </div>
-      <Modal open={isModal} setOpen={setIsModal} />
+      <Modal
+        open={isModal}
+        setOpen={setIsModal}
+        setUser={setUser}
+        user={user}
+      />
     </>
   )
 }

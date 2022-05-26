@@ -80,11 +80,7 @@ body {
   color: #016059;
 }
 
-input[type='checkbox'] {
-  @apply h-4 w-4;
-}
-
-select {
+#product select {
   -moz-appearance: none; /* Firefox */
   -webkit-appearance: none; /* Safari and Chrome */
   appearance: none;
@@ -92,7 +88,7 @@ select {
     no-repeat right #ddd;
 }
 
-select::-ms-expand {
+#product select::-ms-expand {
   display: none !important;
   background-color: #016059 !important;
 }
@@ -220,9 +216,9 @@ form input::placeholder {
   @apply text-lg;
 }
 
-/* form input:focus-visible {
+form input:focus-visible {
   outline: black auto 1px;
-} */
+}
 
 .invalid {
   border: 1px solid #ee1313;

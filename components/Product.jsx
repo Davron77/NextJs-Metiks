@@ -259,12 +259,17 @@ function Product() {
                         </div>
                         <div className="absolute top-3 right-3">
                           {select ? (
-                            <input
-                              type="checkbox"
-                              name="delete"
-                              id="deleteChecked"
-                              defaultChecked={true}
-                            />
+                            <>
+                              <label>
+                                <input
+                                  type="checkbox"
+                                  class="h-4 w-4 accent-[#016059]"
+                                  id="checkbox_id"
+                                  name="checkbox"
+                                  defaultChecked={true}
+                                />
+                              </label>
+                            </>
                           ) : (
                             <Disclosure.Button>
                               <img src="/svg/angle-top.svg" alt="Angle Top" />
@@ -400,12 +405,17 @@ function Product() {
                         </div>
                         <div className="absolute top-3 right-3">
                           {select ? (
-                            <input
-                              type="checkbox"
-                              name="delete"
-                              id="deleteChecked"
-                              defaultChecked={true}
-                            />
+                            <>
+                              <label>
+                                <input
+                                  type="checkbox"
+                                  class="h-4 w-4 accent-[#016059]"
+                                  id="checkbox_id"
+                                  name="checkbox"
+                                  defaultChecked={true}
+                                />
+                              </label>
+                            </>
                           ) : (
                             <Disclosure.Button>
                               <img src="/svg/angle-top.svg" alt="Angle Top" />
@@ -541,12 +551,17 @@ function Product() {
                         </div>
                         <div className="absolute top-3 right-3">
                           {select ? (
-                            <input
-                              type="checkbox"
-                              name="delete"
-                              id="deleteChecked"
-                              defaultChecked={true}
-                            />
+                            <>
+                              <label>
+                                <input
+                                  type="checkbox"
+                                  class="h-4 w-4 accent-[#016059]"
+                                  id="checkbox_id"
+                                  name="checkbox"
+                                  defaultChecked={true}
+                                />
+                              </label>
+                            </>
                           ) : (
                             <Disclosure.Button>
                               <img src="/svg/angle-top.svg" alt="Angle Top" />
@@ -627,19 +642,16 @@ function Product() {
                   Добавить лист другой длины
                 </span>
               </button>
-              <div className="ml-[5px] flex h-5 items-center gap-y-3">
-                <input
-                  id="checkbox_id"
-                  name="checkbox"
-                  type="checkbox"
-                  onChange={(e) => setSelect((prev) => !prev)}
-                  value={select}
-                  className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  for="checkbox_id"
-                  className="border-b border-transparent hover:border-[#434343]"
-                >
+              <div>
+                <label className="flex h-5 items-center">
+                  <input
+                    id="checkbox_id"
+                    name="checkbox"
+                    type="checkbox"
+                    onChange={(e) => setSelect((prev) => !prev)}
+                    value={select}
+                    class="mr-2 h-4 w-4 accent-[#016059]"
+                  />
                   Выбрать все
                 </label>
               </div>
