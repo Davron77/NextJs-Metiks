@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form'
 import { FiCheck } from 'react-icons/fi'
 import { MdOutlineHelp, MdExitToApp } from 'react-icons/md'
 import { authAPI } from '../api'
+import Cookies from 'js-cookie'
+
+
 
 export default function Login({ isUser, setIsUser, setOpen, setUser, user }) {
   const {
@@ -39,7 +42,8 @@ export default function Login({ isUser, setIsUser, setOpen, setUser, user }) {
         })
         console.log('res', res)
         if (res.status === 200 && res.data.data.token) {
-          localStorage.setItem('token', res.data.data.token)
+          Cookies.set('token', res.data.data.token) 
+          //localStorage.setItem('token', res.data.data.token)
           getMe()
         }
       } else {
@@ -49,7 +53,8 @@ export default function Login({ isUser, setIsUser, setOpen, setUser, user }) {
         })
         console.log('res', res)
         if (res.status === 200 && res.data.data.token) {
-          localStorage.setItem('token', res.data.data.token)
+           Cookies.set('token', res.data.data.token) 
+          //localStorage.setItem('token', res.data.data.token)
           getMe()
         }
       }

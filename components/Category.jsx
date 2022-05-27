@@ -7,6 +7,7 @@ import {
 } from 'react-accessible-accordion'
 import 'react-accessible-accordion/dist/fancy-example.css'
 import catalog from '../data/data-catalog'
+import { IoMdClose } from 'react-icons/io'
 
 const colors = [
   {
@@ -84,15 +85,25 @@ const discounts = [
   },
 ]
 
-function Category({ open }) {
+function Category({ open, setOpen }) {
+  console.log('open', open)
   return (
     <div
-      className={`overflow-hidden lg:flex ${
+      className={`flex overflow-hidden  ${
         open
-          ? 'catalogAnimation absolute left-0 right-0 top-[125px]  z-10 flex justify-center bg-white px-4 pt-4'
-          : 'hidden'
+          ? 'catalogAnimation fixed top-0 left-0 right-0 z-[100] !block h-screen flex-col justify-center !overflow-auto bg-white px-8 pb-4'
+          : 'catalogAnimationend'
       }`}
     >
+      <div className="flex items-center justify-between border-b border-black lg:hidden">
+        <h2 className="flex items-center py-7 text-lg">
+          <img src="/svg/catalog-dark.svg" alt="Icon" className="mr-2" />
+          Каталог продукции
+        </h2>
+        <div>
+          <IoMdClose className="text-2xl" onClick={() => setOpen(false)} />
+        </div>
+      </div>
       <Accordion allowZeroExpanded>
         <AccordionItem dangerouslySetExpanded={true}>
           <AccordionItemHeading>
@@ -218,8 +229,8 @@ function Category({ open }) {
           </AccordionItemPanel>
         </AccordionItem>
       </Accordion>
-      <div className="fixed bottom-[2%] mx-3 w-full px-5 lg:hidden">
-        <button className="btn w-full !bg-[#016059]">Преминить</button>
+      <div className="fixed bottom-[2%] w-screen pr-16 text-center lg:hidden">
+        <button className="btn w-[323px] !bg-[#016059]">Преминить</button>
       </div>
     </div>
   )

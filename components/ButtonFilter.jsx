@@ -9,13 +9,13 @@ function ButtonFilter() {
     <>
       <div
         className="btn flex w-full justify-center rounded-none border-b border-transparent !bg-[#016059] lg:hidden"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => setOpen(true)}
       >
         <span className="flex items-center font-medium lg:font-semibold">
           <MdFilterAlt className="h-5 w-5" /> Фильтр
         </span>
       </div>
-      {open ? <Category open={open} /> : null}
+      {open ? <Category open={open} setOpen={setOpen} /> : null}
     </>
   )
 }

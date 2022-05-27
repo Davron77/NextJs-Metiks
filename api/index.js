@@ -5,6 +5,7 @@ const login = '/login'
 const me = '/me'
 const logout = '/logout'
 const services = '/services'
+const instagram = '/instagram'
 
 export const authAPI = {
   register: (props) => http.post(register, props),
@@ -14,5 +15,6 @@ export const authAPI = {
 }
 
 export const productAPI = {
-  services: (props) => http.get(services, props),
+  services: () => http.get(services),
+  instagram: () => http.get(instagram),
 }

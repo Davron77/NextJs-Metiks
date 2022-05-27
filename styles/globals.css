@@ -93,6 +93,14 @@ body {
   background-color: #016059 !important;
 }
 
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
+
 .css-1nxb8fi-control {
   @apply max-w-[184px];
   border: 2px solid #434343 !important;
@@ -111,6 +119,14 @@ span.css-1okebmr-indicatorSeparator {
 
 svg.css-tj5bde-Svg {
   color: #434343;
+}
+
+figure {
+  @apply overflow-hidden rounded-lg;
+}
+figure:hover + span {
+  bottom: -36px;
+  opacity: 1;
 }
 
 /* CLASS VARIABLE END */

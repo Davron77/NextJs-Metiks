@@ -1,5 +1,4 @@
 import React from 'react'
-import SliderHome from './SliderHome'
 import { DeviceMobileIcon } from '@heroicons/react/outline'
 import { LocationMarkerIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import { FaFacebookF, FaTelegramPlane } from 'react-icons/fa'
@@ -8,11 +7,17 @@ import { AiFillInstagram } from 'react-icons/ai'
 function ContactBanner() {
   return (
     <div>
-      <div className="mx-auto max-w-[1440px] gap-5 lg:flex">
-        <div className="flex-initial lg:w-[54%] xl:w-3/5">
-          <SliderHome />
+      <div className="mx-auto max-w-[1440px] grid-cols-4 gap-5 lg:grid xl:grid-cols-5">
+        <div className=" col-span-2 xl:col-span-3">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d890.8208057813765!2d69.26599089956898!3d41.32295658775837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3f8e3c9dcf%3A0x9d6664d2b41328d1!2zQWJkdWxsYSBRb2Rpcml5IGtvJ2NoYXNpLCDQotC-0YjQutC10L3RgiwgT2B6YmVraXN0b24!5e0!3m2!1suz!2s!4v1653635039879!5m2!1suz!2s"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            className="h-[370px] w-full lg:h-full"
+          ></iframe>
         </div>
-        <div className="flex-initial">
+        <div className=" col-span-2">
           <div className="h-full flex-1 bg-black p-7 text-white lg:h-[428px] lg:px-[50px] lg:py-11">
             <h1 className="font-Bebas text-3xl font-bold leading-[50px] lg:text-[44px]">
               Лучший{' '}

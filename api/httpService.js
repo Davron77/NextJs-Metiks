@@ -3,8 +3,13 @@ import axios from 'axios'
 // Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
+    console.log('tokenccc', config.method)
     // Do something before request is sent
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token') }`
+    config.headers.Authorization = `Bearer ${
+      config.method === 'post'
+        ? localStorage.getItem('token')
+        : ''
+    }`
     // OR config.headers.common['Authorization'] = `Bearer ${your_token}`;
     config.baseURL = 'http://metiks.901739-cm76052.tmweb.ru/api/'
 
@@ -29,7 +34,7 @@ axios.interceptors.response.use(
     }
 
     if (error.response.status === 403 || error.response.status === 401) {
-      localStorage.removeItem('token')
+       localStorage.removeItem('token')
 
       //   if (history) {
       //     history.push('/login', { replace: false })
