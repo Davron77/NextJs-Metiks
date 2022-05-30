@@ -5,8 +5,6 @@ import { MdOutlineHelp, MdExitToApp } from 'react-icons/md'
 import { authAPI } from '../api'
 import Cookies from 'js-cookie'
 
-
-
 export default function Login({ isUser, setIsUser, setOpen, setUser, user }) {
   const {
     register,
@@ -42,7 +40,7 @@ export default function Login({ isUser, setIsUser, setOpen, setUser, user }) {
         })
         console.log('res', res)
         if (res.status === 200 && res.data.data.token) {
-          Cookies.set('token', res.data.data.token) 
+          Cookies.set('token', res.data.data.token)
           //localStorage.setItem('token', res.data.data.token)
           getMe()
         }
@@ -53,7 +51,7 @@ export default function Login({ isUser, setIsUser, setOpen, setUser, user }) {
         })
         console.log('res', res)
         if (res.status === 200 && res.data.data.token) {
-           Cookies.set('token', res.data.data.token) 
+          Cookies.set('token', res.data.data.token)
           //localStorage.setItem('token', res.data.data.token)
           getMe()
         }

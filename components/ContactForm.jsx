@@ -1,9 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { FiCheck } from 'react-icons/fi'
-import { MdOutlineHelp, MdExitToApp } from 'react-icons/md'
 
-function ContactForm() {
+function ContactForm({ settings }) {
   const {
     register,
     handleSubmit,
@@ -25,22 +23,20 @@ function ContactForm() {
             <h4 className="font-Bebas text-[32px] font-bold">
               Офис в Ташкенте
             </h4>
-            <p className="text-[#00000080]">
-              Addres: Мирзо Улугбекский р-н, 1 Асакинский проезд, дом 6
-            </p>
+            <p className="text-[#00000080]">{settings.address}</p>
           </div>
           <div>
             <h4 className="font-Bebas text-[32px] font-bold">Телефон</h4>
             <a href="tel:+998975000099" className="block text-[#00000080]">
-              +998 97 500 00 99
+              {settings.first_phone}
             </a>
             <a href="tel:+998975000099" className="text-[#00000080]">
-              +998 97 500 00 99
+              {settings.second_phone}
             </a>
           </div>
           <div>
             <h4 className="font-Bebas text-[32px] font-bold">E-mail</h4>
-            <p className="text-[#00000080]">info@Metiks.com</p>
+            <p className="text-[#00000080]">{settings.email}</p>
           </div>
         </div>
         <div className="my-12 lg:my-0">

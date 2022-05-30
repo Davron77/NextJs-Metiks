@@ -6,7 +6,22 @@ import SliderInstagram from '../components/SliderInstagram'
 import ContactBanner from '../components/ContactBanner'
 import ContactForm from '../components/ContactForm'
 
-const About = () => {
+// APIA
+import { productAPI } from '../api'
+
+export async function getStaticProps() {
+  const res = await productAPI.instagram()
+  const resSettings = await productAPI.settings()
+
+  return {
+    props: {
+      data: res.data.data,
+      settings: resSettings.data.data,
+    },
+  }
+}
+
+const About = ({ data, settings }) => {
   const page = 'Контакты'
   const title = 'наши Контакты'
 
@@ -18,9 +33,9 @@ const About = () => {
       </Head>
       <Breadcrumb page={page} />
       <PageTitle title={title} />
-      <ContactBanner />
-      <ContactForm />
-      <SliderInstagram />
+      <ContactBanner settings={settings} />
+      <ContactForm settings={settings} />
+      <SliderInstagram data={data} />
     </>
   )
 }

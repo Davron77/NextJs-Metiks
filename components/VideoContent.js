@@ -1,4 +1,6 @@
-export default function VideoContent() {
+import React from 'react'
+
+export default function VideoContent({ Settings }) {
   return (
     <div>
       <div className="mx-auto max-w-[1440px]">
@@ -25,7 +27,10 @@ export default function VideoContent() {
             </div>
           </div>
           <div className="basis-1/2">
-            <img src="/video-picture.png" alt="" />
+            <iframe
+              class="aspect-[4/3] w-full"
+              src={Settings.about_video}
+            ></iframe>
           </div>
         </div>
       </div>

@@ -4,8 +4,22 @@ import Breadcrumb from '../components/Breadcrumb'
 import AboutInfo from '../components/AboutInfo'
 import PageTitle from '../components/pageTitle'
 import VideoContent from '../components/VideoContent'
+// APIA
+import { productAPI } from '../api'
 
-const About = () => {
+export async function getStaticProps() {
+  const res = await productAPI.about()
+  const resSet = await productAPI.settings()
+
+  return {
+    props: {
+      data: res.data.data,
+      Settings: resSet.data.data,
+    },
+  }
+}
+
+const About = ({ data, Settings }) => {
   const page = 'О компании'
   const title = 'кОМПАНИя metiks '
 
@@ -17,8 +31,8 @@ const About = () => {
       </Head>
       <Breadcrumb page={page} />
       <PageTitle title={title} />
-      <VideoContent />
-      <AboutInfo />
+      <VideoContent Settings={Settings} />
+      <AboutInfo data={data} />
     </>
   )
 }

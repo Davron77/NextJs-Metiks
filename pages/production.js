@@ -4,10 +4,23 @@ import Breadcrumb from '../components/Breadcrumb'
 import ProductionInfo from '../components/ProductionInfo'
 import Banner from '../components/Banner'
 import PageTitle from '../components/pageTitle'
+// APIA
+import { productAPI } from '../api'
 
-const Production = () => {
+export async function getStaticProps() {
+  const res = await productAPI.manufacture()
+  const resSettings = await productAPI.settings()
+
+  return {
+    props: {
+      data: res.data.data,
+      resSettings: resSettings.data.data,
+    },
+  }
+}
+
+const Production = ({ data, resSettings }) => {
   const page = 'Производство'
-  const urlIma = '/production-banner.png'
   const title = 'Производство metiks'
 
   return (
@@ -18,8 +31,7 @@ const Production = () => {
       </Head>
       <Breadcrumb page={page} />
       <PageTitle title={title} />
-      <Banner urlIma={urlIma} />
-      <ProductionInfo />
+      <ProductionInfo data={data} resSettings={resSettings} />
     </>
   )
 }

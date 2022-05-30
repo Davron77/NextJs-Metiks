@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Logo from '../public/svg/logo.svg'
 import Link from 'next/link'
@@ -8,7 +8,8 @@ import { LocationMarkerIcon } from '@heroicons/react/solid'
 import Facebook from '../public/svg/Facebook.svg'
 import Telegram from '../public/svg/Telegram.svg'
 import Instagram from '../public/svg/Instagram.svg'
-
+// API
+import { productAPI } from '../api'
 const navigation = [
   { name: 'Каталог', href: '#', current: false },
   { name: 'О нас', href: '#', current: false },
@@ -20,6 +21,19 @@ const navigation = [
 ]
 
 function Footer() {
+  const [data, setData] = useState([])
+
+  useEffect(async () => {
+    const res = await productAPI.settings()
+    if (res.status === 200) {
+      setData(res.data.data)
+    }
+
+    return () => {
+      second
+    }
+  }, [])
+
   return (
     <div className="footer w-full bg-black text-white">
       <div className="footer-menu">
@@ -60,7 +74,7 @@ function Footer() {
                   className="border-b border-transparent transition-all duration-500 ease-in-out hover:border-b-white"
                   href="tel:+998998974504"
                 >
-                  Tel: +998 99 897 45 04
+                  Tel: {data.support_phone}
                 </a>
               </div>
               <div className="flex items-center justify-end">
@@ -71,7 +85,7 @@ function Footer() {
                 />
                 <a
                   className="border-b border-transparent hover:border-b-white"
-                  href="https://www.google.com/maps"
+                  href={data.address_store}
                   target="_blank"
                 >
                   Найти магазин
@@ -86,7 +100,7 @@ function Footer() {
           <div className="flex h-full items-center justify-between">
             <h4 className="font-Inter text-xs font-normal">© METIKS 2022</h4>
             <div className="flex">
-              <a href="https://www.facebook.com/" target="_blank">
+              <a href={data.facebook} target="_blank">
                 <Image
                   src={Facebook}
                   className="hover:text-neutral-500"
@@ -94,11 +108,7 @@ function Footer() {
                   height={22}
                 />
               </a>
-              <a
-                href="https://www.facebook.com/"
-                className="ml-5"
-                target="_blank"
-              >
+              <a href={data.telegram} className="ml-5" target="_blank">
                 <Image
                   src={Telegram}
                   className="hover:text-neutral-500"
@@ -106,11 +116,7 @@ function Footer() {
                   height={22}
                 />
               </a>
-              <a
-                href="https://www.facebook.com/"
-                className="ml-5"
-                target="_blank"
-              >
+              <a href={data.instagram} className="ml-5" target="_blank">
                 <Image
                   src={Instagram}
                   className="hover:text-neutral-500"

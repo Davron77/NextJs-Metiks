@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Logo from '../public/svg/logo.svg'
 import Link from 'next/link'
 import navigation from '../navigation/menu'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 // IMPORT ICONS
 import {
   SearchIcon,

@@ -15,15 +15,20 @@ import { productAPI } from '../api'
 
 export async function getStaticProps() {
   const res = await productAPI.instagram()
+  const rescategory = await productAPI.category()
+  const resSet = await productAPI.settings()
+  const resCtg = await productAPI.category()
 
   return {
     props: {
       data: res.data.data,
+      Settings: resSet.data.data,
+      category: resCtg.data.data,
     },
   }
 }
 
-const Home = ({ data }) => {
+const Home = ({ data, Settings, category }) => {
   return (
     <>
       <Head>
@@ -32,13 +37,13 @@ const Home = ({ data }) => {
       </Head>
       <ButtonCatalog />
       <HomeBanner />
-      <Products />
+      <Products category={category} />
       <Bestsellers />
       <Interested />
       <Services />
       <Recommendations />
       <SliderInstagram data={data} />
-      <VideoContent />
+      <VideoContent Settings={Settings} />
     </>
   )
 }

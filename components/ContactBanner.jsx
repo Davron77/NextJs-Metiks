@@ -4,13 +4,13 @@ import { LocationMarkerIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import { FaFacebookF, FaTelegramPlane } from 'react-icons/fa'
 import { AiFillInstagram } from 'react-icons/ai'
 
-function ContactBanner() {
+function ContactBanner({ settings }) {
   return (
     <div>
       <div className="mx-auto max-w-[1440px] grid-cols-4 gap-5 lg:grid xl:grid-cols-5">
         <div className=" col-span-2 xl:col-span-3">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d890.8208057813765!2d69.26599089956898!3d41.32295658775837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3f8e3c9dcf%3A0x9d6664d2b41328d1!2zQWJkdWxsYSBRb2Rpcml5IGtvJ2NoYXNpLCDQotC-0YjQutC10L3RgiwgT2B6YmVraXN0b24!5e0!3m2!1suz!2s!4v1653635039879!5m2!1suz!2s"
+            src={settings.address_iframe}
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -46,7 +46,7 @@ function ContactBanner() {
                       className="border-b border-transparent text-neutral-400 transition-all duration-500 ease-in-out hover:border-b-white"
                       href="tel:+998998974504"
                     >
-                      Tel: +998 99 897-45-04
+                      {settings.support_phone}
                     </a>
                   </div>
                 </div>
@@ -60,7 +60,7 @@ function ContactBanner() {
                   <div className="mt-1 flex">
                     <a
                       className=" flex border-b border-transparent text-neutral-400 hover:border-b-white"
-                      href="https://www.google.com/maps"
+                      href={settings.address_store}
                       target="_blank"
                     >
                       Найти магазин{' '}
@@ -72,18 +72,18 @@ function ContactBanner() {
             </div>
           </div>
           <div className="flex h-[72px] items-center justify-evenly bg-[#E2E2E2]">
-            <div className="flex">
+            <a href={settings.facebook} target="_blank" className="flex">
               <FaFacebookF className=" mt-1 mr-2" />
               <span>Facebook</span>
-            </div>
-            <div className="flex">
+            </a>
+            <a href={settings.telegram} target="_blank" className="flex">
               <FaTelegramPlane className=" mt-1 mr-2" />
               <span>Telegram</span>
-            </div>
-            <div className="flex">
+            </a>
+            <a href={settings.instagram} target="_blank" className="flex">
               <AiFillInstagram className=" mt-1 mr-2" />
               <span>Instagram</span>
-            </div>
+            </a>
           </div>
         </div>
       </div>

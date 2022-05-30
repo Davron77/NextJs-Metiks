@@ -19,18 +19,6 @@ const Services = ({ data }) => {
   const page = 'Услуги'
   const title = 'наши Услуги'
 
-  // useEffect(async () => {
-  //   const res = await productAPI.services()
-  //       console.log(res)
-  //   if (res.status === 200) {
-  //     console.log(res)
-  //   }
-
-  //   return () => {
-  //     second
-  //   }
-  // }, [])
-
   return (
     <>
       <Head>

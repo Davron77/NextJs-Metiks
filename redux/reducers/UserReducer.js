@@ -1,12 +1,17 @@
-import { USER } from '../actions/UserActions'
+const initialState = [
+  {
+    name: 'name',
+    lastName: 'lastName',
+  },
+]
 
-const counterReducer = (state = 'Davron', action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case USER:
-      return { ...state }
+    case 'USER':
+      return { ...state, posts: action.payload }
     default:
-      return { ...state }
+      return state
   }
 }
 
-export default counterReducer
+export default reducer
