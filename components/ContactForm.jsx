@@ -16,7 +16,7 @@ function ContactForm({ settings }) {
   }
 
   return (
-    <div className="mx-auto mt-5 max-w-7xl px-4 sm:mt-12 sm:px-6 lg:px-8">
+    <div className="mx-auto mt-5 mb-10 max-w-7xl px-4 sm:mt-20 sm:px-6 lg:px-8">
       <div className="grid lg:grid-cols-2">
         <div className="mt-8 grid gap-y-10 sm:mt-0 xl:grid-cols-2">
           <div>

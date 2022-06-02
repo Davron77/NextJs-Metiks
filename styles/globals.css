@@ -80,6 +80,13 @@ body {
   color: #016059;
 }
 
+.checkout-radio-color input:checked + .checkout-card-color {
+  border: 3px solid #016059;
+}
+.accordion-checkbox input:checked + .accordion-card {
+  height: 125px !important;
+}
+
 #product select {
   -moz-appearance: none; /* Firefox */
   -webkit-appearance: none; /* Safari and Chrome */
@@ -91,6 +98,10 @@ body {
 #product select::-ms-expand {
   display: none !important;
   background-color: #016059 !important;
+}
+
+.active {
+  @apply text-red-600;
 }
 
 ul {

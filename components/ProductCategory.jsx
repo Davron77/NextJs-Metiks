@@ -46,7 +46,7 @@ function ProductCategory() {
                       <p className="text-sm text-[#016059]">
                         {product.category}
                       </p>
-                      <h4 className=" mt-1 text-lg font-normal leading-5">
+                      <h4 className=" mt-1 h-10 overflow-hidden text-lg font-normal leading-5">
                         {product.name}
                       </h4>
                       <p className=" mt-3 mb-5 text-sm text-neutral-500">

@@ -9,7 +9,9 @@ const instagram = '/instagram'
 const settings = '/settings'
 const about = '/about'
 const manufacture = '/manufacture'
-const category = '/category'
+const category = '/categories'
+const reviews = '/reviews'
+const banner = '/banner'
 
 export const authAPI = {
   register: (props) => http.post(register, props),
@@ -25,4 +27,6 @@ export const productAPI = {
   about: () => http.get(about),
   manufacture: () => http.get(manufacture),
   category: () => http.get(category),
+  reviews: () => http.get(reviews),
+  banner: () => http.get(banner),
 }

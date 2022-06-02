@@ -15,7 +15,7 @@ export default function Products({ category }) {
         </div>
         <div className="grid grid-cols-1 gap-y-5 gap-x-6 transition-all delay-150 ease-in-out sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3 xl:gap-x-8">
           {category.map((item) => (
-            <Link key={item.id} href="#">
+            <Link key={item.id} href="/category">
               <a
                 className={`group h-60 w-full rounded bg-[#F0F0F0] bg-right bg-no-repeat p-6 hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]`}
                 style={{ backgroundImage: `url(${item.media})` }}

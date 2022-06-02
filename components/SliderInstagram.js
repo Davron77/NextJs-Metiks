@@ -14,11 +14,7 @@ export default function SliderInstagram({ data }) {
       <div className="mx-auto mb-12 max-w-7xl py-3 px-2 sm:py-12 sm:px-6">
         <div className="page-title mb-9">
           <h1 className=" w-36 sm:w-full">Instagram</h1>
-          <a
-            href="https://www.instagram.com/metiks.ru/"
-            target="_blank"
-            className="sm:w-52"
-          >
+          <a href="https://www.instagram.com/metiks.ru/" target="_blank">
             Metiks <ChevronRightIcon className=" h-5 w-5" />
           </a>
         </div>

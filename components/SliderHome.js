@@ -8,7 +8,7 @@ import 'swiper/css/pagination'
 // import required modules
 import { EffectFade, Autoplay, Pagination } from 'swiper'
 
-export default function SliderHome() {
+export default function SliderHome({ banner }) {
   return (
     <>
       <Swiper
@@ -23,30 +23,14 @@ export default function SliderHome() {
         modules={[EffectFade, Autoplay, Pagination]}
         className="mySwiper w-full"
       >
-        <SwiperSlide>
-          <img
-            className=" h-[300px] w-full object-cover sm:h-[500px]"
-            src="/home-banner.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className=" h-[300px] w-full object-cover sm:h-[500px]"
-            src="/home-banner.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className=" h-[300px] w-full object-cover sm:h-[500px]"
-            src="/home-banner.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className=" h-[300px] w-full object-cover sm:h-[500px]"
-            src="/home-banner.png"
-          />
-        </SwiperSlide>
+        {banner.map((item) => (
+          <SwiperSlide key={item.id}>
+            <img
+              className=" h-[300px] w-full object-cover sm:h-[500px]"
+              src={item.media}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   )

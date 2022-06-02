@@ -8,6 +8,7 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css'
 import catalog from '../data/data-catalog'
 import { IoMdClose } from 'react-icons/io'
+import { AiOutlineCheckCircle } from 'react-icons/ai'
 
 const colors = [
   {
@@ -92,7 +93,7 @@ function Category({ open, setOpen }) {
       className={`flex overflow-hidden  ${
         open
           ? 'catalogAnimation fixed top-0 left-0 right-0 z-[100] !block h-screen flex-col justify-center !overflow-auto bg-white px-8 pb-4'
-          : 'catalogAnimationend'
+          : ''
       }`}
     >
       <div className="flex items-center justify-between border-b border-black lg:hidden">
@@ -187,16 +188,10 @@ function Category({ open, setOpen }) {
           <AccordionItemPanel>
             <div className="grid grid-cols-5 gap-3">
               {colors.map((item) => (
-                <label className="category-radio">
-                  <input
-                    type="radio"
-                    name="color"
-                    className="hidden"
-                    checked={item.is_correct}
-                  />
+                <label className="checkout-radio-color w-full cursor-pointer">
+                  <input type="radio" name="cash" className="hidden" checked />
                   <div
-                    key={item.id}
-                    className="category-card h-[50px] w-[50px] cursor-pointer rounded-full"
+                    className=" checkout-card-color relative h-[50px] w-[50px] rounded-full border-2 border-transparent bg-[#F0F0F0] text-center"
                     style={{ backgroundColor: `${item.color}` }}
                   ></div>
                 </label>

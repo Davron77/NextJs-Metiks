@@ -1,8 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { MinusSmIcon, PlusIcon } from '@heroicons/react/solid'
 import { MdDeleteOutline, MdDelete } from 'react-icons/md'
-
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -14,9 +13,11 @@ import 'swiper/css/thumbs'
 import { FreeMode, Navigation, Thumbs } from 'swiper'
 //Icons
 import { RiCheckDoubleFill } from 'react-icons/ri'
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 // SELECT
+import ProductInput from './ProductInput'
+import { useForm, useFieldArray } from 'react-hook-form'
 import Select, { NonceProvider } from 'react-select'
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
 const filters = [
   {
@@ -56,21 +57,27 @@ const filters = [
   },
 ]
 
-const colourOptions = [
-  { value: '20 000mm', label: '20 000mm', color: '#00B8D9', isFixed: true },
-  { value: '500mm', label: '500mm', color: '#0052CC', isDisabled: true },
-  { value: '250mm', label: '250mm', color: '#5243AA' },
-  { value: '100mm', label: '100mm', color: '#FF5630' },
-]
-
 function Product() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const [count, setCount] = useState(1)
   const [select, setSelect] = useState(false)
+  const [count, setCount] = useState(1)
+
+  const { register, control, handleSubmit } = useForm()
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'items',
+  })
 
   const handleOnChange = (e) => {
     setCount(+e.target.value)
   }
+
+  const colourOptions = [
+    { value: '20 000mm', label: '20 000mm', color: '#00B8D9', isFixed: true },
+    { value: '500mm', label: '500mm', color: '#0052CC', isDisabled: true },
+    { value: '250mm', label: '250mm', color: '#5243AA' },
+    { value: '100mm', label: '100mm', color: '#FF5630' },
+  ]
 
   return (
     <div
@@ -93,34 +100,34 @@ function Product() {
             className="mySwiper2"
           >
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
           </Swiper>
           <Swiper
@@ -134,34 +141,34 @@ function Product() {
             className="mySwiper hidden lg:flex"
           >
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-md" src="/product-slider/1.png" />
+              <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
           </Swiper>
         </div>
@@ -196,466 +203,39 @@ function Product() {
               </div>
             </div>
             <div className="mt-7">
-              <div className="mt-4">
-                <Disclosure
-                  as="div"
-                  className="relative rounded-lg bg-[#F0F0F0] p-6"
-                >
-                  {({ open }) => (
-                    <>
-                      <h3 className="grid grid-cols-2 items-center justify-between gap-5 xl:grid-cols-3 ">
-                        <div>
-                          <label className="font-normal">Выберите длину:</label>
-                          <Select
-                            defaultValue={colourOptions[0]}
-                            options={colourOptions}
-                            className="mt-2"
-                            theme={(theme) => ({
-                              ...theme,
-                              borderRadius: 2,
-                              borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                              colors: {
-                                ...theme.colors,
-                                primary: 'black',
-                              },
-                            })}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-normal">Выберите длину:</label>
-                          <Select
-                            defaultValue={colourOptions[0]}
-                            options={colourOptions}
-                            className="mt-2"
-                            theme={(theme) => ({
-                              ...theme,
-                              borderRadius: 2,
-                              borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                              colors: {
-                                ...theme.colors,
-                                primary: 'black',
-                              },
-                            })}
-                          />
-                        </div>
-                        <div className="hidden xl:block">
-                          <label className="font-normal">
-                            Количество листов:
-                          </label>
-                          <div className="mt-2 flex h-11 justify-between rounded-sm border-2 border-[#434343] px-[18px]">
-                            <button onClick={() => setCount(count - 1)}>
-                              <AiOutlineMinus />
-                            </button>
-                            <input
-                              type="text"
-                              value={count}
-                              onChange={handleOnChange}
-                              className="w-20 bg-[#F0F0F0] text-center font-semibold outline-none"
-                            />
-                            <button onClick={() => setCount(count + 1)}>
-                              <AiOutlinePlus />
-                            </button>
-                          </div>
-                        </div>
-                        <div className="absolute top-3 right-3">
-                          {select ? (
-                            <>
-                              <label>
-                                <input
-                                  type="checkbox"
-                                  class="h-4 w-4 accent-[#016059]"
-                                  id="checkbox_id"
-                                  name="checkbox"
-                                  defaultChecked={true}
-                                />
-                              </label>
-                            </>
-                          ) : (
-                            <Disclosure.Button>
-                              <img src="/svg/angle-top.svg" alt="Angle Top" />
-                            </Disclosure.Button>
-                          )}
-                        </div>
-                      </h3>
-                      <Disclosure.Panel className="pt-6">
-                        <div className=" grid grid-cols-2 gap-5 xl:grid-cols-3">
-                          <div className="xl:hidden">
-                            <label className="font-normal">
-                              Количество листов:
-                            </label>
-                            <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343] px-[18px]">
-                              <button onClick={() => setCount(count - 1)}>
-                                <AiOutlineMinus />
-                              </button>
-                              <input
-                                type="text"
-                                value={count}
-                                onChange={handleOnChange}
-                                className="w-20 bg-[#F0F0F0] text-center outline-none"
-                              />
-                              <button onClick={() => setCount(count + 1)}>
-                                <AiOutlinePlus />
-                              </button>
-                            </div>
-                          </div>
-                          <div>
-                            <label className="font-normal">
-                              Выберите длину:
-                            </label>
-                            <Select
-                              defaultValue={colourOptions[0]}
-                              options={colourOptions}
-                              className="mt-2"
-                              theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 2,
-                                borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                                colors: {
-                                  ...theme.colors,
-                                  primary: 'black',
-                                },
-                              })}
-                            />
-                          </div>
-                          <div>
-                            <label className="font-normal">
-                              Выберите длину:
-                            </label>
-                            <Select
-                              defaultValue={colourOptions[0]}
-                              options={colourOptions}
-                              className="mt-2"
-                              theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 2,
-                                borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                                colors: {
-                                  ...theme.colors,
-                                  primary: 'black',
-                                },
-                              })}
-                            />
-                          </div>
-                        </div>
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-              </div>
-              <div className="mt-4">
-                <Disclosure
-                  as="div"
-                  className="relative rounded-lg bg-[#F0F0F0] p-6"
-                >
-                  {({ open }) => (
-                    <>
-                      <h3 className="grid grid-cols-2 items-center justify-between gap-5 xl:grid-cols-3 ">
-                        <div>
-                          <label className="font-normal">Выберите длину:</label>
-                          <Select
-                            defaultValue={colourOptions[0]}
-                            options={colourOptions}
-                            className="mt-2"
-                            theme={(theme) => ({
-                              ...theme,
-                              borderRadius: 2,
-                              borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                              colors: {
-                                ...theme.colors,
-                                primary: 'black',
-                              },
-                            })}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-normal">Выберите длину:</label>
-                          <Select
-                            defaultValue={colourOptions[0]}
-                            options={colourOptions}
-                            className="mt-2"
-                            theme={(theme) => ({
-                              ...theme,
-                              borderRadius: 2,
-                              borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                              colors: {
-                                ...theme.colors,
-                                primary: 'black',
-                              },
-                            })}
-                          />
-                        </div>
-                        <div className="hidden xl:block">
-                          <label className="font-normal">
-                            Количество листов:
-                          </label>
-                          <div className="mt-2 flex h-11 justify-between rounded-sm border-2 border-[#434343] px-[18px]">
-                            <button onClick={() => setCount(count - 1)}>
-                              <AiOutlineMinus />
-                            </button>
-                            <input
-                              type="text"
-                              value={count}
-                              onChange={handleOnChange}
-                              className="w-20 bg-[#F0F0F0] text-center font-semibold outline-none"
-                            />
-                            <button onClick={() => setCount(count + 1)}>
-                              <AiOutlinePlus />
-                            </button>
-                          </div>
-                        </div>
-                        <div className="absolute top-3 right-3">
-                          {select ? (
-                            <>
-                              <label>
-                                <input
-                                  type="checkbox"
-                                  class="h-4 w-4 accent-[#016059]"
-                                  id="checkbox_id"
-                                  name="checkbox"
-                                  defaultChecked={true}
-                                />
-                              </label>
-                            </>
-                          ) : (
-                            <Disclosure.Button>
-                              <img src="/svg/angle-top.svg" alt="Angle Top" />
-                            </Disclosure.Button>
-                          )}
-                        </div>
-                      </h3>
-                      <Disclosure.Panel className="pt-6">
-                        <div className=" grid grid-cols-2 gap-5 xl:grid-cols-3">
-                          <div className="xl:hidden">
-                            <label className="font-normal">
-                              Количество листов:
-                            </label>
-                            <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343] px-[18px]">
-                              <button onClick={() => setCount(count - 1)}>
-                                <AiOutlineMinus />
-                              </button>
-                              <input
-                                type="text"
-                                value={count}
-                                onChange={handleOnChange}
-                                className="w-20 bg-[#F0F0F0] text-center outline-none"
-                              />
-                              <button onClick={() => setCount(count + 1)}>
-                                <AiOutlinePlus />
-                              </button>
-                            </div>
-                          </div>
-                          <div>
-                            <label className="font-normal">
-                              Выберите длину:
-                            </label>
-                            <Select
-                              defaultValue={colourOptions[0]}
-                              options={colourOptions}
-                              className="mt-2"
-                              theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 2,
-                                borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                                colors: {
-                                  ...theme.colors,
-                                  primary: 'black',
-                                },
-                              })}
-                            />
-                          </div>
-                          <div>
-                            <label className="font-normal">
-                              Выберите длину:
-                            </label>
-                            <Select
-                              defaultValue={colourOptions[0]}
-                              options={colourOptions}
-                              className="mt-2"
-                              theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 2,
-                                borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                                colors: {
-                                  ...theme.colors,
-                                  primary: 'black',
-                                },
-                              })}
-                            />
-                          </div>
-                        </div>
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-              </div>
-              <div className="mt-4">
-                <Disclosure
-                  as="div"
-                  className="relative rounded-lg bg-[#F0F0F0] p-6"
-                >
-                  {({ open }) => (
-                    <>
-                      <h3 className="grid grid-cols-2 items-center justify-between gap-5 xl:grid-cols-3 ">
-                        <div>
-                          <label className="font-normal">Выберите длину:</label>
-                          <Select
-                            defaultValue={colourOptions[0]}
-                            options={colourOptions}
-                            className="mt-2"
-                            theme={(theme) => ({
-                              ...theme,
-                              borderRadius: 2,
-                              borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                              colors: {
-                                ...theme.colors,
-                                primary: 'black',
-                              },
-                            })}
-                          />
-                        </div>
-                        <div>
-                          <label className="font-normal">Выберите длину:</label>
-                          <Select
-                            defaultValue={colourOptions[0]}
-                            options={colourOptions}
-                            className="mt-2"
-                            theme={(theme) => ({
-                              ...theme,
-                              borderRadius: 2,
-                              borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                              colors: {
-                                ...theme.colors,
-                                primary: 'black',
-                              },
-                            })}
-                          />
-                        </div>
-                        <div className="hidden xl:block">
-                          <label className="font-normal">
-                            Количество листов:
-                          </label>
-                          <div className="mt-2 flex h-11 justify-between rounded-sm border-2 border-[#434343] px-[18px]">
-                            <button onClick={() => setCount(count - 1)}>
-                              <AiOutlineMinus />
-                            </button>
-                            <input
-                              type="text"
-                              value={count}
-                              onChange={handleOnChange}
-                              className="w-20 bg-[#F0F0F0] text-center font-semibold outline-none"
-                            />
-                            <button onClick={() => setCount(count + 1)}>
-                              <AiOutlinePlus />
-                            </button>
-                          </div>
-                        </div>
-                        <div className="absolute top-3 right-3">
-                          {select ? (
-                            <>
-                              <label>
-                                <input
-                                  type="checkbox"
-                                  class="h-4 w-4 accent-[#016059]"
-                                  id="checkbox_id"
-                                  name="checkbox"
-                                  defaultChecked={true}
-                                />
-                              </label>
-                            </>
-                          ) : (
-                            <Disclosure.Button>
-                              <img src="/svg/angle-top.svg" alt="Angle Top" />
-                            </Disclosure.Button>
-                          )}
-                        </div>
-                      </h3>
-                      <Disclosure.Panel className="pt-6">
-                        <div className=" grid grid-cols-2 gap-5 xl:grid-cols-3">
-                          <div className="xl:hidden">
-                            <label className="font-normal">
-                              Количество листов:
-                            </label>
-                            <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343] px-[18px]">
-                              <button onClick={() => setCount(count - 1)}>
-                                <AiOutlineMinus />
-                              </button>
-                              <input
-                                type="text"
-                                value={count}
-                                onChange={handleOnChange}
-                                className="w-20 bg-[#F0F0F0] text-center outline-none"
-                              />
-                              <button onClick={() => setCount(count + 1)}>
-                                <AiOutlinePlus />
-                              </button>
-                            </div>
-                          </div>
-                          <div>
-                            <label className="font-normal">
-                              Выберите длину:
-                            </label>
-                            <Select
-                              defaultValue={colourOptions[0]}
-                              options={colourOptions}
-                              className="mt-2"
-                              theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 2,
-                                borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                                colors: {
-                                  ...theme.colors,
-                                  primary: 'black',
-                                },
-                              })}
-                            />
-                          </div>
-                          <div>
-                            <label className="font-normal">
-                              Выберите длину:
-                            </label>
-                            <Select
-                              defaultValue={colourOptions[0]}
-                              options={colourOptions}
-                              className="mt-2"
-                              theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 2,
-                                borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                                colors: {
-                                  ...theme.colors,
-                                  primary: 'black',
-                                },
-                              })}
-                            />
-                          </div>
-                        </div>
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-              </div>
+              <ProductInput select={select} />
+
+              <form onSubmit={handleSubmit(console.log)}>
+                {fields.map(({ id }, index) => {
+                  return (
+                    <div key={id}>
+                      <ProductInput select={select} />
+                    </div>
+                  )
+                })}
+              </form>
             </div>
             <div className="mt-4 flex flex-wrap justify-between gap-y-4 font-normal">
-              <button className="flex">
+              <button className="flex" onClick={() => append({})}>
                 <PlusIcon width={24} className="mr-2 text-[#D6A300]" />
                 <span className="border-b border-transparent hover:border-[#434343]">
                   Добавить лист другой длины
                 </span>
               </button>
               <div>
-                <label className="flex h-5 items-center">
+                <label className="flex h-5 cursor-pointer items-center">
                   <input
                     id="checkbox_id"
                     name="checkbox"
                     type="checkbox"
                     onChange={(e) => setSelect((prev) => !prev)}
                     value={select}
-                    class="mr-2 h-4 w-4 accent-[#016059]"
+                    className="mr-2 h-4 w-4 cursor-pointer accent-[#016059]"
                   />
                   Выбрать все
                 </label>
               </div>
-              <div className="group flex">
+              <div className="group flex cursor-pointer">
                 <div>
                   <MdDeleteOutline className="text-2xl text-[#C92A2A] group-hover:hidden" />
                   <MdDelete className="hidden text-2xl text-[#C92A2A] group-hover:block" />
@@ -722,29 +302,22 @@ function Product() {
                         </Disclosure.Button>
                       </h3>
                       <Disclosure.Panel className="pt-6">
-                        <div className="space-y-4">
-                          {section.options.map((option, optionIdx) => (
-                            <div
-                              key={option.value}
-                              className="flex items-center"
-                            >
-                              <input
-                                id={`filter-${section.id}-${optionIdx}`}
-                                name={`${section.id}[]`}
-                                defaultValue={option.value}
-                                type="checkbox"
-                                defaultChecked={option.checked}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                              />
-                              <label
-                                htmlFor={`filter-${section.id}-${optionIdx}`}
-                                className="ml-3 text-sm text-gray-600"
-                              >
-                                {option.label}
-                              </label>
-                            </div>
-                          ))}
-                        </div>
+                        <dl className=" text-base text-[#434343]">
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Full name</dt>
+                            <dd>Margot Foster</dd>
+
+                            
+                          </div>
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Application for</dt>
+                            <dd>Backend Developer</dd>
+                          </div>
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Email address</dt>
+                            <dd>margotfoster@example.com</dd>
+                          </div>
+                        </dl>
                       </Disclosure.Panel>
                     </>
                   )}

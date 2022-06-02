@@ -37,7 +37,7 @@ function Footer() {
   return (
     <div className="footer w-full bg-black text-white">
       <div className="footer-menu">
-        <div className="mx-auto mb-12 h-full max-w-7xl px-10 pt-16 lg:h-24 lg:px-6">
+        <div className="mx-auto mb-20 h-full max-w-7xl px-10 pt-16 lg:h-24 lg:px-6">
           <div className="block h-full flex-wrap justify-between md:flex">
             <div className="flex w-32 items-center justify-start lg:w-40 xl:w-56">
               <Link href="/">
@@ -64,27 +64,27 @@ function Footer() {
               ))}
             </div>
             <div className="font-Inter flex flex-col items-start justify-center text-sm font-normal text-neutral-400 lg:justify-end">
-              <div className="mb-4 flex items-center justify-end">
+              <div className="group mb-4 flex items-center justify-end">
                 <DeviceMobileIcon
-                  className="mr-2 text-white hover:text-slate-400"
+                  className="mr-2 text-white group-hover:text-slate-400"
                   width={20}
                   height={20}
                 />
                 <a
-                  className="border-b border-transparent transition-all duration-500 ease-in-out hover:border-b-white"
+                  className="border-b border-transparent transition-all duration-500 ease-in-out group-hover:border-b-white"
                   href="tel:+998998974504"
                 >
                   Tel: {data.support_phone}
                 </a>
               </div>
-              <div className="flex items-center justify-end">
+              <div className="group flex items-center justify-end">
                 <LocationMarkerIcon
-                  className="mr-2 text-white hover:text-slate-400"
+                  className="mr-2 text-white group-hover:text-slate-400"
                   width={20}
                   height={20}
                 />
                 <a
-                  className="border-b border-transparent hover:border-b-white"
+                  className="border-b border-transparent group-hover:border-b-white"
                   href={data.address_store}
                   target="_blank"
                 >

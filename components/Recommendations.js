@@ -1,13 +1,12 @@
 import React from 'react'
 import { IoIosStar } from 'react-icons/io'
-import Comments from '../data/data-comments'
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper'
 
-function Recommendations() {
+function Recommendations({ reviews }) {
   return (
     <div className="Recommendations">
       <div className="mx-auto max-w-7xl py-12 px-2 sm:px-6">
@@ -50,11 +49,20 @@ function Recommendations() {
               modules={[Navigation]}
               className="mySwiper !static"
             >
-              {Comments.map((item) => (
+              {reviews.map((item) => (
                 <SwiperSlide key={item.id}>
                   <div className="max-w-[530px] rounded-lg bg-black p-8 text-white">
                     <div className="flex">
-                      { Array(5).fill(0).map((e, i) => <IoIosStar className={` mr-3 h-7 w-7 ${(i + 1) <= item.rate && 'text-[#F7C435]'}`} /> )}
+                      {Array(5)
+                        .fill(0)
+                        .map((e, i) => (
+                          <IoIosStar
+                            key={i}
+                            className={` mr-3 h-7 w-7 ${
+                              i + 1 <= item.rating && 'text-[#F7C435]'
+                            }`}
+                          />
+                        ))}
                     </div>
                     <div className=" mt-5 text-left text-sm sm:text-lg">
                       <span>{item.description}</span>
@@ -62,19 +70,19 @@ function Recommendations() {
                     <div className="mt-20 flex sm:mt-28">
                       <img
                         className="h-12 w-12 rounded-full lg:h-16 lg:w-16"
-                        src={item.avatar}
+                        src={item.media}
                         alt="user"
                       />
                       <div className="flex flex-col justify-center pl-3">
                         <h5 className="text-xl font-bold tracking-wide">
-                          {item.user}
+                          {item.name}
                         </h5>
                         <div className="mt-1 flex">
                           <a
                             className="border-b border-transparent text-neutral-400 transition-all duration-500 ease-in-out hover:border-b-white"
                             href="tel:+998998974504"
                           >
-                            {item.job}
+                            {item.profession}
                           </a>
                         </div>
                       </div>

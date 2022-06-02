@@ -26,7 +26,7 @@ function ContactBanner({ settings }) {
               </span>
             </h1>
             <div className=" mt-14">
-              <div className="flex">
+              <a href="tel:+998998974504" className="group flex cursor-pointer">
                 <img
                   className="h-12 w-12 rounded-full lg:h-16 lg:w-16"
                   src="/user.png"
@@ -42,33 +42,30 @@ function ContactBanner({ settings }) {
                       width={20}
                       height={20}
                     />
-                    <a
-                      className="border-b border-transparent text-neutral-400 transition-all duration-500 ease-in-out hover:border-b-white"
-                      href="tel:+998998974504"
-                    >
+                    <div className="border-b border-transparent text-neutral-400 transition-all duration-500 ease-in-out group-hover:border-b-white">
                       {settings.support_phone}
-                    </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="mt-10 flex">
-                <LocationMarkerIcon className="h-12 w-12 text-white hover:text-slate-400 lg:h-16 lg:w-16" />
+              </a>
+              <a
+                href={settings.address_store}
+                className="group mt-10 flex cursor-pointer"
+                target="_blank"
+              >
+                <LocationMarkerIcon className="h-12 w-12 text-white lg:h-16 lg:w-16" />
                 <div className=" flex flex-col justify-center pl-3">
                   <h5 className=" text-xl font-bold tracking-wide">
                     Адрес магазина
                   </h5>
                   <div className="mt-1 flex">
-                    <a
-                      className=" flex border-b border-transparent text-neutral-400 hover:border-b-white"
-                      href={settings.address_store}
-                      target="_blank"
-                    >
-                      Найти магазин{' '}
+                    <div className="flex border-b border-transparent text-neutral-400 group-hover:border-b-white">
+                      Найти магазин
                       <ArrowRightIcon className="ml-2" width={13} />
-                    </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
           <div className="flex h-[72px] items-center justify-evenly bg-[#E2E2E2]">

@@ -1,23 +1,10 @@
 import { FaAngleRight } from 'react-icons/fa'
 import { IoMdClose } from 'react-icons/io'
-// APIA
-import { productAPI } from '../api'
-import { useEffect, useState } from 'react'
+// REDUX
+import { useSelector } from 'react-redux'
 
 export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
-  const [data, setData] = useState([])
-
-  useEffect(async () => {
-    const res = await productAPI.category()
-    if (res.status === 200) {
-      setData(res.data.data)
-    }
-
-    return () => {
-      second
-    }
-  }, [])
-
+  const catalog = useSelector((state) => state)
   return (
     <div
       className={`fixed left-0 right-0 top-0 z-[100] h-screen overflow-auto bg-white lg:absolute lg:overflow-hidden ${
@@ -41,9 +28,9 @@ export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
         </div>
 
         <div className="font-Bebas mt-7 grid grid-cols-1 gap-y-5 gap-x-6 transition-all delay-150 ease-in-out sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {data.map((item) => (
+          {catalog.dataCatalog.map((item) => (
             <a key={item.id} href={item.href} className="group">
-              <div className="aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8 w-full overflow-hidden rounded-lg group-hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]">
+              <div className="aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8 h-[200px] w-full overflow-hidden rounded-lg group-hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]">
                 <img
                   src={item.media}
                   alt={item.name}

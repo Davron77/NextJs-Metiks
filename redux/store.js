@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import user from './user'
 import { devToolsEnhancer } from 'redux-devtools-extension'
+import { createWrapper } from 'next-redux-wrapper'
 
-const store = configureStore({
-  reducer: user,
+export const store = configureStore({
+  reducer: {
+    dataCatalog: user,
+  },
   devTools: false,
   enhancers: [
     devToolsEnhancer({
@@ -15,4 +18,6 @@ const store = configureStore({
   ],
 })
 
-export default store
+const makeStore = () => store
+
+export const wrapper = createWrapper(makeStore)

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Disclosure, Menu } from '@headlessui/react'
 import navigation from '../navigation/menu'
@@ -13,6 +14,8 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false)
+
+  const router = useRouter()
 
   return (
     <>
@@ -43,11 +46,14 @@ export default function Navbar() {
                       <div className="flex space-x-6 xl:space-x-10">
                         {navigation.map((item) => (
                           <Link key={item.name} href={item.href}>
+                            {/* <a
+                              className={router.pathname == '/' ? 'active' : ''}
+                            > */}
                             <a
                               className={classNames(
                                 item.current
                                   ? 'border-black'
-                                  : 'hover:border-black',
+                                  : 'hover:border-black active:border-black',
                                 'border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out'
                               )}
                               aria-current={item.current ? 'page' : undefined}
