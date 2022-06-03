@@ -12,6 +12,7 @@ const manufacture = '/manufacture'
 const category = '/categories'
 const reviews = '/reviews'
 const banner = '/banner'
+const products = '/products'
 
 export const authAPI = {
   register: (props) => http.post(register, props),
@@ -29,4 +30,5 @@ export const productAPI = {
   category: () => http.get(category),
   reviews: () => http.get(reviews),
   banner: () => http.get(banner),
+  products: () => http.get(products),
 }

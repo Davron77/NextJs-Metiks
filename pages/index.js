@@ -12,6 +12,7 @@ import Interested from '../components/Interested'
 //REDUX
 import { useDispatch } from 'react-redux'
 import { dataCatalog } from '../redux/user'
+import { product } from '../redux/product'
 // API
 import { productAPI } from '../api'
 
@@ -21,6 +22,7 @@ export async function getStaticProps() {
   const resCtg = await productAPI.category()
   const resRev = await productAPI.reviews()
   const resBan = await productAPI.banner()
+  const resPro = await productAPI.products()
 
   return {
     props: {
@@ -29,14 +31,16 @@ export async function getStaticProps() {
       category: resCtg.data.data,
       reviews: resRev.data.data,
       banner: resBan.data.data,
+      products: resPro.data.data,
     },
   }
 }
 
-const Home = ({ data, Settings, category, reviews, banner }) => {
+const Home = ({ data, Settings, category, reviews, banner, products }) => {
   const dispatch = useDispatch()
 
   dispatch(dataCatalog(category))
+  dispatch(product(products))
 
   return (
     <>

@@ -46,17 +46,12 @@ export default function Navbar() {
                       <div className="flex space-x-6 xl:space-x-10">
                         {navigation.map((item) => (
                           <Link key={item.name} href={item.href}>
-                            {/* <a
-                              className={router.pathname == '/' ? 'active' : ''}
-                            > */}
                             <a
-                              className={classNames(
-                                item.current
+                              className={`border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out ${
+                                router.pathname == item.href
                                   ? 'border-black'
-                                  : 'hover:border-black active:border-black',
-                                'border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out'
-                              )}
-                              aria-current={item.current ? 'page' : undefined}
+                                  : ''
+                              }`}
                             >
                               {item.name}
                             </a>

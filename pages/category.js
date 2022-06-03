@@ -4,8 +4,20 @@ import Breadcrumb from '../components/Breadcrumb'
 import ProductCategory from '../components/ProductCategory'
 import ButtonCatalog from '../components/ButtonCatalog'
 import ButtonFilter from '../components/ButtonFilter'
+// API
+import { productAPI } from '../api'
 
-const Category = () => {
+export async function getStaticProps() {
+  const resCtg = await productAPI.category()
+
+  return {
+    props: {
+      category: resCtg.data.data,
+    },
+  }
+}
+
+const Category = ({ category }) => {
   const page = 'Рулон из оцинкованной стали с полимерным покрытием'
 
   return (
@@ -19,7 +31,7 @@ const Category = () => {
         <ButtonFilter />
       </div>
       <Breadcrumb page={page} />
-      <ProductCategory />
+      <ProductCategory category={category} />
     </>
   )
 }
