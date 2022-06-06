@@ -14,6 +14,7 @@ import {
 import { LocationMarkerIcon } from '@heroicons/react/solid'
 //Portal
 import Modal from '../layout/Modal'
+import Search from '../components/Search'
 
 const options = [
   { name: 'RU', value: 'RU', active: 'true' },
@@ -24,11 +25,12 @@ const options = [
 function Header() {
   const [isModal, setIsModal] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const [user, setUser] = useState(null)
 
   return (
     <>
-      <div className="header header-shadow fixed top-0 z-[99] w-full bg-black text-white lg:static">
+      <div className="header header-shadow fixed top-0 z-[9] w-full bg-black text-white lg:static">
         <div className="mx-auto h-20 max-w-7xl px-2 sm:px-6">
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">
@@ -69,13 +71,17 @@ function Header() {
               </Link>
             </div>
             <div className="flex items-center justify-end">
-              <SearchIcon
-                className={`cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500 ${
-                  openMenu ? 'h-0 opacity-0' : ''
-                }`}
-                width={24}
-                height={24}
-              />
+              <div>
+                <SearchIcon
+                  className={`cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500 ${
+                    openMenu ? 'h-0 opacity-0' : ''
+                  }`}
+                  width={24}
+                  height={24}
+                  onClick={() => setSearchOpen((prev) => !prev)}
+                />
+              </div>
+
               <Link href="/basket">
                 <ShoppingCartIcon
                   className="ml-5 cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500"
@@ -163,6 +169,7 @@ function Header() {
         setUser={setUser}
         user={user}
       />
+      <Search open={searchOpen} setOpen={setSearchOpen} />
     </>
   )
 }

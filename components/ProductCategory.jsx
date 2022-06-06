@@ -1,7 +1,9 @@
 import sliderProducts from '../data/data-sliderProducts'
 import Category from './Category'
+import Link from 'next/link'
 
 function ProductCategory({ category }) {
+
   return (
     <div className="ProductCategory">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -21,10 +23,9 @@ function ProductCategory({ category }) {
           <div className="col-span-3 lg:col-span-2 xl:col-span-3">
             <div className="grid grid-cols-1 justify-items-center gap-2.5 gap-y-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 lg:gap-5 xl:grid-cols-3">
               {sliderProducts.map((product) => (
-                <div key={product.id}>
-                  <a
-                    href={product.href}
-                    className="relative max-w-[310px] rounded bg-[#F1F1F1] bg-top bg-no-repeat text-left hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]"
+                <Link key={product.id} href={product.href}>
+                  <div
+                    className="relative max-w-[310px] cursor-pointer rounded bg-[#F1F1F1] bg-top bg-no-repeat text-left hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]"
                     style={{ backgroundImage: `url(${product.imageSrc})` }}
                   >
                     {product.isNew ? (
@@ -52,8 +53,8 @@ function ProductCategory({ category }) {
                         {product.price} UZS
                       </p>
                     </div>
-                  </a>
-                </div>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>

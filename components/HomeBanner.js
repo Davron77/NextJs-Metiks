@@ -15,7 +15,7 @@ function HomeBanner({ settings, banner }) {
         <div className="flex-initial">
           <div className="h-full flex-1 bg-black p-7 text-white lg:h-[428px] lg:px-[50px] lg:py-11">
             <h1 className="font-Bebas text-3xl font-bold leading-[50px] lg:text-[44px]">
-              Лучший
+              Лучший{' '}
               <span className="text-neutral-400">
                 способ купить товары толЬка у нас.
               </span>

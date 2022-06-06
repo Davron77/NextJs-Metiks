@@ -2,8 +2,20 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
 import Product from '../components/Product'
+// API
+import { productAPI } from '../api'
 
-const Services = () => {
+export async function getStaticProps() {
+  const resPro = await productAPI.products()
+
+  return {
+    props: {
+      products: resPro.data.data,
+    },
+  }
+}
+
+const Services = ({ products }) => {
   const page = 'Рулон из оцинкованной стали с полимерным покрытием'
 
   return (
@@ -13,7 +25,7 @@ const Services = () => {
         <link rel="icon" href="/m.png" />
       </Head>
       <Breadcrumb page={page} />
-      <Product />
+      <Product products={products} />
     </>
   )
 }

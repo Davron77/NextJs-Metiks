@@ -57,7 +57,7 @@ const filters = [
   },
 ]
 
-function Product() {
+function Product({ products }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [select, setSelect] = useState(false)
   const [count, setCount] = useState(1)
@@ -306,8 +306,6 @@ function Product() {
                           <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
                             <dt>Full name</dt>
                             <dd>Margot Foster</dd>
-
-                            
                           </div>
                           <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
                             <dt>Application for</dt>

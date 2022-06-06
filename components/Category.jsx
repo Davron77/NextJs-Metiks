@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Accordion,
   AccordionItem,
@@ -11,6 +11,9 @@ import 'react-accessible-accordion/dist/fancy-example.css'
 import { IoMdClose } from 'react-icons/io'
 // Components
 import FilterDetail from './FilterDetail'
+import FilterColor from './FilterColor'
+//REDUX
+import { useSelector } from 'react-redux'
 
 const colors = [
   {
@@ -65,12 +68,16 @@ const colors = [
   },
 ]
 
-function Category({ open, setOpen, category }) {
-  // useEffect(() => {
-  //   console.log(catalog.dataCatalog.filter((e) => e.id === 3)[props])
-  // }, [catalog.dataCatalog])
+function Category({ open, setOpen }) {
+  const [idRadio, setIdRadio] = useState(3)
 
-  console.log(category.filter((e) => e.id === 3)[0].props.properties)
+  const category = useSelector((state) => state.dataCatalog)
+
+  console.log(category)
+
+  const getIdRadio = (e) => {
+    setIdRadio(+e.target.value)
+  }
 
   return (
     <div
@@ -95,14 +102,16 @@ function Category({ open, setOpen, category }) {
             <AccordionItemButton>Категория</AccordionItemButton>
           </AccordionItemHeading>
           <AccordionItemPanel>
-            <form action="#" className=" max-h-[200px] overflow-auto">
-              {category.map((item) => (
+            <form action="#" className="max-h-[200px] overflow-auto">
+              {category.map((item, index) => (
                 <div key={item.id} className="flex flex-row py-2">
                   <input
                     type="radio"
                     id={item.id}
-                    name={item.id}
-                    value="Bike"
+                    name="radio"
+                    onChange={getIdRadio}
+                    defaultChecked={!!!index}
+                    value={item.id}
                     className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
                   />
                   <label
@@ -118,43 +127,22 @@ function Category({ open, setOpen, category }) {
           </AccordionItemPanel>
         </AccordionItem>
         {category
-          .filter((e) => e.id === 3)[0]
+          .filter((e) => e.id === idRadio)[0]
           .props.map((item) => (
-            <AccordionItem dangerouslySetExpanded={true}>
+            <AccordionItem dangerouslySetExpanded={true} key={item.id}>
               <AccordionItemHeading>
                 <AccordionItemButton>{item.label}</AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel>
-                <FilterDetail props={item.properties[0]} />
+                {item.type === 'color' && (
+                  <FilterColor props={item.properties} />
+                )}
+                {item.type === 'detail' && (
+                  <FilterDetail props={item.properties} />
+                )}
               </AccordionItemPanel>
             </AccordionItem>
           ))}
-        <AccordionItem dangerouslySetExpanded={true}>
-          <AccordionItemHeading>
-            <AccordionItemButton>Категория</AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <div className="grid grid-cols-5 gap-3">
-              {colors.map((item) => (
-                <label
-                  key={item.id}
-                  className="checkout-radio-color w-full cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    name="cash"
-                    className="hidden"
-                    defaultChecked={item.is_correct}
-                  />
-                  <div
-                    className="checkout-card-color relative h-[50px] w-[50px] rounded-full border-2 border-transparent bg-[#F0F0F0] text-center"
-                    style={{ backgroundColor: `${item.color}` }}
-                  ></div>
-                </label>
-              ))}
-            </div>
-          </AccordionItemPanel>
-        </AccordionItem>
         <AccordionItem dangerouslySetExpanded={true}>
           <AccordionItemHeading>
             <AccordionItemButton>Цена</AccordionItemButton>
@@ -191,6 +179,35 @@ function Category({ open, setOpen, category }) {
 }
 
 export default Category
+
+{
+  /* <AccordionItem dangerouslySetExpanded={true}>
+          <AccordionItemHeading>
+            <AccordionItemButton>Категория</AccordionItemButton>
+          </AccordionItemHeading>
+          <AccordionItemPanel>
+            <div className="grid grid-cols-5 gap-3">
+              {colors.map((item) => (
+                <label
+                  key={item.id}
+                  className="checkout-radio-color w-full cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    name="cash"
+                    className="hidden"
+                    defaultChecked={item.is_correct}
+                  />
+                  <div
+                    className="checkout-card-color relative h-[50px] w-[50px] rounded-full border-2 border-transparent bg-[#F0F0F0] text-center"
+                    style={{ backgroundColor: `${item.color}` }}
+                  ></div>
+                </label>
+              ))}
+            </div>
+          </AccordionItemPanel>
+        </AccordionItem> */
+}
 
 {
   /* <AccordionItem dangerouslySetExpanded={true}>

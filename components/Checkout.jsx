@@ -28,7 +28,12 @@ function Checkout({ setCheck }) {
               <h3 className="mt-8 font-bold uppercase">Способ доставки</h3>
               <div className="grid-cols-2 gap-5 sm:grid">
                 <label className="checkout-radio w-full cursor-pointer">
-                  <input type="radio" name="radio" className="hidden" checked />
+                  <input
+                    type="radio"
+                    name="radio"
+                    className="hidden"
+                    defaultChecked
+                  />
                   <div className="checkout-card my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center">
                     <h4 className="font-Inter text-xl text-[#434343]">
                       Транспортная услуги
@@ -55,7 +60,12 @@ function Checkout({ setCheck }) {
               <h3 className="mt-8 font-bold uppercase">Способ доставки</h3>
               <div className="grid-cols-2 gap-5 sm:grid">
                 <label className="checkout-radio w-full cursor-pointer">
-                  <input type="radio" name="cash" className="hidden" checked />
+                  <input
+                    type="radio"
+                    name="cash"
+                    className="hidden"
+                    defaultChecked
+                  />
                   <div className="checkout-card my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center">
                     <h4 className="font-Inter text-xl text-[#434343]">
                       Наличными

@@ -9,9 +9,11 @@ export default function Products({ category }) {
           <h1>
             продукции <span>по категориям</span>
           </h1>
-          <a href="#">
-            Посмотреть все <ChevronRightIcon className=" h-5 w-5" />
-          </a>
+          <Link href="/category">
+            <a>
+              Посмотреть все <ChevronRightIcon className=" h-5 w-5" />
+            </a>
+          </Link>
         </div>
         <div className="grid grid-cols-1 gap-y-5 gap-x-6 transition-all delay-150 ease-in-out sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3 xl:gap-x-8">
           {category.map((item) => (

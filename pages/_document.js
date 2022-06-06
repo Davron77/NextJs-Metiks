@@ -12,6 +12,7 @@ export default function Document() {
         <NextScript />
         {/* Your portal here */}
         <div id="modal-root"></div>
+        <div id="modal-search"></div>
         <div id="modal-video"></div>
       </body>
     </Html>
