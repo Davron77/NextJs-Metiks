@@ -2,7 +2,8 @@ import React from 'react'
 
 function FilterColor({ props }) {
   return (
-    <div className="grid grid-cols-5 gap-3">
+    <div className="grid grid-cols-[repeat(auto-fill,_50px)] gap-3">
+      {/* repeat(auto-fill, 50px) */}
       {props.map((item) => (
         <label
           key={item.id}

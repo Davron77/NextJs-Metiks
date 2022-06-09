@@ -9,71 +9,20 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css'
 //import catalog from '../data/data-catalog'
 import { IoMdClose } from 'react-icons/io'
+import { FiChevronDown } from 'react-icons/fi'
 // Components
 import FilterDetail from './FilterDetail'
 import FilterColor from './FilterColor'
 //REDUX
 import { useSelector } from 'react-redux'
-
-const colors = [
-  {
-    id: 1,
-    color: '#E6D2B5',
-    is_correct: true,
-  },
-  {
-    id: 2,
-    color: '#861A22',
-    is_correct: false,
-  },
-  {
-    id: 3,
-    color: '#59191F',
-    is_correct: false,
-  },
-  {
-    id: 4,
-    color: '#6D342D',
-    is_correct: false,
-  },
-  {
-    id: 5,
-    color: '#792423',
-    is_correct: false,
-  },
-  {
-    id: 6,
-    color: '#27352A',
-    is_correct: false,
-  },
-  {
-    id: 7,
-    color: '#9B9B9B',
-    is_correct: false,
-  },
-  {
-    id: 8,
-    color: '#45494E',
-    is_correct: false,
-  },
-  {
-    id: 9,
-    color: '#442F29',
-    is_correct: false,
-  },
-  {
-    id: 10,
-    color: '#ECECE7',
-    is_correct: false,
-  },
-]
+import category from '../data/data-catalog'
 
 function Category({ open, setOpen }) {
-  const [idRadio, setIdRadio] = useState(3)
+  const [idRadio, setIdRadio] = useState(2)
 
-  const category = useSelector((state) => state.dataCatalog)
+  // const category = useSelector((state) => state.dataCatalog)
 
-  console.log(category)
+  // console.log(category)
 
   const getIdRadio = (e) => {
     setIdRadio(+e.target.value)
@@ -81,10 +30,10 @@ function Category({ open, setOpen }) {
 
   return (
     <div
-      className={`flex overflow-hidden  ${
+      className={`flex overflow-hidden lg:pr-5  ${
         open
-          ? 'catalogAnimation fixed top-0 left-0 right-0 z-[100] !block h-screen flex-col justify-center !overflow-auto bg-white px-8 pb-4'
-          : ''
+          ? 'catalogAnimation fixed top-0 left-0 right-0 z-[100] !block h-screen flex-col justify-center !overflow-auto bg-white px-8 pb-8'
+          : 'hidden lg:flex'
       }`}
     >
       <div className="flex items-center justify-between border-b border-black lg:hidden">
@@ -93,16 +42,20 @@ function Category({ open, setOpen }) {
           Каталог продукции
         </h2>
         <div>
-          <IoMdClose className="text-2xl" onClick={() => setOpen(false)} />
+          <IoMdClose
+            className="cursor-pointer text-2xl"
+            onClick={() => setOpen(false)}
+          />
         </div>
       </div>
-      <Accordion allowZeroExpanded>
-        <AccordionItem dangerouslySetExpanded={true}>
-          <AccordionItemHeading>
-            <AccordionItemButton>Категория</AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <form action="#" className="max-h-[200px] overflow-auto">
+      <div className="w-full">
+        <details open>
+          <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-black">
+            <span className="text-xl">Категория</span>
+            <FiChevronDown className="text-2xl text-black" />
+          </summary>
+          <div className="mb-10">
+            <form action="#" className="max-h-[205px] overflow-auto">
               {category.map((item, index) => (
                 <div key={item.id} className="flex flex-row py-2">
                   <input
@@ -110,7 +63,7 @@ function Category({ open, setOpen }) {
                     id={item.id}
                     name="radio"
                     onChange={getIdRadio}
-                    defaultChecked={!!!index}
+                    defaultChecked={!index}
                     value={item.id}
                     className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
                   />
@@ -124,53 +77,54 @@ function Category({ open, setOpen }) {
                 </div>
               ))}
             </form>
-          </AccordionItemPanel>
-        </AccordionItem>
+          </div>
+        </details>
         {category
           .filter((e) => e.id === idRadio)[0]
           .props.map((item) => (
-            <AccordionItem dangerouslySetExpanded={true} key={item.id}>
-              <AccordionItemHeading>
-                <AccordionItemButton>{item.label}</AccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel>
+            <details open key={item.id}>
+              <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-black">
+                <span className="text-xl">{item.label}</span>
+                <FiChevronDown className="text-2xl text-black" />
+              </summary>
+              <div className="mb-10">
                 {item.type === 'color' && (
                   <FilterColor props={item.properties} />
                 )}
                 {item.type === 'detail' && (
                   <FilterDetail props={item.properties} />
                 )}
-              </AccordionItemPanel>
-            </AccordionItem>
+              </div>
+            </details>
           ))}
-        <AccordionItem dangerouslySetExpanded={true}>
-          <AccordionItemHeading>
-            <AccordionItemButton>Цена</AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <div>
-              <form action="#" className="grid grid-cols-2 gap-2.5">
-                <div>
-                  <label className="text-base text-[#000000b3]">От</label>
-                  <input
-                    placeholder="750"
-                    className="w-full border-2 border-[#434343]"
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <label className="text-base text-[#000000b3]">До</label>
-                  <input
-                    placeholder="25 000"
-                    className="w-full border-2 border-[#434343]"
-                    type="text"
-                  />
-                </div>
-              </form>
-            </div>
-          </AccordionItemPanel>
-        </AccordionItem>
-      </Accordion>
+        <details open>
+          <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-black">
+            <span className="text-xl">Цена</span>
+            <FiChevronDown className="text-2xl text-black" />
+          </summary>
+          <div className="mb-10">
+            <form action="#" className="grid grid-cols-2 gap-2.5">
+              <div>
+                <label className="text-base text-[#000000b3]">От</label>
+                <input
+                  placeholder="750"
+                  className="w-full border-2 border-[#434343]"
+                  type="text"
+                />
+              </div>
+              <div>
+                <label className="text-base text-[#000000b3]">До</label>
+                <input
+                  placeholder="25 000"
+                  className="w-full border-2 border-[#434343]"
+                  type="text"
+                />
+              </div>
+            </form>
+          </div>
+        </details>
+      </div>
+
       <div className="fixed bottom-[2%] w-screen pr-16 text-center lg:hidden">
         <button className="btn w-[323px] !bg-[#016059]">Преминить</button>
       </div>

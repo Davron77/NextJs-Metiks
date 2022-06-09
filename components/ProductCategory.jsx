@@ -3,6 +3,7 @@ import Category from './Category'
 import Link from 'next/link'
 
 function ProductCategory({ category }) {
+  // console.log(sliderProducts.filter((e) => e.Thickness === 0.5))
 
   return (
     <div className="ProductCategory">
@@ -11,12 +12,12 @@ function ProductCategory({ category }) {
           <h1 className="font-Bebas text-lg sm:text-3xl xl:text-[44px]">
             Рулон из оцинкованной стали с полимерным покрытием
           </h1>
-          <span className=" hidden lg:block">
+          <span className="hidden font-bold text-[#00000080] lg:block">
             <span className="!text-black">Показано:</span> 1-12 из 16
             результатов
           </span>
         </div>
-        <div className="grid grid-cols-3 gap-5 xl:grid-cols-4">
+        <div className="grid grid-cols-3 xl:grid-cols-4">
           <div className="absolute col-span-1 opacity-0 lg:static lg:opacity-100">
             <Category category={category} />
           </div>

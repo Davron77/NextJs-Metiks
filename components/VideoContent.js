@@ -7,8 +7,8 @@ export default function VideoContent({ Settings }) {
   return (
     <div>
       <div className="mx-auto max-w-[1440px]">
-        <div className="bg-black lg:flex">
-          <div className="flex basis-1/2 flex-row justify-center pt-8 pb-10 text-white sm:py-28">
+        <div className="lg:flex">
+          <div className="flex basis-1/2 flex-row justify-center bg-black pt-8 pb-10 text-white sm:py-28">
             <div>
               <div className="font-Bebas text-[32px] sm:text-[44px] sm:leading-[54px]">
                 <span className="text-[#016059]">Metiks производит </span>

@@ -21,10 +21,13 @@ function ProductInput({ select }) {
 
   return (
     <div className="mt-4" id="product">
-      <Disclosure as="div" className="relative rounded-lg bg-[#F0F0F0] p-6">
+      <Disclosure
+        as="div"
+        className="relative rounded-lg bg-[#F0F0F0] p-[18px]"
+      >
         {({ open }) => (
           <>
-            <h3 className="grid grid-cols-2 items-center justify-between gap-5 xl:grid-cols-3 ">
+            <h3 className="grid grid-cols-2 items-center justify-between gap-x-5 xl:grid-cols-3 ">
               <div>
                 <label className="text-base font-normal">Выберите длину:</label>
                 <Select
@@ -59,27 +62,37 @@ function ProductInput({ select }) {
                   })}
                 />
               </div>
-              {width > 1280 && (
-                <div>
-                  <label className="text-base font-normal">
-                    Количество листов:
-                  </label>
-                  <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343] px-[18px]">
-                    <button onClick={() => setCount(count - 1)}>
-                      <AiOutlineMinus />
-                    </button>
-                    <input
-                      type="text"
-                      value={count}
-                      onChange={handleOnChange}
-                      className="w-20 bg-[#F0F0F0] text-center outline-none"
-                    />
-                    <button onClick={() => setCount(count + 1)}>
-                      <AiOutlinePlus />
-                    </button>
-                  </div>
-                </div>
-              )}
+              <div>
+                {width > 1280 && (
+                  <>
+                    <label className="text-base font-normal">
+                      Количество листов:
+                    </label>
+                    <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343]">
+                      <button
+                        onClick={() =>
+                          count == 0 ? setCount(0) : setCount(count - 1)
+                        }
+                        className="px-[18px]"
+                      >
+                        <AiOutlineMinus />
+                      </button>
+                      <input
+                        type="text"
+                        value={count}
+                        onChange={handleOnChange}
+                        className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black outline-none"
+                      />
+                      <button
+                        onClick={() => setCount(count + 1)}
+                        className="px-[18px]"
+                      >
+                        <AiOutlinePlus />
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
               <div className="absolute top-3 right-3">
                 {select ? (
                   <>

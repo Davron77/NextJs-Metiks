@@ -16,8 +16,6 @@ import { RiCheckDoubleFill } from 'react-icons/ri'
 // SELECT
 import ProductInput from './ProductInput'
 import { useForm, useFieldArray } from 'react-hook-form'
-import Select, { NonceProvider } from 'react-select'
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
 const filters = [
   {
@@ -60,24 +58,12 @@ const filters = [
 function Product({ products }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [select, setSelect] = useState(false)
-  const [count, setCount] = useState(1)
 
   const { register, control, handleSubmit } = useForm()
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'items',
   })
-
-  const handleOnChange = (e) => {
-    setCount(+e.target.value)
-  }
-
-  const colourOptions = [
-    { value: '20 000mm', label: '20 000mm', color: '#00B8D9', isFixed: true },
-    { value: '500mm', label: '500mm', color: '#0052CC', isDisabled: true },
-    { value: '250mm', label: '250mm', color: '#5243AA' },
-    { value: '100mm', label: '100mm', color: '#FF5630' },
-  ]
 
   return (
     <div

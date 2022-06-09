@@ -363,19 +363,19 @@ form input:focus-visible {
 /* SLIDER HOME COMPONENTS END */
 /* CATEGORY COMPONENTS START */
 
-.ProductCategory form::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: transparent;
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
 
-.ProductCategory form::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 5px;
   max-height: 10px;
   border-radius: 5px;
 }
 
-.ProductCategory form::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #00000080;
   max-height: 5px;
   -webkit-border-radius: 10px;

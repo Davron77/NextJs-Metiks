@@ -35,7 +35,7 @@ function Header() {
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">
               <select
-                className={`bg-black lg:block ${
+                className={`cursor-pointer bg-black lg:block ${
                   openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
                 }`}
               >

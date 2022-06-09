@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function FilterDetail({ props }) {
   return (
@@ -7,12 +7,15 @@ function FilterDetail({ props }) {
         <div key={item.type} className="flex flex-row py-2">
           <input
             type="checkbox"
-            id={item.type}
-            name={item.type}
-            value="Bike"
-            className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
+            id={item.value}
+            name={item.value}
+            value={item.label}
+            className="mt-0 mr-2 h-[18px] w-[18px] cursor-pointer accent-[#016059]"
           />
-          <label className="m-0 w-[270px] text-[#434343]" htmlFor={item.type}>
+          <label
+            className="m-0 w-[270px] cursor-pointer text-[#434343]"
+            htmlFor={item.value}
+          >
             {item.label}
           </label>
           <br></br>

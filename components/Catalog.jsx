@@ -21,7 +21,7 @@ export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
           </h2>
           <div>
             <IoMdClose
-              className="text-2xl"
+              className="text-2xl cursor-pointer"
               onClick={() => setIsOpenCatalog(false)}
             />
           </div>
