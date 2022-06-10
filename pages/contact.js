@@ -32,7 +32,6 @@ const About = ({ data, settings }) => {
         <link rel="icon" href="/m.png" />
       </Head>
       <Breadcrumb page={page} />
-      <PageTitle title={title} />
       <ContactBanner settings={settings} />
       <ContactForm settings={settings} />
       <SliderInstagram data={data} />

@@ -7,13 +7,16 @@ import { AiFillInstagram } from 'react-icons/ai'
 function ContactBanner({ settings }) {
   return (
     <div>
+      <div className="font-Bebas my-5 text-center text-[22px] font-bold sm:my-7 sm:text-[40px]">
+        наши Контакты
+      </div>
       <div className="mx-auto max-w-[1440px] grid-cols-4 gap-5 lg:grid xl:grid-cols-5">
         <div className=" col-span-2 xl:col-span-3">
           <iframe
             src={settings.address_iframe}
-            allowfullscreen=""
+            allowFullScreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
             className="h-[370px] w-full lg:h-full"
           ></iframe>
         </div>
