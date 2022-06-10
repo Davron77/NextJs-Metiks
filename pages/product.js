@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
-import Product from '../components/Product'
+import Products from '../components/Product'
 // API
 import { productAPI } from '../api'
 
@@ -15,7 +15,7 @@ export async function getStaticProps() {
   }
 }
 
-const Services = ({ products }) => {
+const Product = ({ products }) => {
   const page = 'Рулон из оцинкованной стали с полимерным покрытием'
 
   return (
@@ -25,9 +25,9 @@ const Services = ({ products }) => {
         <link rel="icon" href="/m.png" />
       </Head>
       <Breadcrumb page={page} />
-      <Product products={products} />
+      <Products products={products} />
     </>
   )
 }
 
-export default Services
+export default Product
