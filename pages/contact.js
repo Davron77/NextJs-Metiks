@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
-import PageTitle from '../components/pageTitle'
 import SliderInstagram from '../components/SliderInstagram'
 import ContactBanner from '../components/ContactBanner'
 import ContactForm from '../components/ContactForm'
@@ -23,7 +22,6 @@ export async function getStaticProps() {
 
 const About = ({ data, settings }) => {
   const page = 'Контакты'
-  const title = 'наши Контакты'
 
   return (
     <>
