@@ -9,7 +9,7 @@ axios.interceptors.request.use(
       config.method === 'post' ? localStorage.getItem('token') : ''
     }`
     // OR config.headers.common['Authorization'] = `Bearer ${your_token}`;
-    config.baseURL = 'http://metiks.901739-cm76052.tmweb.ru/api/'
+    config.baseURL = 'https://metiks.901739-cm76052.tmweb.ru/api/'
 
     return config
   },

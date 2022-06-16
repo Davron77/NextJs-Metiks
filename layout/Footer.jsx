@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import Logo from '../public/svg/logo.svg'
 import Link from 'next/link'
 // IMPORT ICONS
 import { DeviceMobileIcon } from '@heroicons/react/outline'
@@ -41,10 +40,10 @@ function Footer() {
           <div className="block h-full flex-wrap justify-between md:flex">
             <div className="flex w-32 items-center justify-start lg:w-40 xl:w-56">
               <Link href="/">
-                <Image
+                <img
                   className="cursor-pointer"
-                  src={Logo}
-                  alt="Picture of the author"
+                  src="/svg/logo.svg"
+                  alt="Logo"
                 />
               </Link>
             </div>

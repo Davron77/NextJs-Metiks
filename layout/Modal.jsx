@@ -1,13 +1,15 @@
-import React, { useEffect, useState, Fragment, useRef } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { Dialog, Transition } from '@headlessui/react'
+//COMPONENTS
 import Login from './Login'
+import Registration from './Registration'
+import User from './User'
 
 function Modal({ open, setOpen, setUser, user }) {
   const [isBrowser, setIsBrowser] = useState(false)
   const [isUser, setIsUser] = useState(false)
-
-  const cancelButtonRef = useRef(null)
+  const [isReg, setIsReg] = useState(false)
 
   useEffect(() => {
     setIsBrowser(true)
@@ -18,7 +20,6 @@ function Modal({ open, setOpen, setUser, user }) {
       <Dialog
         as="div"
         className="relative z-[100]"
-        initialFocus={cancelButtonRef}
         onClose={setOpen}
       >
         <Transition.Child
@@ -50,13 +51,24 @@ function Modal({ open, setOpen, setUser, user }) {
             >
               <Dialog.Panel className="relative max-w-[420px] transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all">
                 <div className="bg-white">
-                  <Login
-                    isUser={isUser}
-                    setIsUser={setIsUser}
-                    setOpen={setOpen}
-                    setUser={setUser}
-                    user={user}
-                  />
+                  {isUser ? (
+                    <User />
+                  ) : (
+                    <div className="py-[40px] px-5 sm:px-[60px]">
+                      {isReg ? (
+                        <Registration />
+                      ) : (
+                        <Login
+                          setIsReg={setIsReg}
+                          isUser={isUser}
+                          setIsUser={setIsUser}
+                          setOpen={setOpen}
+                          setUser={setUser}
+                          user={user}
+                        />
+                      )}
+                    </div>
+                  )}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

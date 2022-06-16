@@ -1,12 +1,10 @@
-import React, { useEffect, useState, Fragment, useRef } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { Dialog, Transition } from '@headlessui/react'
 import { MdClose } from 'react-icons/md'
 
 function Modal({ open, setOpen, settings }) {
   const [isBrowser, setIsBrowser] = useState(false)
-
-  const cancelButtonRef = useRef(null)
 
   useEffect(() => {
     setIsBrowser(true)
@@ -17,7 +15,6 @@ function Modal({ open, setOpen, settings }) {
       <Dialog
         as="div"
         className="relative z-10"
-        initialFocus={cancelButtonRef}
         onClose={setOpen}
       >
         <Transition.Child
@@ -48,7 +45,6 @@ function Modal({ open, setOpen, settings }) {
                   <div className="flex justify-end">
                     <span
                       className="cursor-pointer"
-                      ref={cancelButtonRef}
                       onClick={() => setOpen(false)}
                     >
                       <MdClose className="mb-4 text-3xl text-white" />

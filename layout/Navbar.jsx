@@ -42,22 +42,18 @@ export default function Navbar() {
                     </div>
                   </div>
                   <div className="flex-2 justify-centern hidden items-center sm:items-stretch sm:justify-start lg:block">
-                    <div>
-                      <div className="flex space-x-6 xl:space-x-10">
-                        {navigation.map((item) => (
-                          <Link key={item.name} href={item.href}>
-                            <a
-                              className={`border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out ${
-                                router.pathname == item.href
-                                  ? 'border-black'
-                                  : ''
-                              }`}
-                            >
-                              {item.name}
-                            </a>
-                          </Link>
-                        ))}
-                      </div>
+                    <div className="flex space-x-6 xl:space-x-10">
+                      {navigation.map((item) => (
+                        <Link key={item.name} href={item.href}>
+                          <a
+                            className={`border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out ${
+                              router.pathname == item.href ? 'border-black' : ''
+                            }`}
+                          >
+                            {item.name}
+                          </a>
+                        </Link>
+                      ))}
                     </div>
                   </div>
                   <div className="absolute inset-y-0 right-0 hidden items-center pr-2 sm:static sm:inset-auto sm:pr-0 lg:block">

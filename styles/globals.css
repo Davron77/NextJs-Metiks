@@ -229,10 +229,15 @@ select:focus-visible {
 /* FOOTER COMPONENTS END */
 /* FORM START */
 
-form input {
-  @apply mt-2.5 rounded-sm py-[10px] px-4 text-lg;
+form input,
+form textarea {
+  @apply mt-2.5 rounded-sm py-[10px] px-4 text-lg placeholder:font-normal;
   color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+form button {
+  @apply font-medium;
 }
 
 form label {
@@ -329,6 +334,7 @@ form input:focus-visible {
   border-radius: 50%;
   bottom: 0;
   top: 93%;
+  z-index: 8 !important;
 }
 
 .Recommendations .swiper-button-prev:hover,

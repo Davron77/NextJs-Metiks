@@ -1,16 +1,14 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 export default function CheckoutModal({ open, setOpen, setCheck }) {
-  const cancelButtonRef = useRef(null)
 
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
         className="relative z-10"
-        initialFocus={cancelButtonRef}
         onClose={setOpen}
       >
         <Transition.Child
@@ -53,7 +51,6 @@ export default function CheckoutModal({ open, setOpen, setCheck }) {
                     <button
                       className="btn rounded-sm !bg-[#016059]"
                       onClick={() => setOpen(false)}
-                      ref={cancelButtonRef}
                     >
                       Продолжить покупку
                     </button>

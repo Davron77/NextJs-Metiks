@@ -71,7 +71,7 @@ function ProductInput({ select }) {
                     <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343]">
                       <button
                         onClick={() =>
-                          count == 0 ? setCount(0) : setCount(count - 1)
+                          count == 0 ? null : setCount(count - 1)
                         }
                         className="px-[18px]"
                       >

@@ -3,6 +3,8 @@ import http from './httpService'
 const register = '/register'
 const login = '/login'
 const me = '/me'
+const sendVerificationCode = '/send-verification-code'
+const checkVerificationCode = '/check-verification-code'
 const logout = '/logout'
 const services = '/services'
 const instagram = '/instagram'
@@ -13,12 +15,16 @@ const category = '/categories'
 const reviews = '/reviews'
 const banner = '/banner'
 const products = '/products'
+const message = '/message'
 
 export const authAPI = {
   register: (props) => http.post(register, props),
   login: (props) => http.post(login, props),
+  sendVerificationCode: (props) => http.post(sendVerificationCode, props),
+  checkVerificationCode: (props) => http.post(checkVerificationCode, props),
   logout: () => http.post(logout),
   me: () => http.post(me),
+  message: () => http.post(message),
 }
 
 export const productAPI = {

@@ -8,7 +8,7 @@ import ButtonFilter from '../components/ButtonFilter'
 import { productAPI } from '../api'
 //REDUX
 import { useDispatch } from 'react-redux'
-import { dataCatalog } from '../redux/user'
+import { dataCatalog } from '../redux/catalog'
 
 export async function getStaticProps() {
   const resCtg = await productAPI.category()

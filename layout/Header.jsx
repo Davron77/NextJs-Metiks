@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import Logo from '../public/svg/logo.svg'
 import Link from 'next/link'
 import navigation from '../navigation/menu'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
@@ -54,20 +53,22 @@ function Header() {
                   <XIcon
                     onClick={() => setOpenMenu(false)}
                     className="block h-6 w-6 cursor-pointer"
-                    aria-hidden="true"
                   />
                 ) : (
                   <MenuIcon
                     onClick={() => setOpenMenu(true)}
                     className="block h-6 w-6 cursor-pointer"
-                    aria-hidden="true"
                   />
                 )}
               </div>
             </div>
             <div className="flex w-36 items-center justify-center lg:w-full">
               <Link href="/">
-                <Image className="cursor-pointer" src={Logo} alt="Logo" />
+                <img
+                  className="cursor-pointer"
+                  src="/svg/logo.svg"
+                  alt="Logo"
+                />
               </Link>
             </div>
             <div className="flex items-center justify-end">

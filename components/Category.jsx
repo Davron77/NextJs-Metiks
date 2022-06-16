@@ -20,10 +20,6 @@ import category from '../data/data-catalog'
 function Category({ open, setOpen }) {
   const [idRadio, setIdRadio] = useState(2)
 
-  // const category = useSelector((state) => state.dataCatalog)
-
-  // console.log(category)
-
   const getIdRadio = (e) => {
     setIdRadio(+e.target.value)
   }

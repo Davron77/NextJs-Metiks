@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment, useRef } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { Dialog, Transition } from '@headlessui/react'
 // IMPORT ICONS
@@ -7,8 +7,6 @@ import { SearchIcon } from '@heroicons/react/outline'
 
 function Search({ open, setOpen }) {
   const [isBrowser, setIsBrowser] = useState(false)
-
-  const cancelButtonRef = useRef(null)
 
   useEffect(() => {
     setIsBrowser(true)
@@ -42,7 +40,6 @@ function Search({ open, setOpen }) {
       <Dialog
         as="div"
         className="relative z-10"
-        initialFocus={cancelButtonRef}
         onClose={setOpen}
       >
         <Transition.Child

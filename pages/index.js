@@ -11,7 +11,7 @@ import Bestsellers from '../components/Bestsellers'
 import Interested from '../components/Interested'
 //REDUX
 import { useDispatch } from 'react-redux'
-import { dataCatalog } from '../redux/user'
+import { dataCatalog } from '../redux/catalog'
 import { product } from '../redux/product'
 // API
 import { productAPI } from '../api'

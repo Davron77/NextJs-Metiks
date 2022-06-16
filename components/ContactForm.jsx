@@ -1,5 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+//API
+import { authAPI } from '../api/'
 
 function ContactForm({ settings }) {
   const {
@@ -10,9 +12,25 @@ function ContactForm({ settings }) {
     trigger,
   } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data)
-    reset()
+  const onSubmit = async (data) => {
+    try {
+      const res = await authAPI.message({
+        name: data.name,
+        phone: data.phone,
+        company: data.text,
+        comment: data.textarea,
+        email: data.email,
+      })
+      console.log('res', res)
+      if (res.status === 200) {
+        // Cookies.set('token', res.data.data.token)
+        //localStorage.setItem('token', res.data.data.token)
+      }
+      console.log(data)
+      reset()
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -83,47 +101,48 @@ function ContactForm({ settings }) {
             </div>
             <div>
               <input
-                type="password"
+                type="email"
                 className={`form-control mb-2.5 w-full bg-[#F0F0F0] ${
-                  errors.password && 'invalid text-red-600'
+                  errors.email && 'invalid text-red-600'
                 }`}
                 placeholder="E-mail"
-                {...register('password', {
-                  required: 'password is Required',
+                {...register('email', {
+                  required: 'email is Required',
                   minLength: {
                     value: 8,
-                    message: 'Minimum password length is 8',
+                    message: 'Minimum email length is 8',
                   },
                 })}
                 onKeyUp={() => {
-                  trigger('password')
+                  trigger('email')
                 }}
               />
             </div>
             <div>
               <input
-                type="password"
+                type="text"
                 className={`form-control mb-2.5 w-full bg-[#F0F0F0] ${
-                  errors.password && 'invalid text-red-600'
+                  errors.text && 'invalid text-red-600'
                 }`}
                 placeholder="Название Компонии"
-                {...register('password', {
-                  required: 'password is Required',
-                  minLength: {
-                    value: 8,
-                    message: 'Minimum password length is 8',
-                  },
+                {...register('text', {
+                  required: 'text is Required',
                 })}
                 onKeyUp={() => {
-                  trigger('password')
+                  trigger('text')
                 }}
               />
             </div>
             <textarea
               rows={6}
-              className="col-span-2 my-3 block w-full rounded-sm border-2 border-gray-200 bg-[#F0F0F0] px-4 py-2.5 sm:text-base"
+              className="col-span-2 my-3 block w-full rounded-sm border-2 border-gray-200 bg-[#F0F0F0] px-4 py-2.5 text-lg"
               placeholder="Коментарии*"
-              defaultValue={''}
+              {...register('textarea', {
+                required: 'textarea is Required',
+              })}
+              onKeyUp={() => {
+                trigger('textarea')
+              }}
             />
 
             <button className="btn font-Inter mt-2.5 w-[200px] rounded-sm !py-4">

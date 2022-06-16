@@ -4,6 +4,12 @@
 }
 
 @font-face {
+  font-family: 'BEBASNEUE';
+  src: url('./BEBASNEUE/BEBASNEUE-REGULAR.OTF');
+  font-weight: 400;
+}
+
+@font-face {
   font-family: 'MyriadPro';
   src: url('./MyriadPro/MyriadPro-Bold.ttf');
   font-weight: 700;
