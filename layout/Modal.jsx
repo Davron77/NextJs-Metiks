@@ -17,11 +17,7 @@ function Modal({ open, setOpen, setUser, user }) {
 
   const modalContent = (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-[100]"
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="relative z-[100]" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -56,7 +52,7 @@ function Modal({ open, setOpen, setUser, user }) {
                   ) : (
                     <div className="py-[40px] px-5 sm:px-[60px]">
                       {isReg ? (
-                        <Registration />
+                        <Registration setOpen={setOpen} />
                       ) : (
                         <Login
                           setIsReg={setIsReg}

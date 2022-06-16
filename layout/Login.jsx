@@ -24,7 +24,6 @@ export default function Login({ setIsUser, setUser, setIsReg }) {
     } catch (err) {
       console.log(err)
     }
-    console.log('user', user)
   }
 
   const onSubmit = async (data) => {
@@ -37,6 +36,7 @@ export default function Login({ setIsUser, setUser, setIsReg }) {
       if (res.status === 200 && res.data.data.token) {
         Cookies.set('token', res.data.data.token)
         //localStorage.setItem('token', res.data.data.token)
+        console.log('Login')
         getMe()
       }
     } catch (err) {
