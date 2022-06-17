@@ -4,7 +4,7 @@ function FilterDetail({ props }) {
   return (
     <form action="#" className=" max-h-[200px] overflow-auto">
       {props.map((item) => (
-        <div key={item.type} className="flex flex-row py-2">
+        <div key={item.label} className="flex flex-row py-2">
           <input
             type="checkbox"
             id={item.value}

@@ -24,7 +24,7 @@ export const authAPI = {
   checkVerificationCode: (props) => http.post(checkVerificationCode, props),
   logout: () => http.post(logout),
   me: () => http.post(me),
-  message: () => http.post(message),
+  message: (props) => http.post(message, props),
 }
 
 export const productAPI = {

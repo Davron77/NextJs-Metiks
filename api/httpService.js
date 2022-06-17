@@ -9,7 +9,7 @@ axios.interceptors.request.use(
       config.method === 'post' ? localStorage.getItem('token') : ''
     }`
     // OR config.headers.common['Authorization'] = `Bearer ${your_token}`;
-    config.baseURL = 'http://192.168.1.129/api'
+    config.baseURL = 'http://192.168.1.37/api'
 
     return config
   },

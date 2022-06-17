@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { FiCheck } from 'react-icons/fi'
 import { MdOutlineHelp } from 'react-icons/md'
@@ -8,9 +8,10 @@ import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 import { userData } from '../redux/userData'
 
-function Registration({ setOpen }) {
+function Registration({ setOpen, setIsUser }) {
   const [sentSms, setSentSms] = useState(false)
   const [errorSms, setErrorSms] = useState(false)
+  const [isDisabled, setDisabled] = useState(true)
 
   const dispatch = useDispatch()
   const catalog = useSelector((state) => state)
@@ -53,6 +54,19 @@ function Registration({ setOpen }) {
     }
   }
 
+  const getMe = async () => {
+    try {
+      const res = await authAPI.me()
+      if (res.status === 200) {
+        localStorage.setItem('userName', res.data.data.name)
+        localStorage.setItem('userPhone', res.data.data.phone)
+        setIsUser(true)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const onSubmitReg = async (code) => {
     try {
       const res = await authAPI.register({
@@ -64,6 +78,7 @@ function Registration({ setOpen }) {
       })
       if (res.data.status === 200) {
         setOpen(false)
+        getMe()
       }
     } catch (err) {
       console.log(err)
@@ -89,6 +104,18 @@ function Registration({ setOpen }) {
     }
     reset()
   }
+
+  useEffect(() => {
+    // add condition to state if needed
+    const timer = window.setTimeout(() => {
+      setDisabled(false)
+    }, 60000)
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [isDisabled])
+
   return (
     <>
       <div className="form-title">
@@ -129,7 +156,8 @@ function Registration({ setOpen }) {
             </button>
           </form>
           <button
-            className="mx-[69px] mt-6 text-center text-sm text-[#016059]"
+            disabled={isDisabled}
+            className="mx-[69px] mt-6 text-center text-sm text-[#016059] disabled:opacity-75"
             onClick={() => onSubmitReturn()}
           >
             Отправить новый пароль

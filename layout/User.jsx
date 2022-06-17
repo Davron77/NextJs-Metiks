@@ -1,14 +1,17 @@
 import React from 'react'
+import { MdExitToApp } from 'react-icons/md'
+import { authAPI } from '../api/'
 
-function User() {
+function User({ setIsUser, setOpen }) {
   const Logout = async () => {
     console.log('Logout')
     try {
       const res = await authAPI.logout()
       if (res.status === 200) {
-        setOpen(false)
         setIsUser(false)
         localStorage.removeItem('token')
+        localStorage.removeItem('userName')
+        localStorage.removeItem('userPhone')
       }
     } catch (err) {
       console.log(err)
@@ -24,13 +27,15 @@ function User() {
           alt="user"
         />
         <div className=" flex flex-col justify-center pl-3">
-          <h5 className=" text-xl font-bold tracking-wide">{user?.name}</h5>
+          <h5 className=" text-xl font-bold tracking-wide">
+            {localStorage.getItem('userName')}
+          </h5>
           <div className="mt-1 flex">
             <a
               className="border-b border-transparent text-[#434343] transition-all duration-500 ease-in-out hover:border-b-white"
               href="tel:+998998974504"
             >
-              {user?.phone}
+              +{localStorage.getItem('userPhone')}
             </a>
           </div>
         </div>

@@ -13,6 +13,10 @@ function Modal({ open, setOpen, setUser, user }) {
 
   useEffect(() => {
     setIsBrowser(true)
+    if (localStorage.getItem('token')) {
+      setIsUser(true)
+      console.log('isUser')
+    }
   }, [])
 
   const modalContent = (
@@ -48,11 +52,11 @@ function Modal({ open, setOpen, setUser, user }) {
               <Dialog.Panel className="relative max-w-[420px] transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all">
                 <div className="bg-white">
                   {isUser ? (
-                    <User />
+                    <User setOpen={setOpen} setIsUser={setIsUser} />
                   ) : (
                     <div className="py-[40px] px-5 sm:px-[60px]">
                       {isReg ? (
-                        <Registration setOpen={setOpen} />
+                        <Registration setOpen={setOpen} setIsUser={setIsUser} />
                       ) : (
                         <Login
                           setIsReg={setIsReg}

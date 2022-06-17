@@ -20,6 +20,8 @@ import category from '../data/data-catalog'
 function Category({ open, setOpen }) {
   const [idRadio, setIdRadio] = useState(2)
 
+  const catalog = useSelector((state) => state.dataCatalog)
+
   const getIdRadio = (e) => {
     setIdRadio(+e.target.value)
   }
@@ -52,7 +54,7 @@ function Category({ open, setOpen }) {
           </summary>
           <div className="mb-10">
             <form action="#" className="max-h-[205px] overflow-auto">
-              {category.map((item, index) => (
+              {catalog.map((item, index) => (
                 <div key={item.id} className="flex flex-row py-2">
                   <input
                     type="radio"
@@ -75,7 +77,7 @@ function Category({ open, setOpen }) {
             </form>
           </div>
         </details>
-        {category
+        {catalog
           .filter((e) => e.id === idRadio)[0]
           .props.map((item) => (
             <details open key={item.id}>
@@ -87,7 +89,10 @@ function Category({ open, setOpen }) {
                 {item.type === 'color' && (
                   <FilterColor props={item.properties} />
                 )}
-                {item.type === 'detail' && (
+                {item.type === 'number' && (
+                  <FilterDetail props={item.properties} />
+                )}
+                {item.type === 'text' && (
                   <FilterDetail props={item.properties} />
                 )}
               </div>
@@ -120,7 +125,6 @@ function Category({ open, setOpen }) {
           </div>
         </details>
       </div>
-
       <div className="fixed bottom-[2%] w-screen pr-16 text-center lg:hidden">
         <button className="btn w-[323px] !bg-[#016059]">Преминить</button>
       </div>

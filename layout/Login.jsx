@@ -3,9 +3,8 @@ import { useForm } from 'react-hook-form'
 import { FiCheck } from 'react-icons/fi'
 import { MdOutlineHelp, MdExitToApp } from 'react-icons/md'
 import { authAPI } from '../api'
-import Cookies from 'js-cookie'
 
-export default function Login({ setIsUser, setUser, setIsReg }) {
+export default function Login({ setIsUser, setIsReg }) {
   const {
     register,
     handleSubmit,
@@ -18,7 +17,8 @@ export default function Login({ setIsUser, setUser, setIsReg }) {
     try {
       const res = await authAPI.me()
       if (res.status === 200) {
-        setUser(res.data.data)
+        localStorage.setItem('userName', res.data.data.name)
+        localStorage.setItem('userPhone', res.data.data.phone)
         setIsUser(true)
       }
     } catch (err) {
@@ -34,8 +34,7 @@ export default function Login({ setIsUser, setUser, setIsReg }) {
       })
       console.log('res', res)
       if (res.status === 200 && res.data.data.token) {
-        Cookies.set('token', res.data.data.token)
-        //localStorage.setItem('token', res.data.data.token)
+        localStorage.setItem('token', res.data.data.token)
         console.log('Login')
         getMe()
       }
@@ -43,7 +42,7 @@ export default function Login({ setIsUser, setUser, setIsReg }) {
       console.log(err)
     }
 
-    console.log(data)
+    console.log('data', data)
     reset()
   }
   return (
