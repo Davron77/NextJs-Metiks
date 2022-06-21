@@ -14,7 +14,7 @@ const manufacture = '/manufacture'
 const category = '/categories'
 const reviews = '/reviews'
 const banner = '/banner'
-const products = '/products'
+const products = '/products/'
 const message = '/message'
 
 export const authAPI = {
@@ -37,4 +37,5 @@ export const productAPI = {
   reviews: () => http.get(reviews),
   banner: () => http.get(banner),
   products: () => http.get(products),
+  product: (id) => http.get(products + id),
 }

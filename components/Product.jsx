@@ -65,6 +65,8 @@ function Product({ products }) {
     name: 'items',
   })
 
+  console.log('wadawawd', products)
+
   return (
     <div
       id="product"
@@ -160,7 +162,7 @@ function Product({ products }) {
         </div>
         <div>
           <div className="page-title leading-6 sm:leading-[44px]">
-            <h1>Рулон из оцинкованной стали с полимерным покрытием</h1>
+            <h1>products.name</h1>
           </div>
           <div>
             <div className="justify-between lg:flex">

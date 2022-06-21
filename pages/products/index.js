@@ -1,30 +1,35 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import Breadcrumb from '../components/Breadcrumb'
-import ProductCategory from '../components/ProductCategory'
-import ButtonCatalog from '../components/ButtonCatalog'
-import ButtonFilter from '../components/ButtonFilter'
+import Breadcrumb from '../../components/Breadcrumb'
+import ProductCategory from '../../components/ProductCategory'
+import ButtonCatalog from '../../components/ButtonCatalog'
+import ButtonFilter from '../../components/ButtonFilter'
+import { useRouter } from 'next/router'
 // API
-import { productAPI } from '../api'
+import { productAPI } from '../../api'
 //REDUX
 import { useDispatch } from 'react-redux'
-import { dataCatalog } from '../redux/catalog'
+import { dataCatalog } from '../../redux/catalog'
 
 export async function getStaticProps() {
   const resCtg = await productAPI.category()
+  const resPro = await productAPI.products()
 
   return {
     props: {
       category: resCtg.data.data,
+      products: resPro.data.data,
     },
   }
 }
 
-const Category = ({ category }) => {
+const Products = ({ category, products }) => {
   const page = 'Рулон из оцинкованной стали с полимерным покрытием'
   const dispatch = useDispatch()
 
   dispatch(dataCatalog(category))
+
+  console.log('params', products)
 
   return (
     <>
@@ -37,9 +42,9 @@ const Category = ({ category }) => {
         <ButtonFilter />
       </div>
       <Breadcrumb page={page} />
-      <ProductCategory category={category} />
+      <ProductCategory category={category} products={products} />
     </>
   )
 }
 
-export default Category
+export default Products

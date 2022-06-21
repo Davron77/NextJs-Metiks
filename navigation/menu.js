@@ -1,5 +1,5 @@
 const navigation = [
-  { name: 'Товары', href: '/category', current: false },
+  { name: 'Товары', href: '/products', current: false },
   { name: 'Услуги', href: '/services', current: false },
   { name: 'Калькулятор', href: '/calculator', current: false },
   { name: 'Производство', href: '/production', current: false },
