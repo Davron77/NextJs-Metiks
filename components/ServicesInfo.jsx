@@ -7,7 +7,7 @@ function ServicesInfo({ data }) {
       <div className="font-Bebas my-5 text-center text-[22px] font-bold sm:my-7 sm:text-[40px]">
         кОМПАНИя metiks
       </div>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className="grid gap-y-12">
           {data.map((item) => (
             <div className="grid-cols-2 gap-10 lg:grid" key={item.id}>

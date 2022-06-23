@@ -9,7 +9,9 @@ export default function Document() {
 
       <body>
         <Main />
-        <NextScript />
+        <div>
+          <NextScript />
+        </div>
         {/* Your portal here */}
         <div id="modal-root"></div>
         <div id="modal-search"></div>

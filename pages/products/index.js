@@ -4,7 +4,6 @@ import Breadcrumb from '../../components/Breadcrumb'
 import ProductCategory from '../../components/ProductCategory'
 import ButtonCatalog from '../../components/ButtonCatalog'
 import ButtonFilter from '../../components/ButtonFilter'
-import { useRouter } from 'next/router'
 // API
 import { productAPI } from '../../api'
 //REDUX
@@ -28,8 +27,6 @@ const Products = ({ category, products }) => {
   const dispatch = useDispatch()
 
   dispatch(dataCatalog(category))
-
-  console.log('params', products)
 
   return (
     <>

@@ -7,6 +7,8 @@ import navigation from '../navigation/menu'
 import Catalog from '../components/Catalog'
 // Icons
 import CatalogIcon from '../public/svg/catalog.svg'
+import { useDispatch } from 'react-redux'
+import { isOpen } from '../redux/openCatalog'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -14,8 +16,10 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false)
-
   const router = useRouter()
+  const dispatch = useDispatch()
+
+  dispatch(isOpen(isOpenCatalog))
 
   return (
     <>
@@ -49,6 +53,7 @@ export default function Navbar() {
                             className={`border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out ${
                               router.pathname == item.href ? 'border-black' : ''
                             }`}
+                            onClick={() => setIsOpenCatalog(false)}
                           >
                             {item.name}
                           </a>

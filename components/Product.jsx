@@ -65,8 +65,6 @@ function Product({ products }) {
     name: 'items',
   })
 
-  console.log('wadawawd', products)
-
   return (
     <div
       id="product"
@@ -78,7 +76,7 @@ function Product({ products }) {
             style={{
               '--swiper-navigation-color': '#fff',
               '--swiper-pagination-color': '#fff',
-              'margin-bottom': '20px',
+              marginBottom: '20px',
             }}
             loop={true}
             spaceBetween={10}
@@ -162,7 +160,7 @@ function Product({ products }) {
         </div>
         <div>
           <div className="page-title leading-6 sm:leading-[44px]">
-            <h1>products.name</h1>
+            <h1>{products.name}</h1>
           </div>
           <div>
             <div className="justify-between lg:flex">

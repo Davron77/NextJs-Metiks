@@ -11,7 +11,7 @@ import { FreeMode } from 'swiper'
 export default function SliderInstagram({ data }) {
   return (
     <>
-      <div className="mx-auto mb-12 max-w-7xl py-3 px-2 sm:py-12 sm:px-6">
+      <div className="mx-auto mb-12 max-w-7xl py-3 px-4 sm:py-12 sm:px-8">
         <div className="page-title mb-9">
           <h1 className=" w-36 sm:w-full">Instagram</h1>
           <a href="https://www.instagram.com/metiks.ru/" target="_blank">

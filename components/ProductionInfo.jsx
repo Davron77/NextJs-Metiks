@@ -13,7 +13,7 @@ function ProductionInfo({ data, resSettings }) {
           src={resSettings.manufacture_img}
         />
       </div>
-      <div className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-12 max-w-7xl px-4 sm:px-8 lg:px-8">
         <div className="grid gap-y-12">
           {data.map((item) => (
             <div

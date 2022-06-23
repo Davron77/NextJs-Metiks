@@ -3,7 +3,7 @@ import parse from 'html-react-parser'
 
 function AboutInfo({ data }) {
   return (
-    <div className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto mt-12 max-w-7xl px-4 sm:px-8">
       <div className="grid gap-y-12">
         {data.map((item) => (
           <div className="grid-cols-2 gap-10 rounded-lg lg:grid" key={item.id}>

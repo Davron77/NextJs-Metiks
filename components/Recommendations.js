@@ -9,7 +9,7 @@ import { Navigation } from 'swiper'
 function Recommendations({ reviews }) {
   return (
     <div className="Recommendations">
-      <div className="mx-auto max-w-7xl py-12 px-2 sm:px-6">
+      <div className="mx-auto max-w-7xl py-12 px-4 sm:px-8">
         <div className="relative md:grid md:grid-cols-3">
           <div>
             <h1 className="font-Bebas mb-6 text-[22px] sm:mb-0 sm:text-[44px]">

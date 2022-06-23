@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Products({ category }) {
   return (
     <div>
-      <div className="mx-auto max-w-7xl py-6 px-2 sm:py-12 sm:px-6">
+      <div className="mx-auto max-w-7xl py-6 px-4 sm:py-12 sm:px-8">
         <div className="page-title mb-9">
           <h1>
             продукции <span>по категориям</span>

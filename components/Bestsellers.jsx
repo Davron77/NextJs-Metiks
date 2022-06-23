@@ -10,7 +10,7 @@ export default function Bestsellers() {
   return (
     <>
       <div className="SliderProduct">
-        <div className="mx-auto mt-4 max-w-7xl px-2 sm:mt-0 sm:px-6">
+        <div className="mx-auto mt-4 max-w-7xl px-4 sm:mt-0 sm:px-8">
           <div className="relative">
             <div className="mb-4">
               <h1 className="font-Bebas text-[22px] sm:text-[44px]">

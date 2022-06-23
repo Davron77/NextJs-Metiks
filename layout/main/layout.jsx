@@ -8,9 +8,11 @@ export const WithLayout = (Component) => {
     <div>
       <Header />
       <Navbar />
-      <Component className="w-full" {...props} />
-      <Info />
-      <Footer />
+      <div>
+        <Component className="w-full" {...props} />
+        <Info />
+        <Footer />
+      </div>
     </div>
   )
 }

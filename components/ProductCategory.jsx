@@ -22,7 +22,7 @@ function ProductCategory({ category, products }) {
           <div className="col-span-3 lg:col-span-2 xl:col-span-3">
             <div className="grid grid-cols-1 justify-items-center gap-2.5 gap-y-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 lg:gap-5 xl:grid-cols-3">
               {products.map((product) => (
-                <Link href={`product/${product.id}`} key={product.id}>
+                <Link href={`products/${product.id}`} key={product.id}>
                   <div
                     className="relative w-full max-w-[310px] cursor-pointer rounded bg-[#F1F1F1] bg-top bg-no-repeat text-left hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]"
                     style={{ backgroundImage: `url(${product.media})` }}

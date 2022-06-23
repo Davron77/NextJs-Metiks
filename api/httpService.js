@@ -3,13 +3,12 @@ import axios from 'axios'
 // Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
-    console.log('tokenccc', config.method)
     // Do something before request is sent
     config.headers.Authorization = `Bearer ${
       config.method === 'post' ? localStorage.getItem('token') : ''
     }`
     // OR config.headers.common['Authorization'] = `Bearer ${your_token}`;
-    config.baseURL = 'http://192.168.1.17/api'
+    config.baseURL = 'http://192.168.1.28/api/'
 
     return config
   },

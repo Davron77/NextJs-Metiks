@@ -4,7 +4,7 @@ import { ChevronRightIcon } from '@heroicons/react/outline'
 export default function Service() {
   return (
     <div>
-      <div className="mx-auto max-w-7xl py-6 px-2 sm:py-12 sm:px-6">
+      <div className="mx-auto max-w-7xl py-6 px-4 sm:py-12 sm:px-8">
         <div className="page-title mb-9">
           <h1 className=" w-36 sm:w-full">
             Сервисы расчет <span>Продуктов MEtiks</span>

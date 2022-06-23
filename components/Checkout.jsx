@@ -139,27 +139,3 @@ function Checkout({ setCheck }) {
 }
 
 export default Checkout
-
-{
-  /* <div>
-              <h3 className="mt-8 font-bold uppercase">Способ доставки</h3>
-              <div className="gap-5 sm:flex">
-                <div className="group my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center hover:border-[#016059]">
-                  <h4 className="font-Inter text-xl text-[#434343] group-hover:text-[#016059]">
-                    Транспортная услуги
-                  </h4>
-                  <p className="mt-3 text-[#00000066]">
-                    Удобная доставка в любую точку Узбекистана
-                  </p>
-                </div>
-                <div className="group my-5 w-full rounded border-2 border-transparent bg-[#F0F0F0] p-[30px] text-center hover:border-[#016059]">
-                  <h4 className="font-Inter text-xl text-[#434343] group-hover:text-[#016059]">
-                    Самовывоз с завода
-                  </h4>
-                  <p className="mt-3 text-[#00000066]">
-                    Забрать товар можно со склада METIKS
-                  </p>
-                </div>
-              </div>
-            </div> */
-}
