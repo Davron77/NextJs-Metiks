@@ -1,12 +1,17 @@
 import React from 'react'
 import parse from 'html-react-parser'
-
+import { useTranslation } from 'react-i18next'
 function ServicesInfo({ data }) {
+  const { t } = useTranslation()
+
   return (
     <>
       <div className="font-Bebas my-5 text-center text-[22px] font-bold sm:my-7 sm:text-[40px]">
         кОМПАНИя metiks
       </div>
+
+      <div className="text-center">{t('title')}</div>
+
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className="grid gap-y-12">
           {data.map((item) => (

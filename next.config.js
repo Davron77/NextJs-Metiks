@@ -8,3 +8,10 @@ module.exports = {
     domains: ['/public/logo.svg'],
   },
 }
+
+// module.exports = {
+//   i18n: {
+//     defaultLocale: 'en',
+//     locales: ['en', 'ru'],
+//   },
+// }
