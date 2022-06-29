@@ -49,7 +49,8 @@ function ProductCategory({ category, products }) {
                         {product.name}
                       </h4>
                       <p className=" mt-3 mb-5 text-sm text-neutral-500">
-                        {product.price_for_kg.toLocaleString('en-US')} UZS
+                        {product.price_for_kg.toLocaleString('en-ZA')}
+                        UZS
                       </p>
                     </div>
                   </div>

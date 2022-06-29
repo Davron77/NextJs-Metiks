@@ -6,7 +6,7 @@ axios.interceptors.request.use(
     // Do something before request is sent
     config.headers.Authorization = `Bearer ${
       config.method === 'post' ? localStorage.getItem('token') : ''
-    }`
+      }`
     // OR config.headers.common['Authorization'] = `Bearer ${your_token}`;
     config.baseURL = 'http://192.168.1.28/api/'
 
