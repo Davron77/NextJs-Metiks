@@ -32,8 +32,6 @@ function Product({ products }) {
     name: 'items',
   })
 
-  console.log(inputField.count)
-
   return (
     <div
       id="product"

@@ -1,11 +1,10 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
 import { WithLayout } from '../layout/main/layout'
 import { Provider } from 'react-redux'
 import { store, wrapper } from '../redux/store'
 import { useSelector } from 'react-redux'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   const selector = useSelector((state) => state.isOpen)
 
   return (
