@@ -3,6 +3,11 @@ import { IoMdClose } from 'react-icons/io'
 // REDUX
 import { useSelector } from 'react-redux'
 
+
+
+
+
+
 export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
   const catalog = useSelector((state) => state.dataCatalog)
 
