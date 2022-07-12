@@ -9,7 +9,7 @@ axios.interceptors.request.use(
     }`
     // OR config.headers.common['Authorization'] = `Bearer ${your_token}`;
 
-    config.baseURL = 'http://192.168.1.28/api/'
+    config.baseURL = 'https://api.metiks.uz/api/'
 
     return config
   },

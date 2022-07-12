@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../../components/Breadcrumb'
 import Product from '../../components/Product'
-import { useRouter } from 'next/router'
 // API
 import { productAPI } from '../../api'
 
@@ -15,7 +14,7 @@ export async function getStaticPaths() {
   }))
 
   return {
-    paths: [{ params: { productsId: '23' }, params: { productsId: '122' } }],
+    paths,
     fallback: true,
   }
 }
@@ -47,23 +46,3 @@ const ProductDetails = ({ products }) => {
   )
 }
 export default ProductDetails
-// export async function getStaticPaths() {
-//   const res = await productAPI.products()
-//   const products = res.data.data
-
-//   const paths = products.map((product) => ({
-//     params: { id: product.id.toString() },
-//   }))
-
-//   return { paths, fallback: true }
-// }
-
-// export async function getStaticProps({ params }) {
-//   const res = await productAPI.product(params.id)
-
-//   return {
-//     props: {
-//       products: res.data,
-//     },
-//   }
-// }

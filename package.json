@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.1",
@@ -13,8 +13,6 @@
     "axios": "^0.27.2",
     "cookies": "^0.8.0",
     "html-react-parser": "^1.4.13",
-    "i18next": "^21.8.11",
-    "i18next-browser-languagedetector": "^6.1.4",
     "js-cookie": "^3.0.1",
     "next": "latest",
     "next-redux-wrapper": "^7.0.5",
@@ -23,7 +21,6 @@
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.31.1",
-    "react-i18next": "^11.17.3",
     "react-icons": "^4.3.1",
     "react-rating-stars-component": "^2.2.0",
     "react-redux": "^8.0.2",
