@@ -26,11 +26,19 @@ function Product({ products }) {
     },
   ])
 
-  const { register, control, handleSubmit } = useForm()
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'items',
+  const { register, control, handleSubmit, reset, watch } = useForm({
+    defaultValues: {
+      test: [{ firstName: 'Bill', lastName: 'Luo' }],
+    },
   })
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+    {
+      control,
+      name: 'test',
+    }
+  )
+
+  const onSubmit = (data) => console.log('data', data.test)
 
   return (
     <div
@@ -163,9 +171,6 @@ function Product({ products }) {
               </div>
             </div>
             <div className="mt-7">
-              <form action="#">
-                <ProductInput inputField={inputField} />
-              </form>
               <form onSubmit={handleSubmit(console.log)}>
                 {fields.map(({ id }, index) => {
                   return (
@@ -174,6 +179,7 @@ function Product({ products }) {
                     </div>
                   )
                 })}
+                <input type="submit" />
               </form>
             </div>
             <div className="mt-4 flex flex-wrap justify-between gap-y-4 font-normal">

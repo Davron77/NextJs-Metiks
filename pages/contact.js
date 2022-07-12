@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
 import SliderInstagram from '../components/SliderInstagram'

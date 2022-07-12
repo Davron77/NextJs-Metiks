@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../../components/Breadcrumb'
 import Product from '../../components/Product'
+import Input from '../../components/Input'
 // API
 import { productAPI } from '../../api'
 
@@ -20,7 +21,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-
   const res = await productAPI.product(params.productsId)
 
   return {
@@ -41,6 +41,7 @@ const ProductDetails = ({ products }) => {
       </Head>
       <Breadcrumb page={page} />
       <Product products={products} />
+      <Input />
     </>
   )
 }
