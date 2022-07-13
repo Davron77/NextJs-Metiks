@@ -40,8 +40,8 @@ const ProductDetails = ({ products }) => {
         <link rel="icon" href="/m.png" />
       </Head>
       <Breadcrumb page={page} />
-      <Product products={products} />
-      <Input />
+      {/* <Product products={products} /> */}
+      {/* <Input /> */}
     </>
   )
 }

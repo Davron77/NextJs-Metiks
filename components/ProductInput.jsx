@@ -1,6 +1,6 @@
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
-function ProductInput({ inputField }) {
+function ProductInput({ inputField, setInputField, index }) {
   const handleOnChange = (e) => {
     setCount(+e.target.value)
   }
@@ -18,6 +18,7 @@ function ProductInput({ inputField }) {
             type="number"
             defaultValue={1}
             onChange={() => inputMetr()}
+            name={`test[${index}].lastName`}
             min="1"
             max="5"
             className="mt-0 w-[168px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black"
@@ -28,22 +29,22 @@ function ProductInput({ inputField }) {
           <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343]">
             <button
               type="button"
-              onClick={() => (count == 0 ? null : setCount(count - 1))}
-              // onClick={() => setSum((current) => [...current, 1])}
+              // onClick={() => (count == 0 ? null : setCount(count - 1))}
+              onClick={() => console.log(inputField[index]?.count)}
               className="px-[18px]"
             >
               <AiOutlineMinus />
             </button>
             <input
               type="text"
-              value={inputField[0].count}
+              value={inputField[index]?.count}
               onChange={handleOnChange}
               className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
             />
             <button
               type="button"
               // onClick={() => setCount(count + 1)}
-              // onClick={() => console.log(sum)}
+              onClick={() => setInputField(inputField[index]?.count + 1)}
               className="px-[18px]"
             >
               <AiOutlinePlus />

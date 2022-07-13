@@ -19,16 +19,10 @@ import { useForm, useFieldArray } from 'react-hook-form'
 
 function Product({ products }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const [inputField, setInputField] = useState([
-    {
-      count: 1,
-      metr: 1,
-    },
-  ])
 
-  const { register, control, handleSubmit, reset, watch } = useForm({
+  const { register, control, handleSubmit, setValue, reset } = useForm({
     defaultValues: {
-      test: [{ firstName: 'Bill', lastName: 'Luo' }],
+      test: [{ name: 'useFieldArrafgfdg' }],
     },
   })
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
@@ -38,7 +32,7 @@ function Product({ products }) {
     }
   )
 
-  const onSubmit = (data) => console.log('data', data.test)
+  const onSubmit = (data) => console.log('data', data)
 
   return (
     <div
@@ -135,7 +129,7 @@ function Product({ products }) {
         </div>
         <div>
           <div className="page-title leading-6 sm:leading-[44px]">
-            <h1>{products.name}</h1>
+            {/* <h1>{products.name}</h1> */}
           </div>
           <div>
             <div className="justify-between xl:flex">
@@ -166,19 +160,28 @@ function Product({ products }) {
               <div className="mt-6 flex flex-col">
                 <span className="mt-3 text-2xl font-bold">
                   {/* {(sum * products.price_for_m * count).toLocaleString('en-ZA')}{' '} */}
-                  {inputField[0].count} UZS
+                  {/* {inputField[0].count} UZS */}
                 </span>
               </div>
             </div>
             <div className="mt-7">
-              <form onSubmit={handleSubmit(console.log)}>
-                {fields.map(({ id }, index) => {
-                  return (
-                    <div key={id}>
-                      <ProductInput inputField={inputField} />
-                    </div>
-                  )
-                })}
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <ul>
+                  {fields.map((item, index) => {
+                    return (
+                      <li key={item.id}>
+                        <input
+                          name={`test[${index}].name`}
+                          defaultValue={`${item.name}`}
+                        />
+
+                        <button type="button" onClick={() => remove(index)}>
+                          Delete
+                        </button>
+                      </li>
+                    )
+                  })}
+                </ul>
                 <input type="submit" />
               </form>
             </div>
@@ -189,15 +192,6 @@ function Product({ products }) {
                   Добавить лист другой длины
                 </span>
               </button>
-              {/* <div className="group flex cursor-pointer">
-                <div>
-                  <MdDeleteOutline className="text-2xl text-[#C92A2A] group-hover:hidden" />
-                  <MdDelete className="hidden text-2xl text-[#C92A2A] group-hover:block" />
-                </div>
-                <span className="ml-2 border-b border-transparent hover:border-[#434343]">
-                  Удалить(10)
-                </span>
-              </div> */}
             </div>
             <div className="mt-9 grid grid-cols-1 gap-5 xl:grid-cols-2">
               <button className="btn rounded-sm">Добавить в корзину</button>
