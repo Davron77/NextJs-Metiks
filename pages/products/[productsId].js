@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../../components/Breadcrumb'
 import Product from '../../components/Product'
-import Input from '../../components/Input'
 // API
 import { productAPI } from '../../api'
 
@@ -40,8 +39,7 @@ const ProductDetails = ({ products }) => {
         <link rel="icon" href="/m.png" />
       </Head>
       <Breadcrumb page={page} />
-      {/* <Product products={products} /> */}
-      {/* <Input /> */}
+      <Product products={products} />
     </>
   )
 }

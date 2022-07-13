@@ -1,7 +1,5 @@
 import { Disclosure } from '@headlessui/react'
-import { MinusSmIcon, PlusIcon } from '@heroicons/react/solid'
-import { MdDeleteOutline, MdDelete } from 'react-icons/md'
-import React, { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -13,26 +11,39 @@ import 'swiper/css/thumbs'
 import { FreeMode, Navigation, Thumbs } from 'swiper'
 //Icons
 import { RiCheckDoubleFill } from 'react-icons/ri'
-// SELECT
-import ProductInput from './ProductInput'
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
+import { MinusSmIcon, PlusIcon } from '@heroicons/react/solid'
+import { MdDeleteOutline } from 'react-icons/md'
+// From
 import { useForm, useFieldArray } from 'react-hook-form'
 
 function Product({ products }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const [count, setCount] = useState(1)
 
-  const { register, control, handleSubmit, setValue, reset } = useForm({
+  let sum = 0
+
+  const { register, control, handleSubmit } = useForm({
     defaultValues: {
-      test: [{ name: 'useFieldArrafgfdg' }],
+      test: [{ count: 1, metr: 1 }],
     },
   })
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-    {
-      control,
-      name: 'test',
-    }
-  )
+  const { fields, append, prepend, remove } = useFieldArray({
+    control,
+    name: 'test',
+  })
 
-  const onSubmit = (data) => console.log('data', data)
+  useEffect(() => {
+    onSubmit()
+    console.log('useEffect')
+  }, [sum])
+
+  const onSubmit = (data) => {
+    data?.test?.map((item) => {
+      sum += +item.count + +item.metr
+      setCount(sum)
+    })
+  }
 
   return (
     <div
@@ -129,7 +140,7 @@ function Product({ products }) {
         </div>
         <div>
           <div className="page-title leading-6 sm:leading-[44px]">
-            {/* <h1>{products.name}</h1> */}
+            <h1>{products?.name}</h1>
           </div>
           <div>
             <div className="justify-between xl:flex">
@@ -138,55 +149,102 @@ function Product({ products }) {
                   <RiCheckDoubleFill className="inline h-6 w-6 text-[#016059]" />
                   <span className="text-[#016059]">Товар:</span> В наличии
                 </span>
-                {products.price_for_m > 0 ? (
+                {products?.price_for_m > 0 ? (
                   <span className="mt-3 flex items-center text-2xl font-bold">
-                    {products.price_for_m.toLocaleString('en-ZA')} UZS{' '}
+                    {products?.price_for_m.toLocaleString('en-ZA')} UZS{' '}
                     <span className="ml-2 text-[#016059]">метр</span>
                   </span>
                 ) : null}
-                {products.price_for_kg > 0 ? (
+                {products?.price_for_kg > 0 ? (
                   <span className="mt-3 flex items-center text-2xl font-bold">
-                    {products.price_for_kg.toLocaleString('en-ZA')} UZS{' '}
+                    {products?.price_for_kg.toLocaleString('en-ZA')} UZS{' '}
                     <span className="ml-2 text-[#016059]">килограмм</span>
                   </span>
                 ) : null}
-                {products.price_for_qty > 0 ? (
+                {products?.price_for_qty > 0 ? (
                   <span className="mt-3 flex items-center text-2xl font-bold">
-                    {products.price_for_qty.toLocaleString('en-ZA')} UZS{' '}
+                    {products?.price_for_qty.toLocaleString('en-ZA')} UZS{' '}
                     <span className="ml-2 text-[#016059]">количество</span>
                   </span>
                 ) : null}
               </div>
               <div className="mt-6 flex flex-col">
                 <span className="mt-3 text-2xl font-bold">
-                  {/* {(sum * products.price_for_m * count).toLocaleString('en-ZA')}{' '} */}
-                  {/* {inputField[0].count} UZS */}
+                  {/* {count} */}
+                  {(count * products?.price_for_m).toLocaleString('en-ZA')} UZS
                 </span>
               </div>
             </div>
             <div className="mt-7">
               <form onSubmit={handleSubmit(onSubmit)}>
-                <ul>
+                <div>
                   {fields.map((item, index) => {
                     return (
-                      <li key={item.id}>
-                        <input
-                          name={`test[${index}].name`}
-                          defaultValue={`${item.name}`}
-                        />
-
-                        <button type="button" onClick={() => remove(index)}>
-                          Delete
-                        </button>
-                      </li>
+                      <div className="mt-4" id="product" key={index}>
+                        <div className="relative flex gap-5 rounded-lg bg-[#F0F0F0] p-[18px]">
+                          <div className="grid">
+                            <label className="!mt-0 text-base font-normal">
+                              Выберите длину:
+                            </label>
+                            <input
+                              type="number"
+                              min="1"
+                              max="5"
+                              name={`test.${index}.count`}
+                              {...register(`test.${index}.count`)}
+                              className="mt-0 w-[168px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-base font-normal">
+                              Количество листов:
+                            </label>
+                            <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343]">
+                              <button
+                                type="button"
+                                // onClick={() => (count == 0 ? null : setCount(count - 1))}
+                                className="px-[18px]"
+                              >
+                                <AiOutlineMinus />
+                              </button>
+                              <input
+                                id="myNumber"
+                                type="number"
+                                name={`test.${index}.metr`}
+                                {...register(`test.${index}.metr`)}
+                                className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
+                              />
+                              <button type="button" className="px-[18px]">
+                                <AiOutlinePlus />
+                              </button>
+                            </div>
+                          </div>
+                          <button
+                            className="absolute right-2 top-2"
+                            type="button"
+                            onClick={() => remove(index)}
+                          >
+                            <MdDeleteOutline className="text-xl text-red-600" />
+                          </button>
+                        </div>
+                      </div>
                     )
                   })}
-                </ul>
+                  <button
+                    type="button"
+                    onClick={() => prepend({ value: '' }, { focusIndex: 1 })}
+                  >
+                    prepend
+                  </button>
+                </div>
                 <input type="submit" />
               </form>
             </div>
             <div className="mt-4 flex flex-wrap justify-between gap-y-4 font-normal">
-              <button className="flex" onClick={() => append({})}>
+              <button
+                className="flex"
+                onClick={() => append({ count: 1, metr: 1 })}
+              >
                 <PlusIcon width={24} className="mr-2 text-[#D6A300]" />
                 <span className="border-b border-transparent hover:border-[#434343]">
                   Добавить лист другой длины
@@ -212,7 +270,7 @@ function Product({ products }) {
             </div>
             <div className="my-7">
               <dl className=" text-base text-[#434343]">
-                {products.properties.map((item) => (
+                {products?.properties?.map((item) => (
                   <div
                     className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6"
                     key={item.value}
