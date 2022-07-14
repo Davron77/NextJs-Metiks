@@ -26,6 +26,10 @@ function Category({ open, setOpen }) {
     setIdRadio(+e.target.value)
   }
 
+  const sobmitFilter = () => {
+    
+  }
+
   return (
     <div
       className={`flex overflow-hidden lg:pr-5  ${
@@ -98,32 +102,7 @@ function Category({ open, setOpen }) {
               </div>
             </details>
           ))}
-        <details open>
-          <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-black">
-            <span className="text-xl">Цена</span>
-            <FiChevronDown className="text-2xl text-black" />
-          </summary>
-          <div className="mb-10">
-            <form action="#" className="grid grid-cols-2 gap-2.5">
-              <div>
-                <label className="text-base text-[#000000b3]">От</label>
-                <input
-                  placeholder="750"
-                  className="w-full border-2 border-[#434343]"
-                  type="text"
-                />
-              </div>
-              <div>
-                <label className="text-base text-[#000000b3]">До</label>
-                <input
-                  placeholder="25 000"
-                  className="w-full border-2 border-[#434343]"
-                  type="text"
-                />
-              </div>
-            </form>
-          </div>
-        </details>
+        <button className="btn w-full !bg-[#016059]">Преминить</button>
       </div>
       <div className="fixed bottom-[2%] w-screen pr-16 text-center lg:hidden">
         <button className="btn w-[323px] !bg-[#016059]">Преминить</button>
@@ -133,59 +112,3 @@ function Category({ open, setOpen }) {
 }
 
 export default Category
-
-{
-  /* <AccordionItem dangerouslySetExpanded={true}>
-          <AccordionItemHeading>
-            <AccordionItemButton>Категория</AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <div className="grid grid-cols-5 gap-3">
-              {colors.map((item) => (
-                <label
-                  key={item.id}
-                  className="checkout-radio-color w-full cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    name="cash"
-                    className="hidden"
-                    defaultChecked={item.is_correct}
-                  />
-                  <div
-                    className="checkout-card-color relative h-[50px] w-[50px] rounded-full border-2 border-transparent bg-[#F0F0F0] text-center"
-                    style={{ backgroundColor: `${item.color}` }}
-                  ></div>
-                </label>
-              ))}
-            </div>
-          </AccordionItemPanel>
-        </AccordionItem> */
-}
-
-{
-  /* <AccordionItem dangerouslySetExpanded={true}>
-          <AccordionItemHeading>
-            <AccordionItemButton>Категория</AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <form action="#">
-              {discounts.map((item) => (
-                <div key={item.id} className="flex flex-row items-center py-2">
-                  <input
-                    type="radio"
-                    id={item.id}
-                    name={item.name}
-                    value={item.discount}
-                    className="mt-0 h-5 w-5"
-                  />
-                  <label className="ml-3 mt-0 text-base" htmlFor={item.id}>
-                    от {item.discount}% и выше
-                  </label>
-                  <br></br>
-                </div>
-              ))}
-            </form>
-          </AccordionItemPanel>
-        </AccordionItem> */
-}

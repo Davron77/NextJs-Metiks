@@ -13,18 +13,22 @@ import { dataCatalog } from '../../redux/catalog'
 export async function getStaticProps() {
   const resCtg = await productAPI.category()
   const resPro = await productAPI.products()
+  const resFilter = await productAPI.filter()
 
   return {
     props: {
       category: resCtg.data.data,
       products: resPro.data.data,
+      filter: resFilter.data.data,
     },
   }
 }
 
-const Products = ({ category, products }) => {
+const Products = ({ category, products, filter }) => {
   const page = 'Рулон из оцинкованной стали с полимерным покрытием'
   const dispatch = useDispatch()
+
+  console.log('filter', filter)
 
   dispatch(dataCatalog(category))
 

@@ -78,7 +78,10 @@ export default function Navbar() {
           </>
         )}
       </Disclosure>
-      <Catalog isOpenCatalog={isOpenCatalog} />
+      <Catalog
+        isOpenCatalog={isOpenCatalog}
+        setIsOpenCatalog={setIsOpenCatalog}
+      />
     </>
   )
 }

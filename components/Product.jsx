@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react'
-import { useState, useEffect } from 'react'
+import { useState, useRef } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -15,35 +15,37 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import { MinusSmIcon, PlusIcon } from '@heroicons/react/solid'
 import { MdDeleteOutline } from 'react-icons/md'
 // From
-import { useForm, useFieldArray } from 'react-hook-form'
+import { v4 as uuidv4 } from 'uuid'
 
 function Product({ products }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const [count, setCount] = useState(1)
-
-  let sum = 0
-
-  const { register, control, handleSubmit } = useForm({
-    defaultValues: {
-      test: [{ count: 1, metr: 1 }],
+  const [showDelete, SetShowDelete] = useState(1)
+  const [counts, setCounts] = useState([
+    {
+      id: uuidv4(),
+      count: 1,
+      metr: 1,
     },
-  })
-  const { fields, append, prepend, remove } = useFieldArray({
-    control,
-    name: 'test',
-  })
+  ])
 
-  useEffect(() => {
-    onSubmit()
-    console.log('useEffect')
-  }, [sum])
-
-  const onSubmit = (data) => {
-    data?.test?.map((item) => {
-      sum += +item.count + +item.metr
-      setCount(sum)
-    })
+  const getInputData = (e, index) => {
+    let prevCounts = [...counts]
+    prevCounts[index].metr = +e?.target?.value
+    setCounts(prevCounts)
   }
+
+  const removeInput = (id) => {
+    const filterInput = counts.filter((item) => {
+      return item.id !== id
+    })
+    setCounts(filterInput)
+    SetShowDelete(counts.length - 1)
+    console.log(counts.length - 1)
+  }
+
+  const sum = counts.map((a) => a.count + a.metr).reduce((a, b) => a + b)
+
+  console.log(sum)
 
   return (
     <div
@@ -170,80 +172,105 @@ function Product({ products }) {
               </div>
               <div className="mt-6 flex flex-col">
                 <span className="mt-3 text-2xl font-bold">
-                  {/* {count} */}
-                  {(count * products?.price_for_m).toLocaleString('en-ZA')} UZS
+                  {(sum * products?.price_for_m).toLocaleString('en-ZA')} UZS
                 </span>
               </div>
             </div>
             <div className="mt-7">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                  {fields.map((item, index) => {
-                    return (
-                      <div className="mt-4" id="product" key={index}>
-                        <div className="relative flex gap-5 rounded-lg bg-[#F0F0F0] p-[18px]">
-                          <div className="grid">
-                            <label className="!mt-0 text-base font-normal">
-                              Выберите длину:
-                            </label>
-                            <input
-                              type="number"
-                              min="1"
-                              max="5"
-                              name={`test.${index}.count`}
-                              {...register(`test.${index}.count`)}
-                              className="mt-0 w-[168px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black"
-                            />
-                          </div>
-                          <div>
-                            <label className="text-base font-normal">
-                              Количество листов:
-                            </label>
-                            <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343]">
-                              <button
-                                type="button"
-                                // onClick={() => (count == 0 ? null : setCount(count - 1))}
-                                className="px-[18px]"
-                              >
-                                <AiOutlineMinus />
-                              </button>
-                              <input
-                                id="myNumber"
-                                type="number"
-                                name={`test.${index}.metr`}
-                                {...register(`test.${index}.metr`)}
-                                className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
-                              />
-                              <button type="button" className="px-[18px]">
-                                <AiOutlinePlus />
-                              </button>
-                            </div>
-                          </div>
+              <form>
+                {counts.map((item, index) => (
+                  <div className="mt-4" id="product" key={index}>
+                    <div className="relative flex gap-5 rounded-lg bg-[#F0F0F0] p-[18px]">
+                      <div className="grid">
+                        <label className="!mt-0 text-base font-normal">
+                          Выберите длину:
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          max="5"
+                          defaultValue={1}
+                          onChange={(e) => {
+                            getInputData(e, index)
+                          }}
+                          className="mt-0 w-[168px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-base font-normal">
+                          Количество листов:
+                        </label>
+                        <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343]">
                           <button
-                            className="absolute right-2 top-2"
                             type="button"
-                            onClick={() => remove(index)}
+                            onClick={() => {
+                              if (item.count > 1) {
+                                let prevCounts = [...counts]
+                                prevCounts[index].count =
+                                  prevCounts[index].count - 1
+                                setCounts(prevCounts)
+                              }
+                            }}
+                            className="px-[18px]"
                           >
-                            <MdDeleteOutline className="text-xl text-red-600" />
+                            <AiOutlineMinus />
+                          </button>
+                          <input
+                            id="myNumber"
+                            value={item.count}
+                            className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
+                          />
+
+                          <button
+                            type="button"
+                            className="px-[18px]"
+                            onClick={() => {
+                              let prevCounts = [...counts]
+                              prevCounts[index].count =
+                                prevCounts[index].count + 1
+                              setCounts(prevCounts)
+                            }}
+                          >
+                            <AiOutlinePlus />
                           </button>
                         </div>
                       </div>
-                    )
-                  })}
-                  <button
-                    type="button"
-                    onClick={() => prepend({ value: '' }, { focusIndex: 1 })}
-                  >
-                    prepend
-                  </button>
-                </div>
-                <input type="submit" />
+                      <div className="mt-6 flex flex-col">
+                        <span className="mt-3 text-2xl font-bold">
+                          {(
+                            (item.count + item.metr) *
+                            products?.price_for_m
+                          ).toLocaleString('en-ZA')}{' '}
+                          UZS
+                        </span>
+                      </div>
+                      {showDelete != 1 ? (
+                        <button
+                          className="absolute right-2 top-2"
+                          type="button"
+                          onClick={() => removeInput(item.id)}
+                        >
+                          <MdDeleteOutline className="text-xl text-red-600" />
+                        </button>
+                      ) : null}
+                    </div>
+                  </div>
+                ))}
               </form>
             </div>
             <div className="mt-4 flex flex-wrap justify-between gap-y-4 font-normal">
               <button
                 className="flex"
-                onClick={() => append({ count: 1, metr: 1 })}
+                onClick={() => {
+                  let prevcounts = [...counts]
+                  prevcounts.push({
+                    id: uuidv4(),
+                    count: 1,
+                    metr: 1,
+                  })
+                  setCounts(prevcounts)
+                  SetShowDelete(counts.length + 1)
+                }}
               >
                 <PlusIcon width={24} className="mr-2 text-[#D6A300]" />
                 <span className="border-b border-transparent hover:border-[#434343]">

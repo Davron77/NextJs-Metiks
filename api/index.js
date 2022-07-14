@@ -38,4 +38,6 @@ export const productAPI = {
   banner: () => http.get(banner),
   products: () => http.get(products),
   product: (id) => http.get(products + id),
+  filter: () =>
+    http.get('products?filter[category_id]=9&filter[property_id]=12'),
 }
