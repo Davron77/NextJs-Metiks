@@ -1,13 +1,5 @@
-import { useEffect, useState } from 'react'
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemButton,
-  AccordionItemHeading,
-  AccordionItemPanel,
-} from 'react-accessible-accordion'
+import { useState } from 'react'
 import 'react-accessible-accordion/dist/fancy-example.css'
-//import catalog from '../data/data-catalog'
 import { IoMdClose } from 'react-icons/io'
 import { FiChevronDown } from 'react-icons/fi'
 // Components
@@ -15,19 +7,29 @@ import FilterDetail from './FilterDetail'
 import FilterColor from './FilterColor'
 //REDUX
 import { useSelector } from 'react-redux'
-import category from '../data/data-catalog'
 
-function Category({ open, setOpen }) {
-  const [idRadio, setIdRadio] = useState(2)
+function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
+  const [idRadio, setIdRadio] = useState(1)
 
   const catalog = useSelector((state) => state.dataCatalog)
 
-  const getIdRadio = (e) => {
-    setIdRadio(+e.target.value)
+  const getIdRadio = (id, index) => {
+    setIdRadio(index + 1)
+    setGetId(id)
   }
 
-  const sobmitFilter = () => {
-    
+  const getIdCheckbox = (e, id) => {
+    if (!e.target.checked) {
+      const filterInput = idCheckbox.filter((item) => {
+        return item !== id
+      })
+      console.log(filterInput)
+      setIdCheckbox(filterInput)
+      console.log('if true')
+    } else {
+      setIdCheckbox((oldArray) => [...oldArray, id])
+      console.log('if false')
+    }
   }
 
   return (
@@ -62,16 +64,16 @@ function Category({ open, setOpen }) {
                 <div key={item.id} className="flex flex-row py-2">
                   <input
                     type="radio"
-                    id={item.id}
+                    id={item.id + 'e'}
                     name="radio"
-                    onChange={getIdRadio}
+                    onClick={() => getIdRadio(item.id, index)}
                     defaultChecked={!index}
                     value={item.id}
                     className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
                   />
                   <label
                     className="m-0 w-[270px] text-[#434343]"
-                    htmlFor={item.id}
+                    htmlFor={item.id + 'e'}
                   >
                     {item.name}
                   </label>
@@ -83,29 +85,37 @@ function Category({ open, setOpen }) {
         </details>
         {catalog
           .filter((e) => e.id === idRadio)[0]
-          .props.map((item) => (
-            <details open key={item.id}>
+          ?.props.map((item, index) => (
+            <details open key={index + '777'}>
               <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-black">
                 <span className="text-xl">{item.label}</span>
                 <FiChevronDown className="text-2xl text-black" />
               </summary>
               <div className="mb-10">
                 {item.type === 'color' && (
-                  <FilterColor props={item.properties} />
+                  <FilterColor
+                    props={item.properties}
+                    idCheckbox={idCheckbox}
+                    getIdCheckbox={getIdCheckbox}
+                  />
                 )}
                 {item.type === 'number' && (
-                  <FilterDetail props={item.properties} />
+                  <FilterDetail
+                    props={item.properties}
+                    idCheckbox={idCheckbox}
+                    getIdCheckbox={getIdCheckbox}
+                  />
                 )}
                 {item.type === 'text' && (
-                  <FilterDetail props={item.properties} />
+                  <FilterDetail
+                    props={item.properties}
+                    idCheckbox={idCheckbox}
+                    getIdCheckbox={getIdCheckbox}
+                  />
                 )}
               </div>
             </details>
           ))}
-        <button className="btn w-full !bg-[#016059]">Преминить</button>
-      </div>
-      <div className="fixed bottom-[2%] w-screen pr-16 text-center lg:hidden">
-        <button className="btn w-[323px] !bg-[#016059]">Преминить</button>
       </div>
     </div>
   )

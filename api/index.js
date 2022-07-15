@@ -38,6 +38,12 @@ export const productAPI = {
   banner: () => http.get(banner),
   products: () => http.get(products),
   product: (id) => http.get(products + id),
-  filter: () =>
-    http.get('products?filter[category_id]=9&filter[property_id]=12'),
+  filter: (category_id, property_id) =>
+    http.get(
+      `products?filter[category_id]=${category_id}${
+        property_id.length > 0
+          ? `&filter[property_id]=${property_id.join('')}`
+          : ''
+      }`
+    ),
 }
