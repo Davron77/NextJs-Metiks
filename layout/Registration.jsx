@@ -10,9 +10,9 @@ import { userData } from '../redux/userData'
 function Registration({ setOpen, setIsUser }) {
   const [sentSms, setSentSms] = useState(false)
   const [errorSms, setErrorSms] = useState(false)
-  const [isDisabled, setDisabled] = useState(true)
   const [loading, setLoading] = useState(false)
-  const [counter, setCounter] = useState(60)
+  const [againSmsButton, setAgainSmsButton] = useState(false)
+  const [counter, setCounter] = useState(6)
 
   const dispatch = useDispatch()
   const catalog = useSelector((state) => state)
@@ -27,17 +27,18 @@ function Registration({ setOpen, setIsUser }) {
 
   const onSubmit = async (data) => {
     setLoading(true)
-    try {
-      const res = await authAPI.sendVerificationCode({
-        phone: data.phone,
-      })
-      console.log('res', res)
-      if (res.status === 200) {
-        setSentSms(true)
-      }
-    } catch (err) {
-      console.log(err)
-    }
+    // try {
+    //   const res = await authAPI.sendVerificationCode({
+    //     phone: data.phone,
+    //   })
+    //   console.log('res', res)
+    //   if (res.status === 200) {
+    //     setSentSms(true)
+    //   }
+    // } catch (err) {
+    //   console.log(err)
+    // }
+    setSentSms(true)
     dispatch(userData(data))
     reset()
     setLoading(false)
@@ -106,11 +107,20 @@ function Registration({ setOpen, setIsUser }) {
     reset()
   }
 
-  useEffect(() => {
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000)
-  }, [counter])
+  // useEffect(() => {
+  //   counter > 0 && setTimeout(() => setCounter(counter - 1), 1000)
+  // }, [counter])
 
-  console.log('loading', loading)
+  const startTimer = () => {
+    const intervalId = setInterval(() => {
+      setCounter((prevCount) => prevCount - 1)
+    }, 1000)
+  }
+  // const handleCounter = () => {
+  //   counter > 0 && setTimeout(() => setCounter(counter - 1), 1000)
+  // }
+
+  console.log('counter', counter)
 
   return (
     <>
@@ -165,9 +175,14 @@ function Registration({ setOpen, setIsUser }) {
                   Подтвердить
                 </button>
               </form>
+              <div className="pt-6">
+                <span className="text-red-600 ">
+                  отправить смс еще раз через {counter} секунд
+                </span>
+              </div>
               <button
-                disabled={isDisabled}
-                className="mx-[69px] mt-6 text-center text-sm text-[#016059] disabled:opacity-75"
+                disabled={againSmsButton}
+                className="mx-[69px] text-center text-sm text-[#016059] disabled:opacity-75"
                 onClick={() => onSubmitReturn()}
               >
                 Отправить новый пароль
@@ -239,7 +254,11 @@ function Registration({ setOpen, setIsUser }) {
                   {errors.password.message}
                 </small>
               )}
-              <button type="submit" className="btn font-Inter mt-8 rounded-sm">
+              <button
+                type="submit"
+                className="btn font-Inter mt-8 rounded-sm"
+                onClick={() => startTimer()}
+              >
                 Регистрация
               </button>
               <div className="mt-8 flex font-normal">
