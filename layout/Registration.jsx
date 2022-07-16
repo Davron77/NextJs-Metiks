@@ -275,7 +275,7 @@ function Registration({ setIsReg, setIsUser }) {
               </button>
               <button
                 className="btn font-Inter mt-2.5 rounded-sm !bg-white !text-black"
-                onClick={() => setIsReg(true)}
+                onClick={() => setIsReg(false)}
               >
                 Логин
               </button>

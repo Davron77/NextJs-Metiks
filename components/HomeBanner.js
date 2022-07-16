@@ -4,8 +4,12 @@ import { DeviceMobileIcon } from '@heroicons/react/outline'
 import { LocationMarkerIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import { FaFacebookF, FaTelegramPlane } from 'react-icons/fa'
 import { AiFillInstagram } from 'react-icons/ai'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function HomeBanner({ settings, banner }) {
+  const { t } = useTranslation()
+
   return (
     <div>
       <div className="mx-auto max-w-[1440px] gap-5 lg:flex">
@@ -15,10 +19,8 @@ function HomeBanner({ settings, banner }) {
         <div className="flex-initial">
           <div className="h-full flex-1 bg-black p-7 text-white lg:h-[428px] lg:px-[50px] lg:py-11">
             <h1 className="font-Bebas text-3xl font-bold leading-[50px] lg:text-[44px]">
-              Лучший{' '}
-              <span className="text-neutral-400">
-                способ купить товары толЬка у нас.
-              </span>
+              {t('Best')}{' '}
+              <span className="text-neutral-400">{t('Banner info')}</span>
             </h1>
             <div className=" mt-14">
               <a href="tel:+998998974504" className="group flex cursor-pointer">
@@ -29,7 +31,7 @@ function HomeBanner({ settings, banner }) {
                 />
                 <div className=" flex flex-col justify-center pl-3">
                   <h5 className=" text-xl font-bold tracking-wide">
-                    Обратитесь к специалисту
+                    {t('Contact specialist')}
                   </h5>
                   <div className="mt-1 flex">
                     <DeviceMobileIcon
@@ -51,11 +53,11 @@ function HomeBanner({ settings, banner }) {
                 <LocationMarkerIcon className="h-12 w-12 text-white lg:h-16 lg:w-16" />
                 <div className=" flex flex-col justify-center pl-3">
                   <h5 className=" text-xl font-bold tracking-wide">
-                    Адрес магазина
+                    {t('Store Address')}
                   </h5>
                   <div className="mt-1 flex">
                     <div className="flex border-b border-transparent text-neutral-400 group-hover:border-b-white">
-                      Найти магазин
+                      {t('Find store')}
                       <ArrowRightIcon className="ml-2" width={13} />
                     </div>
                   </div>

@@ -3,6 +3,7 @@ import { WithLayout } from '../layout/main/layout'
 import { Provider } from 'react-redux'
 import { store, wrapper } from '../redux/store'
 import { useSelector } from 'react-redux'
+import '../config/i18n'
 
 function MyApp({ Component, pageProps }) {
   const selector = useSelector((state) => state.isOpen)

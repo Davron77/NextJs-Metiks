@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import navigation from '../navigation/menu'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { useTranslation } from 'react-i18next'
 // IMPORT ICONS
 import {
   SearchIcon,
@@ -16,16 +17,23 @@ import Modal from '../layout/Modal'
 import Search from '../components/Search'
 
 const options = [
-  { name: 'RU', value: 'RU', active: 'true' },
-  { name: 'UZ', value: 'UZ', active: 'false' },
-  { name: 'EN', value: 'EN', active: 'false' },
+  { name: 'RU', value: 'ru', active: 'true' },
+  { name: 'UZ', value: 'uz', active: 'false' },
+  { name: 'EN', value: 'en', active: 'false' },
 ]
 
 function Header() {
+  const { t, i18n } = useTranslation()
   const [isModal, setIsModal] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [user, setUser] = useState(null)
+
+  const handleLangUpdate = (e, lang) => {
+    console.log(e, lang)
+    e.preventDefault()
+    i18n.changeLanguage(lang)
+  }
 
   return (
     <>
@@ -34,6 +42,7 @@ function Header() {
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">
               <select
+                onChange={(e) => handleLangUpdate(e, e.target.value)}
                 className={`cursor-pointer bg-black lg:block ${
                   openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
                 }`}

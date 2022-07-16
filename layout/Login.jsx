@@ -24,8 +24,10 @@ export default function Login({ setIsUser, setIsReg }) {
         localStorage.setItem('userPhone', res.data.data.phone)
         setIsUser(true)
       }
-    } catch (err) {
-      console.log(err)
+    } catch (e) {
+      if (e.response && e.response.data) {
+        setErrorMessage(e.response.data.message) // some reason error message
+      }
     }
   }
 
@@ -106,14 +108,14 @@ export default function Login({ setIsUser, setIsReg }) {
             </small>
           )}
 
-          <label className="flex items-center font-normal">
+          {/* <label className="flex items-center font-normal">
             <input
               className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
               type="checkbox"
               default
             />
             Запомните меня
-          </label>
+          </label> */}
 
           <button className="btn font-Inter mt-8 rounded-sm">Логин</button>
           <button

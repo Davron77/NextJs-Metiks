@@ -1,6 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { Dialog, Transition } from '@headlessui/react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 // IMPORT ICONS
 import { SearchIcon } from '@heroicons/react/outline'
 //API
@@ -8,33 +10,31 @@ import { productAPI } from '../api'
 
 function Search({ open, setOpen }) {
   const [isBrowser, setIsBrowser] = useState(false)
+  const [searchText, setSearchText] = useState(null)
+  const [data, setData] = useState(null)
+
+  const onSubmit = async () => {
+    try {
+      const res = await productAPI.search(searchText)
+
+      console.log('res', res.data.data)
+      setData(res.data.data)
+    } catch (e) {
+      if (e.response && e.response.data) {
+        setErrorMessage(e.response.data.message)
+      }
+    }
+  }
+
+  const router = useRouter()
+
+  useEffect(() => {
+    onSubmit()
+  }, [searchText])
 
   useEffect(() => {
     setIsBrowser(true)
   }, [])
-
-  const data = [
-    // {
-    //   id: 1,
-    //   name: 'Профнастил и Аксессуары для кровли',
-    // },
-    // {
-    //   id: 2,
-    //   name: 'Профнастил и Аксессуары для кровли',
-    // },
-    // {
-    //   id: 3,
-    //   name: 'Профнастил и Аксессуары для кровли',
-    // },
-    // {
-    //   id: 4,
-    //   name: 'Профнастил и Аксессуары для кровли',
-    // },
-    // {
-    //   id: 5,
-    //   name: 'Профнастил и Аксессуары для кровли',
-    // },
-  ]
 
   const modalContent = (
     <Transition.Root show={open} as={Fragment}>
@@ -74,6 +74,7 @@ function Search({ open, setOpen }) {
                     </div>
                     <input
                       type="text"
+                      onChange={(e) => setSearchText(e.target.value)}
                       placeholder="Поиск товаров"
                       className="mt-0 w-full rounded bg-[#2c2c2cfa] pl-11 text-white focus:outline-none"
                     />
@@ -90,17 +91,25 @@ function Search({ open, setOpen }) {
                     </h3>
                     <div>
                       {data?.map((item) => (
-                        <span
-                          key={item.id}
-                          className="flex cursor-pointer border-b border-[#434343] py-3 text-sm sm:text-base"
+                        <Link
+                          href={`${
+                            router?.query.productsId?.length > 0
+                              ? ''
+                              : 'products/'
+                          }${item.id}`}
                         >
-                          <SearchIcon
-                            width={22}
-                            height={22}
-                            className="mr-2 text-[darkgrey]"
-                          />
-                          {item.name}
-                        </span>
+                          <span
+                            className="flex cursor-pointer border-b border-[#434343] py-3 text-sm sm:text-base"
+                            onClick={() => setOpen(false)}
+                          >
+                            <SearchIcon
+                              width={22}
+                              height={22}
+                              className="mr-2 text-[darkgrey]"
+                            />
+                            {item.name}
+                          </span>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -124,3 +133,9 @@ function Search({ open, setOpen }) {
 }
 
 export default Search
+
+// href={`${
+//                             router?.query.productsId?.length > 0
+//                               ? null
+//                               : 'products/'
+//                           }${item.id}`}

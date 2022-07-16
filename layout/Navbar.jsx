@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { Disclosure, Menu } from '@headlessui/react'
 import navigation from '../navigation/menu'
 import Catalog from '../components/Catalog'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 // Icons
 import CatalogIcon from '../public/svg/catalog.svg'
 import { useDispatch } from 'react-redux'
@@ -18,6 +20,7 @@ export default function Navbar() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false)
   const router = useRouter()
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   dispatch(isOpen(isOpenCatalog))
 
@@ -40,8 +43,8 @@ export default function Navbar() {
                       onClick={() => setIsOpenCatalog((prev) => !prev)}
                     >
                       <span className="font-medium lg:font-semibold">
-                        <Image src={CatalogIcon} /> Каталог
-                        <span className="inline lg:hidden"> продукции</span>
+                        <Image src={CatalogIcon} /> {t('Catalog')}
+                        <span className="inline lg:hidden"></span>
                       </span>
                     </div>
                   </div>
@@ -66,7 +69,7 @@ export default function Navbar() {
                       <div>
                         <Link href="/">
                           <span className="cursor-pointer text-lg font-semibold hover:text-neutral-500">
-                            Как купить?
+                            {t('How to buy')} ?
                           </span>
                         </Link>
                       </div>

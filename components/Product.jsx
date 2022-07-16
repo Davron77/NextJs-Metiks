@@ -52,7 +52,7 @@ function Product({ products }) {
       id="product"
       className="mx-auto mt-5 max-w-7xl px-2 sm:mt-10 sm:px-6 lg:px-8"
     >
-      <div className="grid-cols-2 gap-5 md:grid">
+      <div className="grid-cols-2 gap-5 lg:grid">
         <div>
           <Swiper
             style={{
@@ -140,8 +140,8 @@ function Product({ products }) {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div>
-          <div className="page-title leading-6 sm:leading-[44px]">
+        <div className="mx-auto max-w-[646px] lg:mx-0 lg:max-w-full">
+          <div className="page-title pt-5 leading-6 sm:leading-[44px] lg:pt-0">
             <h1>{products?.name}</h1>
           </div>
           <div>
@@ -180,7 +180,16 @@ function Product({ products }) {
               <form>
                 {counts.map((item, index) => (
                   <div className="mt-4" id="product" key={index}>
-                    <div className="relative flex gap-5 rounded-lg bg-[#F0F0F0] p-[18px]">
+                    <div className="relative grid max-w-[638px] grid-cols-2 gap-5 rounded-lg bg-[#F0F0F0] p-[18px] lg:max-w-full xl:flex">
+                      <div className="mt-6 flex flex-col">
+                        <span className="mt-3 text-2xl font-bold">
+                          {(
+                            (item.count + item.metr) *
+                            products?.price_for_m
+                          ).toLocaleString('en-ZA')}{' '}
+                          UZS
+                        </span>
+                      </div>
                       <div className="grid">
                         <label className="!mt-0 text-base font-normal">
                           Выберите длину:
@@ -235,15 +244,6 @@ function Product({ products }) {
                           </button>
                         </div>
                       </div>
-                      <div className="mt-6 flex flex-col">
-                        <span className="mt-3 text-2xl font-bold">
-                          {(
-                            (item.count + item.metr) *
-                            products?.price_for_m
-                          ).toLocaleString('en-ZA')}{' '}
-                          UZS
-                        </span>
-                      </div>
                       {showDelete != 1 ? (
                         <button
                           className="absolute right-2 top-2"
@@ -278,7 +278,7 @@ function Product({ products }) {
                 </span>
               </button>
             </div>
-            <div className="mt-9 grid grid-cols-1 gap-5 xl:grid-cols-2">
+            <div className="mt-9 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <button className="btn rounded-sm">Добавить в корзину</button>
               <button
                 className="btn flex !cursor-not-allowed items-center justify-center rounded-sm !bg-[#F0F0F0] !text-[#434343]"

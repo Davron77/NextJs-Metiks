@@ -32,7 +32,7 @@ function User({ setIsUser, setOpen }) {
           </h5>
           <div className="mt-1 flex">
             <a
-              className="border-b border-transparent text-[#434343] transition-all duration-500 ease-in-out hover:border-b-white"
+              className="border-b border-transparent text-[#434343] outline-none transition-all duration-500 ease-in-out hover:border-b-white"
               href="tel:+998998974504"
             >
               +{localStorage.getItem('userPhone')}

@@ -46,5 +46,5 @@ export const productAPI = {
           : ''
       }`
     ),
-  search: (search) => http.get(`products?filter[search]=tmz`),
+  search: (search) => http.get(`products?filter[search]=${search}`),
 }

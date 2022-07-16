@@ -1,17 +1,21 @@
 import { ChevronRightIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export default function Products({ category }) {
+  const { t } = useTranslation()
+
   return (
     <div>
       <div className="mx-auto max-w-7xl py-6 px-4 sm:py-12 sm:px-8">
         <div className="page-title mb-9">
           <h1>
-            продукции <span>по категориям</span>
+            {t('products')} <span>{t('by category')}</span>
           </h1>
           <Link href="/category">
             <a>
-              Посмотреть все <ChevronRightIcon className=" h-5 w-5" />
+              {t('view all')} <ChevronRightIcon className=" h-5 w-5" />
             </a>
           </Link>
         </div>
