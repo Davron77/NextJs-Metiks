@@ -25,20 +25,17 @@ axios.interceptors.response.use(
       resolve(response)
     }),
   (error) => {
+    if (error) {
+      return Promise.reject(error)
+    }
     if (!error.response) {
       return new Promise((resolve, reject) => {
         reject(error)
       })
     }
-
     if (error.response.status === 403 || error.response.status === 401) {
       localStorage.removeItem('token')
-
-      //   if (history) {
-      //     history.push('/login', { replace: false })
-      //   } else {
-      //     window.location = '/login'
-      //   }
+      // window.location = '/login';
     } else {
       return new Promise((resolve, reject) => {
         reject(error)

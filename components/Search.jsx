@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import { Dialog, Transition } from '@headlessui/react'
 // IMPORT ICONS
 import { SearchIcon } from '@heroicons/react/outline'
-// import {} from 'react-icons'
+//API
+import { productAPI } from '../api'
 
 function Search({ open, setOpen }) {
   const [isBrowser, setIsBrowser] = useState(false)
@@ -13,35 +14,31 @@ function Search({ open, setOpen }) {
   }, [])
 
   const data = [
-    {
-      id: 1,
-      name: 'Профнастил и Аксессуары для кровли',
-    },
-    {
-      id: 2,
-      name: 'Профнастил и Аксессуары для кровли',
-    },
-    {
-      id: 3,
-      name: 'Профнастил и Аксессуары для кровли',
-    },
-    {
-      id: 4,
-      name: 'Профнастил и Аксессуары для кровли',
-    },
-    {
-      id: 5,
-      name: 'Профнастил и Аксессуары для кровли',
-    },
+    // {
+    //   id: 1,
+    //   name: 'Профнастил и Аксессуары для кровли',
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Профнастил и Аксессуары для кровли',
+    // },
+    // {
+    //   id: 3,
+    //   name: 'Профнастил и Аксессуары для кровли',
+    // },
+    // {
+    //   id: 4,
+    //   name: 'Профнастил и Аксессуары для кровли',
+    // },
+    // {
+    //   id: 5,
+    //   name: 'Профнастил и Аксессуары для кровли',
+    // },
   ]
 
   const modalContent = (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-10"
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -92,7 +89,7 @@ function Search({ open, setOpen }) {
                       Результаты поиска
                     </h3>
                     <div>
-                      {data.map((item) => (
+                      {data?.map((item) => (
                         <span
                           key={item.id}
                           className="flex cursor-pointer border-b border-[#434343] py-3 text-sm sm:text-base"

@@ -56,7 +56,10 @@ function Modal({ open, setOpen, setUser, user }) {
                   ) : (
                     <div className="py-[40px] px-5 sm:px-[60px]">
                       {isReg ? (
-                        <Registration setOpen={setOpen} setIsUser={setIsUser} />
+                        <Registration
+                          setIsReg={setIsReg}
+                          setIsUser={setIsUser}
+                        />
                       ) : (
                         <Login
                           setIsReg={setIsReg}

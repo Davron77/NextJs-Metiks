@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FiCheck } from 'react-icons/fi'
 import { MdOutlineHelp } from 'react-icons/md'
@@ -7,12 +7,13 @@ import { authAPI } from '../api'
 import { useDispatch, useSelector } from 'react-redux'
 import { userData } from '../redux/userData'
 
-function Registration({ setOpen, setIsUser }) {
+function Registration({ setIsReg, setIsUser }) {
   const [sentSms, setSentSms] = useState(false)
   const [errorSms, setErrorSms] = useState(false)
   const [loading, setLoading] = useState(false)
   const [againSmsButton, setAgainSmsButton] = useState(false)
-  const [counter, setCounter] = useState(6)
+  const [counter, setCounter] = useState(60)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const dispatch = useDispatch()
   const catalog = useSelector((state) => state)
@@ -27,17 +28,17 @@ function Registration({ setOpen, setIsUser }) {
 
   const onSubmit = async (data) => {
     setLoading(true)
-    // try {
-    //   const res = await authAPI.sendVerificationCode({
-    //     phone: data.phone,
-    //   })
-    //   console.log('res', res)
-    //   if (res.status === 200) {
-    //     setSentSms(true)
-    //   }
-    // } catch (err) {
-    //   console.log(err)
-    // }
+    try {
+      const res = await authAPI.sendVerificationCode({
+        phone: data.phone,
+      })
+      console.log('res', res)
+      if (res.status === 200) {
+        setSentSms(true)
+      }
+    } catch (err) {
+      console.log(err)
+    }
     setSentSms(true)
     dispatch(userData(data))
     reset()
@@ -45,6 +46,7 @@ function Registration({ setOpen, setIsUser }) {
   }
 
   const onSubmitReturn = async () => {
+    setLoading(true)
     try {
       const res = await authAPI.sendVerificationCode({
         phone: catalog.userData.phone,
@@ -56,22 +58,11 @@ function Registration({ setOpen, setIsUser }) {
     } catch (err) {
       console.log(err)
     }
-  }
-
-  const getMe = async () => {
-    try {
-      const res = await authAPI.me()
-      if (res.status === 200) {
-        localStorage.setItem('userName', res.data.data.name)
-        localStorage.setItem('userPhone', res.data.data.phone)
-        setIsUser(true)
-      }
-    } catch (err) {
-      console.log(err)
-    }
+    setLoading(false)
   }
 
   const onSubmitReg = async (code) => {
+    setLoading(true)
     try {
       const res = await authAPI.register({
         name: catalog.userData.name,
@@ -80,53 +71,60 @@ function Registration({ setOpen, setIsUser }) {
         password_confirmation: catalog.userData.password,
         code: code,
       })
-      if (res.data.status === 200) {
-        setOpen(false)
-        getMe()
+      if (res.status === 200) {
+        setIsReg(false)
       }
-    } catch (err) {
-      console.log(err)
+    } catch (e) {
+      if (e.response && e.response.data) {
+        setErrorMessage(e.response.data.message) // some reason error message
+      }
     }
+    setLoading(false)
   }
 
   const onSubmitSms = async (data) => {
+    setLoading(true)
     try {
       const res = await authAPI.checkVerificationCode({
         phone: catalog.userData.phone,
         code: data.sms,
       })
-      console.log('res', res.data.status)
       if (res.status === 200 && res.data.status === true) {
         await onSubmitReg(data.sms)
       } else if (res.data.status === false) {
         setErrorSms(true)
       }
-    } catch (err) {
-      console.log(err)
+    } catch (e) {
+      if (e.response && e.response.data) {
+        console.log('errSms', e.response.data.message) // some reason error message
+      }
     }
     reset()
+    setLoading(false)
   }
 
-  // useEffect(() => {
-  //   counter > 0 && setTimeout(() => setCounter(counter - 1), 1000)
-  // }, [counter])
+  const handleCounter = () => {
+    setAgainSmsButton(true)
 
-  const startTimer = () => {
     const intervalId = setInterval(() => {
       setCounter((prevCount) => prevCount - 1)
     }, 1000)
-  }
-  // const handleCounter = () => {
-  //   counter > 0 && setTimeout(() => setCounter(counter - 1), 1000)
-  // }
 
-  console.log('counter', counter)
+    setTimeout(() => {
+      setAgainSmsButton(false)
+      setCounter(60)
+      clearInterval(intervalId)
+    }, 6000)
+  }
 
   return (
     <>
       <div className="form-title">
         {sentSms ? 'Верификация' : 'Регистрация'}
       </div>
+      {errorMessage?.length > 0 ? (
+        <span className="text-red-600">{errorMessage}</span>
+      ) : null}
       {loading ? (
         <div className="w-[300px]">
           <img className="mx-auto" src="/loading.svg" alt="Loading" />
@@ -134,7 +132,11 @@ function Registration({ setOpen, setIsUser }) {
       ) : (
         <>
           {sentSms ? (
-            <div className="font-Bebas text-center text-lg font-light">
+            <div
+              className={`font-Bebas text-center text-lg font-light ${
+                errorMessage ? 'pt-5' : null
+              }`}
+            >
               <span>Ведите отправленный СМС пароль</span>
             </div>
           ) : null}
@@ -174,16 +176,26 @@ function Registration({ setOpen, setIsUser }) {
                 <button className="btn font-Inter mt-8 rounded-sm">
                   Подтвердить
                 </button>
+                <button
+                  className="btn font-Inter mt-2.5 rounded-sm !bg-white !text-black"
+                  onClick={() => setIsReg(false)}
+                >
+                  Логин
+                </button>
               </form>
-              <div className="pt-6">
-                <span className="text-red-600 ">
-                  отправить смс еще раз через {counter} секунд
-                </span>
-              </div>
+              {againSmsButton ? (
+                <div className="pt-6">
+                  <span className="text-red-600 ">
+                    отправить смс еще раз через {counter} секунд
+                  </span>
+                </div>
+              ) : null}
               <button
                 disabled={againSmsButton}
-                className="mx-[69px] text-center text-sm text-[#016059] disabled:opacity-75"
-                onClick={() => onSubmitReturn()}
+                className="mx-[69px] pt-6 text-center text-sm text-[#016059] disabled:opacity-75"
+                onClick={() => {
+                  handleCounter(), onSubmitReturn()
+                }}
               >
                 Отправить новый пароль
               </button>
@@ -257,9 +269,15 @@ function Registration({ setOpen, setIsUser }) {
               <button
                 type="submit"
                 className="btn font-Inter mt-8 rounded-sm"
-                onClick={() => startTimer()}
+                onClick={() => handleCounter()}
               >
                 Регистрация
+              </button>
+              <button
+                className="btn font-Inter mt-2.5 rounded-sm !bg-white !text-black"
+                onClick={() => setIsReg(true)}
+              >
+                Логин
               </button>
               <div className="mt-8 flex font-normal">
                 <FiCheck className=" mr-2 text-[40px]" />
