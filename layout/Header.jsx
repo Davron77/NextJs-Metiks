@@ -30,7 +30,6 @@ function Header() {
   const [user, setUser] = useState(null)
 
   const handleLangUpdate = (e, lang) => {
-    console.log(e, lang)
     e.preventDefault()
     i18n.changeLanguage(lang)
   }
@@ -47,9 +46,9 @@ function Header() {
                   openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
                 }`}
               >
-                {options.map((item) => {
+                {options.map((item, index) => {
                   return item.active ? (
-                    <option value={item.value} key={item.name}>
+                    <option value={item.value} key={index}>
                       {item.name}
                     </option>
                   ) : (

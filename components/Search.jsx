@@ -97,6 +97,7 @@ function Search({ open, setOpen }) {
                               ? ''
                               : 'products/'
                           }${item.id}`}
+                          key={item.id}
                         >
                           <span
                             className="flex cursor-pointer border-b border-[#434343] py-3 text-sm sm:text-base"

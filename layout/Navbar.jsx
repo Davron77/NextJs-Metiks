@@ -43,7 +43,7 @@ export default function Navbar() {
                       onClick={() => setIsOpenCatalog((prev) => !prev)}
                     >
                       <span className="font-medium lg:font-semibold">
-                        <Image src={CatalogIcon} /> {t('Catalog')}
+                        <Image src={CatalogIcon} /> {t('catalog')}
                         <span className="inline lg:hidden"></span>
                       </span>
                     </div>
@@ -54,7 +54,9 @@ export default function Navbar() {
                         <Link key={item.name} href={item.href}>
                           <a
                             className={`border-b-2 border-transparent text-lg font-semibold text-black transition-all duration-500 ease-in-out ${
-                              router.pathname == item.href ? 'border-black' : ''
+                              router?.pathname == item?.href
+                                ? 'border-black'
+                                : ''
                             }`}
                             onClick={() => setIsOpenCatalog(false)}
                           >
