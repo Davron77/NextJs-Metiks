@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Disclosure, Menu } from '@headlessui/react'
-import navigation from '../navigation/menu'
 import Catalog from '../components/Catalog'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
@@ -12,10 +11,6 @@ import CatalogIcon from '../public/svg/catalog.svg'
 import { useDispatch } from 'react-redux'
 import { isOpen } from '../redux/openCatalog'
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Navbar() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false)
   const router = useRouter()
@@ -23,6 +18,15 @@ export default function Navbar() {
   const { t } = useTranslation()
 
   dispatch(isOpen(isOpenCatalog))
+
+  const navigation = [
+    { name: t('Products'), href: '/products', current: false },
+    { name: t('Services'), href: '/services', current: false },
+    { name: t('Calculator'), href: '/calculator', current: false },
+    { name: t('Production'), href: '/production', current: false },
+    { name: t('About'), href: '/about', current: false },
+    { name: t('Contact'), href: '/contact', current: false },
+  ]
 
   return (
     <>

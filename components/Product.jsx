@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -12,25 +12,40 @@ import { FreeMode, Navigation, Thumbs } from 'swiper'
 //Icons
 import { RiCheckDoubleFill } from 'react-icons/ri'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
+import { HiMinus, HiPlus } from 'react-icons/hi'
 import { MinusSmIcon, PlusIcon } from '@heroicons/react/solid'
 import { MdDeleteOutline } from 'react-icons/md'
 // From
 import { v4 as uuidv4 } from 'uuid'
+//API
+import { productAPI } from '../api'
 
-function Product({ products }) {
+function Product({ products, productId }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  const [showDelete, SetShowDelete] = useState(1)
+  const [showDelete, setShowDelete] = useState(1)
+  const [loading, setLoading] = useState(false)
   const [counts, setCounts] = useState([
     {
       id: uuidv4(),
       count: 1,
-      metr: 1,
+      metr: 100,
     },
   ])
 
   const getInputData = (e, index) => {
+    const value = 0
+
+    if (products.has_min_max_for_one_qty) {
+      const min = products.min_m
+      const max = products.max_m
+
+      value = Math.max(min, Math.min(max, Number(e.target.value)))
+    } else {
+      value = +e.target.value
+    }
+
     let prevCounts = [...counts]
-    prevCounts[index].metr = +e?.target?.value
+    prevCounts[index].metr = value
     setCounts(prevCounts)
   }
 
@@ -38,14 +53,37 @@ function Product({ products }) {
     const filterInput = counts.filter((item) => {
       return item.id !== id
     })
+    console.log('id', id)
     setCounts(filterInput)
-    SetShowDelete(counts.length - 1)
-    console.log(counts.length - 1)
+    setShowDelete(counts.length)
   }
 
-  const sum = counts.map((a) => a.count + a.metr).reduce((a, b) => a + b)
+  const sumCount = counts.map((a) => a.count).reduce((a, b) => a + b)
+  const sumMetr = counts.map((a) => a.metr).reduce((a, b) => a + b)
 
-  console.log(sum)
+  let cartItems = counts.map((item) => ({
+    mm_per_piece: item.metr,
+    qty: item.count,
+  }))
+
+  const onSubmit = async () => {
+    setLoading(true)
+    try {
+      const res = await productAPI.addToCart({
+        product_id: productId,
+        cart_items: cartItems,
+      })
+
+      console.log('res', res)
+    } catch (e) {
+      if (e.response && e.response.data) {
+        console.log(e.response.data.message) // some reason error message
+      }
+    }
+    setLoading(false)
+  }
+
+  console.log('loading', loading)
 
   return (
     <div
@@ -172,7 +210,11 @@ function Product({ products }) {
               </div>
               <div className="mt-6 flex flex-col">
                 <span className="mt-3 text-2xl font-bold">
-                  {(sum * products?.price_for_m).toLocaleString('en-ZA')} UZS
+                  {(
+                    (sumMetr / 1000 + sumCount) *
+                    products?.price_for_m
+                  ).toLocaleString('en-ZA')}{' '}
+                  UZS
                 </span>
               </div>
             </div>
@@ -180,36 +222,12 @@ function Product({ products }) {
               <form>
                 {counts.map((item, index) => (
                   <div className="mt-4" id="product" key={index}>
-                    <div className="relative grid max-w-[638px] grid-cols-2 gap-5 rounded-lg bg-[#F0F0F0] p-[18px] lg:max-w-full xl:flex">
-                      <div className="mt-6 flex flex-col">
-                        <span className="mt-3 text-2xl font-bold">
-                          {(
-                            (item.count + item.metr) *
-                            products?.price_for_m
-                          ).toLocaleString('en-ZA')}{' '}
-                          UZS
-                        </span>
-                      </div>
-                      <div className="grid">
-                        <label className="!mt-0 text-base font-normal">
-                          Выберите длину:
-                        </label>
-                        <input
-                          type="number"
-                          min="1"
-                          max="5"
-                          defaultValue={1}
-                          onChange={(e) => {
-                            getInputData(e, index)
-                          }}
-                          className="mt-0 w-[168px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black"
-                        />
-                      </div>
+                    <div className="relative flex max-w-[638px] flex-row-reverse justify-end gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
                       <div>
                         <label className="text-base font-normal">
                           Количество листов:
                         </label>
-                        <div className="mt-2 flex h-11 max-w-[184px] justify-between rounded-sm border-2 border-[#434343]">
+                        <div className="mt-2 flex h-11 w-[160px] justify-between rounded-sm border-2 border-[#434343] xs:w-[184px]">
                           <button
                             type="button"
                             onClick={() => {
@@ -226,7 +244,12 @@ function Product({ products }) {
                           </button>
                           <input
                             id="myNumber"
-                            value={item.count}
+                            value={counts[index].count || ''}
+                            onChange={(e) => {
+                              let prevCounts = [...counts]
+                              prevCounts[index].count = e.target.value
+                              setCounts(prevCounts)
+                            }}
                             className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
                           />
 
@@ -243,6 +266,21 @@ function Product({ products }) {
                             <AiOutlinePlus />
                           </button>
                         </div>
+                      </div>
+                      <div className="grid">
+                        <label className="!mt-0 text-base font-normal">
+                          Выберите длину, мм:
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          max="5"
+                          value={counts[index].metr || ''}
+                          onChange={(e) => {
+                            getInputData(e, index)
+                          }}
+                          className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
+                        />
                       </div>
                       {showDelete != 1 ? (
                         <button
@@ -266,10 +304,10 @@ function Product({ products }) {
                   prevcounts.push({
                     id: uuidv4(),
                     count: 1,
-                    metr: 1,
+                    metr: 100,
                   })
                   setCounts(prevcounts)
-                  SetShowDelete(counts.length + 1)
+                  setShowDelete(counts.length + 1)
                 }}
               >
                 <PlusIcon width={24} className="mr-2 text-[#D6A300]" />
@@ -279,7 +317,16 @@ function Product({ products }) {
               </button>
             </div>
             <div className="mt-9 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              <button className="btn rounded-sm">Добавить в корзину</button>
+              <button className="btn rounded-sm" onClick={() => onSubmit()}>
+                {loading ? (
+                  <div className="mr-5">
+                    <img src="/loading_2.svg" alt="Loading" />
+                  </div>
+                ) : (
+                  ''
+                )}
+                Добавить в корзину
+              </button>
               <button
                 className="btn flex !cursor-not-allowed items-center justify-center rounded-sm !bg-[#F0F0F0] !text-[#434343]"
                 disabled
@@ -308,7 +355,7 @@ function Product({ products }) {
                 ))}
               </dl>
             </div>
-            <div className="mt-7 hidden justify-between font-normal lg:flex">
+            <div className="mt-7 hidden justify-between gap-5 font-normal lg:flex">
               <div>
                 <img className=" mr-2.5 inline" src="/svg/1.svg" alt="svg" />
                 <span>Быстрое доставка</span>
@@ -333,12 +380,12 @@ function Product({ products }) {
                         </span>
                         <span className="ml-6 flex items-center">
                           {open ? (
-                            <MinusSmIcon
+                            <HiMinus
                               className="h-5 w-5 text-[#016059]"
                               aria-hidden="true"
                             />
                           ) : (
-                            <PlusIcon
+                            <HiPlus
                               className="h-5 w-5 text-[#016059]"
                               aria-hidden="true"
                             />

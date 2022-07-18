@@ -16,8 +16,6 @@ function Search({ open, setOpen }) {
   const onSubmit = async () => {
     try {
       const res = await productAPI.search(searchText)
-
-      console.log('res', res.data.data)
       setData(res.data.data)
     } catch (e) {
       if (e.response && e.response.data) {

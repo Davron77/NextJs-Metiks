@@ -52,12 +52,6 @@ function ProductCategory({ category, products, setProducts }) {
               idCheckbox={idCheckbox}
               setIdCheckbox={setIdCheckbox}
             />
-            <button
-              className="btn w-[90%] !bg-[#016059]"
-              onClick={() => getFilter()}
-            >
-              Преминить
-            </button>
           </div>
           <div className="col-span-3 lg:col-span-2 xl:col-span-3">
             {loading ? (

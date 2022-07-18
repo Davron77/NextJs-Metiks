@@ -23,12 +23,9 @@ function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
       const filterInput = idCheckbox.filter((item) => {
         return item !== id
       })
-      console.log(filterInput)
       setIdCheckbox(filterInput)
-      console.log('if true')
     } else {
       setIdCheckbox((oldArray) => [...oldArray, id])
-      console.log('if false')
     }
   }
 
