@@ -1,9 +1,14 @@
+import { t } from 'i18next'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 //API
 import { authAPI } from '../api/'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function ContactForm({ settings }) {
+  const { t } = useTranslation()
+
   const {
     register,
     handleSubmit,
@@ -39,12 +44,12 @@ function ContactForm({ settings }) {
         <div className="mt-8 grid gap-y-10 sm:mt-0 xl:grid-cols-2">
           <div>
             <h4 className="font-Bebas text-[32px] font-bold">
-              Офис в Ташкенте
+              {t('Office Tashkent')}
             </h4>
             <p className="text-[#00000080]">{settings.address}</p>
           </div>
           <div>
-            <h4 className="font-Bebas text-[32px] font-bold">Телефон</h4>
+            <h4 className="font-Bebas text-[32px] font-bold">{t('Phone')}</h4>
             <a href="tel:+998975000099" className="block text-[#00000080]">
               {settings.first_phone}
             </a>
@@ -59,8 +64,10 @@ function ContactForm({ settings }) {
         </div>
         <div className="my-12 lg:my-0">
           <h4 className="font-Bebas text-[32px] font-bold">
-            Оставьте заявку и{' '}
-            <span className=" text-neutral-600">мы свяжемся с вами.</span>
+            {t('Contact page info 1')}{' '}
+            <span className=" text-neutral-600">
+              {t('Contact page info 2')}
+            </span>
           </h4>
           <form
             onSubmit={handleSubmit(onSubmit)}

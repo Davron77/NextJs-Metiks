@@ -1,16 +1,21 @@
 import Services from '../data/data-services'
 import { ChevronRightIcon } from '@heroicons/react/outline'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export default function Service() {
+  const { t } = useTranslation()
+
   return (
     <div>
       <div className="mx-auto max-w-7xl py-6 px-4 sm:py-12 sm:px-8">
         <div className="page-title mb-9">
           <h1 className=" w-36 sm:w-full">
-            Сервисы расчет <span>Продуктов MEtiks</span>
+            {t('Services calculation')}
+            {'   '} <span> {t('Metiks products')}</span>
           </h1>
           <a href="#" className="sm:w-52">
-            Посмотреть все <ChevronRightIcon className=" h-5 w-5" />
+            {t('view all')} <ChevronRightIcon className=" h-5 w-5" />
           </a>
         </div>
         <div className="grid grid-cols-1 gap-y-5 gap-x-6 transition-all delay-150 ease-in-out sm:gap-y-10 lg:grid-cols-2 xl:gap-x-8">

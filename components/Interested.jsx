@@ -5,16 +5,20 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export default function Interested() {
+  const { t } = useTranslation()
+
   return (
     <>
       <div className="SliderProduct">
         <div className="mx-auto mt-5 max-w-7xl px-4 sm:px-8">
           <div className="relative">
             <div className="mb-4">
-              <h1 className="font-Bebas text-[22px] text-neutral-600 sm:text-[44px]">
-                заинтересованы?
+              <h1 className="font-Bebas text-[22px] text-black sm:text-[44px]">
+                {t('Interested')}
               </h1>
             </div>
             <Swiper

@@ -5,15 +5,19 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function Recommendations({ reviews }) {
+  const { t } = useTranslation()
+
   return (
     <div className="Recommendations">
       <div className="mx-auto max-w-7xl py-12 px-4 sm:px-8">
         <div className="relative md:grid md:grid-cols-3">
           <div>
             <h1 className="font-Bebas mb-6 text-[22px] sm:mb-0 sm:text-[44px]">
-              Рекомендации
+              {t('Recommendations')}
             </h1>
             <p className=" hidden font-normal text-[#434343] md:block">
               All prices in USD. Payments accepted with Credit Cards and PayPal.

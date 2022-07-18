@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import InfoCard from '../data/data-info'
 
 export default function Info() {

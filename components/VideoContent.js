@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import VideoModal from './VideoModal'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export default function VideoContent({ Settings }) {
   const [open, setOpen] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <div>
@@ -11,21 +14,24 @@ export default function VideoContent({ Settings }) {
           <div className="flex basis-1/2 flex-row justify-center bg-black pt-8 pb-10 text-white sm:py-28">
             <div>
               <div className="font-Bebas text-[32px] sm:text-[44px] sm:leading-[54px]">
-                <span className="text-[#016059]">Metiks производит </span>
+                <span className="text-[#016059]">
+                  {t('Metiks manufactures')}
+                </span>
                 <br />
-                <span className="text-[#d6a300]">широкий ассортимент </span>
+                <span className="text-[#d6a300]">{t('Wide range')}</span>
                 <br />
-                <span>и разные виды металла.</span>
+                <span>{t('Different types of metal')}</span>
               </div>
               <p className=" font-Inter mt-4 mb-8 text-base font-normal text-neutral-400">
-                Более 30 видов металла товаров <br /> Большой спектр выбора
-                продукции.
+                {t('Video page info 1')}
+                <br />
+                {t('Video page info 2')}
               </p>
               <a
                 href="#"
                 className="rounded-sm bg-white py-2 px-[14px] text-base font-normal text-black"
               >
-                Каталог продукции
+                {t('Product Catalog')}
               </a>
             </div>
           </div>

@@ -5,8 +5,12 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export default function Bestsellers() {
+  const { t } = useTranslation()
+
   return (
     <>
       <div className="SliderProduct">
@@ -14,7 +18,7 @@ export default function Bestsellers() {
           <div className="relative">
             <div className="mb-4">
               <h1 className="font-Bebas text-[22px] sm:text-[44px]">
-                хиты <span className=" text-neutral-600">продаж</span>
+                {t('Bestsellers')}
               </h1>
             </div>
             <Swiper
