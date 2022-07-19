@@ -19,6 +19,9 @@ import { MdDeleteOutline } from 'react-icons/md'
 import { v4 as uuidv4 } from 'uuid'
 //API
 import { productAPI } from '../api'
+//REACT TOASTIFY
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Product({ products, productId }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -31,6 +34,9 @@ function Product({ products, productId }) {
       metr: 100,
     },
   ])
+
+  const notifyErorr = () => toast.error('Erorr Login')
+  const notifySuccess = () => toast.success('add Cart Success')
 
   const getInputData = (e, index) => {
     const value = 0
@@ -74,10 +80,15 @@ function Product({ products, productId }) {
         cart_items: cartItems,
       })
 
+      if (res.status === 200) {
+        notifySuccess()
+      }
+
       console.log('res', res)
     } catch (e) {
-      if (e.response && e.response.data) {
-        console.log(e.response.data.message) // some reason error message
+      if (e.response && e.response.data && e.response.status === 401) {
+        notifyErorr()
+        console.log(e.response.data.message)
       }
     }
     setLoading(false)
@@ -460,6 +471,7 @@ function Product({ products, productId }) {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

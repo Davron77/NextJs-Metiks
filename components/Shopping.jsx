@@ -5,11 +5,16 @@ import Empty from './Empty'
 import { productAPI } from '../api'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
+//REACT TOASTIFY
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Shopping({ setCheck, setSum }) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const { t } = useTranslation()
+
+  const notifyCartClear = () => toast.success('Cart clear Success')
 
   const onSubmit = async () => {
     setLoading(true)
@@ -44,8 +49,12 @@ function Shopping({ setCheck, setSum }) {
     try {
       const res = await productAPI.clearCart()
 
-      console.log('res', res.data.data)
+      notifyCartClear()
       onSubmit()
+
+      console.log('card clear', res.status)
+      if (res.status === 200) {
+      }
     } catch (e) {
       if (e.response && e.response.data) {
         console.log(e.response.data.message) // some reason error message
@@ -164,6 +173,7 @@ function Shopping({ setCheck, setSum }) {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { useTranslation } from 'react-i18next'
@@ -13,6 +13,8 @@ import { LocationMarkerIcon } from '@heroicons/react/solid'
 //Portal
 import Modal from '../layout/Modal'
 import Search from '../components/Search'
+//API
+import { productAPI } from '../api'
 
 function Header() {
   const { t, i18n } = useTranslation()
@@ -25,6 +27,22 @@ function Header() {
     e.preventDefault()
     i18n.changeLanguage(lang)
   }
+
+  const onSubmit = async () => {
+    try {
+      const res = await productAPI.cart()
+
+      console.log('res', res.data.data)
+    } catch (e) {
+      if (e.response && e.response.data) {
+        console.log(e.response.data.message) // some reason error message
+      }
+    }
+  }
+
+  useEffect(() => {
+    onSubmit()
+  }, [])
 
   const options = [
     { name: 'RU', value: 'ru', active: 'true' },
@@ -89,7 +107,7 @@ function Header() {
             </div>
             <div className="relative flex items-center justify-end">
               <div>
-                <span className="absolute left-1/2 h-4 w-4 rounded-full bg-red-600 text-center text-xs text-white">
+                <span className="absolute left-1/2 top-5 h-4 w-4 rounded-full bg-red-600 text-center text-xs text-white">
                   9
                 </span>
                 <SearchIcon
