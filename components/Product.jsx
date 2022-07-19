@@ -83,8 +83,6 @@ function Product({ products, productId }) {
     setLoading(false)
   }
 
-  console.log('loading', loading)
-
   return (
     <div
       id="product"

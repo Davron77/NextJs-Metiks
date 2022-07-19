@@ -31,16 +31,12 @@ export async function getStaticProps({ params }) {
 }
 
 const ProductDetails = ({ products }) => {
-  const page = 'Рулон из оцинкованной стали с полимерным покрытием'
+  const page = products?.category
 
   const router = useRouter()
 
   return (
     <>
-      <Head>
-        <title>Metiks</title>
-        <link rel="icon" href="/m.png" />
-      </Head>
       <Breadcrumb page={page} />
       <Product products={products} productId={+router.query.productsId} />
     </>

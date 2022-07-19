@@ -18,6 +18,9 @@ const products = '/products/'
 const message = '/message'
 const addToCart = '/add-to-cart'
 const cart = '/cart'
+const removeFromCart = '/remove-from-cart'
+const clearCart = '/clear-cart'
+const cartCheckout = '/cart/checkout'
 
 export const authAPI = {
   register: (props) => http.post(register, props),
@@ -46,9 +49,12 @@ export const productAPI = {
         property_id.length > 0
           ? `&filter[property_id]=${property_id.join('')}`
           : ''
-      }`  
+      }`
     ),
   search: (search) => http.get(`products?filter[search]=${search}`),
   addToCart: (props) => http.post(addToCart, props),
   cart: () => http.post(cart),
+  removeFromCart: (props) => http.post(removeFromCart, props),
+  clearCart: () => http.post(clearCart),
+  cartCheckout: (props) => http.post(cartCheckout, props),
 }

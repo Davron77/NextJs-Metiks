@@ -4,9 +4,10 @@ import Breadcrumb from '../components/Breadcrumb'
 import SliderInstagram from '../components/SliderInstagram'
 import ContactBanner from '../components/ContactBanner'
 import ContactForm from '../components/ContactForm'
-
 // APIA
 import { productAPI } from '../api'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export async function getStaticProps() {
   const res = await productAPI.instagram()
@@ -21,14 +22,12 @@ export async function getStaticProps() {
 }
 
 const About = ({ data, settings }) => {
-  const page = 'Контакты'
+  const { t } = useTranslation()
+
+  const page = t('Contacts')
 
   return (
     <>
-      <Head>
-        <title>Metiks</title>
-        <link rel="icon" href="/m.png" />
-      </Head>
       <Breadcrumb page={page} />
       <ContactBanner settings={settings} />
       <ContactForm settings={settings} />

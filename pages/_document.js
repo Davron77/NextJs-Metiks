@@ -5,6 +5,8 @@ export default function Document() {
     <Html>
       <Head>
         <link href="/fonts/style.css" rel="stylesheet" />
+        <title>Metiks</title>
+        <link rel="icon" href="/m.png" />
       </Head>
 
       <body>

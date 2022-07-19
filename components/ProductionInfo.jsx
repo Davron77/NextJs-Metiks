@@ -1,11 +1,15 @@
 import React from 'react'
 import parse from 'html-react-parser'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function ProductionInfo({ data, resSettings }) {
+  const { t } = useTranslation()
+
   return (
     <>
       <div className="font-Bebas my-5 text-center text-[22px] font-bold sm:my-7 sm:text-[40px]">
-        Производство metiks
+        {t('Production metiks')}
       </div>
       <div className="mx-auto max-w-[1440px] gap-5 lg:flex">
         <img

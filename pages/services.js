@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
 import ServicesInfo from '../components/ServicesInfo'
 import { productAPI } from '../api'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export async function getStaticProps() {
   const { data } = await productAPI.services()
@@ -15,14 +17,12 @@ export async function getStaticProps() {
 }
 
 const Services = ({ data }) => {
-  const page = 'Услуги'
+  const { t } = useTranslation()
+
+  const page = t('Services')
 
   return (
     <>
-      <Head>
-        <title>Metiks</title>
-        <link rel="icon" href="/m.png" />
-      </Head>
       <Breadcrumb page={page} />
       <ServicesInfo data={data} />
     </>

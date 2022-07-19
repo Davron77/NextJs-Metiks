@@ -7,9 +7,12 @@ import FilterDetail from './FilterDetail'
 import FilterColor from './FilterColor'
 //REDUX
 import { useSelector } from 'react-redux'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
   const [idRadio, setIdRadio] = useState(1)
+  const { t } = useTranslation()
 
   const catalog = useSelector((state) => state.dataCatalog)
 
@@ -52,7 +55,7 @@ function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
       <div className="w-full">
         <details open>
           <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-black">
-            <span className="text-xl">Категория</span>
+            <span className="text-xl">{t('Category')}</span>
             <FiChevronDown className="text-2xl text-black" />
           </summary>
           <div className="mb-10">

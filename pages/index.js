@@ -44,10 +44,6 @@ const Home = ({ data, Settings, category, reviews, banner, products }) => {
 
   return (
     <>
-      <Head>
-        <title>Metiks</title>
-        <link rel="icon" href="/m.png" />
-      </Head>
       <ButtonCatalog />
       <HomeBanner settings={Settings} banner={banner} />
       <Products category={category} />

@@ -4,11 +4,15 @@ import { productAPI } from '../api'
 import { useEffect, useState } from 'react'
 //COMPONENTS
 import Empty from './Empty'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
-function ProductCategory({ category, products, setProducts }) {
+function ProductCategory({ category, products, setProducts, title, setTitle }) {
   const [getId, setGetId] = useState(1)
   const [idCheckbox, setIdCheckbox] = useState([])
   const [loading, setLoading] = useState(false)
+
+  const { t } = useTranslation()
 
   const getFilter = async () => {
     setLoading(true)
@@ -32,20 +36,22 @@ function ProductCategory({ category, products, setProducts }) {
     setIdCheckbox([])
   }, [getId])
 
-  let title = category.filter((item) => {
+  let findTitle = category.filter((item) => {
     return item.id === getId
   })
+
+  setTitle(findTitle[0]?.name)
 
   return (
     <div className="ProductCategory">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="my-7 flex items-center justify-between">
           <h1 className="font-Bebas text-lg sm:text-3xl xl:text-[44px]">
-            {title[0]?.name}
+            {title}
           </h1>
           <span className="hidden font-bold text-[#00000080] lg:block">
-            <span className="!text-black">Показано:</span> 1-12 из 16
-            результатов
+            <span className="!text-black">{t('shown')}:</span> {products.length}{' '}
+            {t('results')}
           </span>
         </div>
         <div className="grid grid-cols-3 xl:grid-cols-4">

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
 import ProductionInfo from '../components/ProductionInfo'
-// APIA
+// API
 import { productAPI } from '../api'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export async function getStaticProps() {
   const res = await productAPI.manufacture()
@@ -18,14 +20,12 @@ export async function getStaticProps() {
 }
 
 const Production = ({ data, resSettings }) => {
-  const page = 'Производство'
+  const { t } = useTranslation()
+
+  const page = t('Production')
 
   return (
     <>
-      <Head>
-        <title>Metiks</title>
-        <link rel="icon" href="/m.png" />
-      </Head>
       <Breadcrumb page={page} />
       <ProductionInfo data={data} resSettings={resSettings} />
     </>

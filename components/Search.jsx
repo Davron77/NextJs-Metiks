@@ -7,11 +7,15 @@ import { useRouter } from 'next/router'
 import { SearchIcon } from '@heroicons/react/outline'
 //API
 import { productAPI } from '../api'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function Search({ open, setOpen }) {
   const [isBrowser, setIsBrowser] = useState(false)
   const [searchText, setSearchText] = useState(null)
   const [data, setData] = useState(null)
+
+  const { t } = useTranslation()
 
   const onSubmit = async () => {
     try {
@@ -73,19 +77,19 @@ function Search({ open, setOpen }) {
                     <input
                       type="text"
                       onChange={(e) => setSearchText(e.target.value)}
-                      placeholder="Поиск товаров"
+                      placeholder={t('Product search')}
                       className="mt-0 w-full rounded bg-[#2c2c2cfa] pl-11 text-white focus:outline-none"
                     />
                     <span
                       className="cursor-pointer p-3 font-normal"
                       onClick={() => setOpen(false)}
                     >
-                      Отмена
+                      {t('Cancel')}
                     </span>
                   </form>
                   <div className="mt-7 px-6 font-normal sm:mt-10 sm:px-10">
                     <h3 className="uppercase text-[#434343]">
-                      Результаты поиска
+                      {t('Searching results')}
                     </h3>
                     <div>
                       {data?.map((item) => (

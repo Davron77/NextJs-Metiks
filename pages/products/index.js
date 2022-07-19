@@ -24,24 +24,23 @@ export async function getStaticProps() {
 
 const Products = ({ category, product }) => {
   const [products, setProducts] = useState(product)
+  const [title, setTitle] = useState('')
 
-  const page = 'Рулон из оцинкованной стали с полимерным покрытием'
+  const page = title
   const dispatch = useDispatch()
 
   dispatch(dataCatalog(category))
 
   return (
     <>
-      <Head>
-        <title>Metiks</title>
-        <link rel="icon" href="/m.png" />
-      </Head>
       <div className="flex">
         <ButtonCatalog />
         <ButtonFilter setProducts={setProducts} />
       </div>
       <Breadcrumb page={page} />
       <ProductCategory
+        setTitle={setTitle}
+        title={title}
         category={category}
         products={products}
         setProducts={setProducts}

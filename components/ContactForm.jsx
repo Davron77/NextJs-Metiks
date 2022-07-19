@@ -76,7 +76,7 @@ function ContactForm({ settings }) {
             <div>
               <input
                 type="text"
-                placeholder="Имя*"
+                placeholder={t('name')}
                 className={`form-control mb-2.5 w-full bg-[#F0F0F0] ${
                   errors.name && 'invalid text-red-600'
                 }`}
@@ -92,7 +92,7 @@ function ContactForm({ settings }) {
                 className={`form-control mb-2.5 w-full bg-[#F0F0F0] ${
                   errors.phone && 'invalid text-red-600'
                 }`}
-                placeholder="Телефон номер*"
+                placeholder={t('Phone number')}
                 {...register('phone', {
                   required: 'Phone is Required',
                   pattern: {
@@ -131,7 +131,7 @@ function ContactForm({ settings }) {
                 className={`form-control mb-2.5 w-full bg-[#F0F0F0] ${
                   errors.text && 'invalid text-red-600'
                 }`}
-                placeholder="Название Компонии"
+                placeholder={t('Company name')}
                 {...register('text', {
                   required: 'text is Required',
                 })}
@@ -143,7 +143,7 @@ function ContactForm({ settings }) {
             <textarea
               rows={6}
               className="col-span-2 my-3 block w-full rounded-sm border-2 border-gray-200 bg-[#F0F0F0] px-4 py-2.5 text-lg"
-              placeholder="Коментарии*"
+              placeholder={t('Comments')}
               {...register('textarea', {
                 required: 'textarea is Required',
               })}
@@ -153,7 +153,7 @@ function ContactForm({ settings }) {
             />
 
             <button className="btn font-Inter mt-2.5 w-[200px] rounded-sm !py-4">
-              Отправить
+              {t('Send')}
             </button>
           </form>
         </div>
