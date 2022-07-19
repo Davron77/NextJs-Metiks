@@ -87,8 +87,11 @@ function Header() {
                 />
               </Link>
             </div>
-            <div className="flex items-center justify-end">
+            <div className="relative flex items-center justify-end">
               <div>
+                <span className="absolute left-1/2 h-4 w-4 rounded-full bg-red-600 text-center text-xs text-white">
+                  9
+                </span>
                 <SearchIcon
                   className={`cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500 ${
                     openMenu ? 'h-0 opacity-0' : ''
@@ -98,7 +101,6 @@ function Header() {
                   onClick={() => setSearchOpen((prev) => !prev)}
                 />
               </div>
-
               <Link href="/basket">
                 <ShoppingCartIcon
                   className="ml-5 cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500"
