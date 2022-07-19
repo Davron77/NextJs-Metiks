@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import navigation from '../navigation/menu'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { useTranslation } from 'react-i18next'
 // IMPORT ICONS
@@ -15,13 +14,8 @@ import { LocationMarkerIcon } from '@heroicons/react/solid'
 import Modal from '../layout/Modal'
 import Search from '../components/Search'
 
-const options = [
-  { name: 'RU', value: 'ru', active: 'true' },
-  { name: 'EN', value: 'en', active: 'false' },
-]
-
 function Header() {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [isModal, setIsModal] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -31,6 +25,20 @@ function Header() {
     e.preventDefault()
     i18n.changeLanguage(lang)
   }
+
+  const options = [
+    { name: 'RU', value: 'ru', active: 'true' },
+    { name: 'EN', value: 'en', active: 'false' },
+  ]
+
+  const navigation = [
+    { name: t('Products'), href: '/products', current: false },
+    { name: t('Services'), href: '/services', current: false },
+    { name: t('Calculator'), href: '/calculator', current: false },
+    { name: t('Production'), href: '/production', current: false },
+    { name: t('About'), href: '/about', current: false },
+    { name: t('Contact'), href: '/contact', current: false },
+  ]
 
   return (
     <>
@@ -163,7 +171,7 @@ function Header() {
                       href="https://www.google.com/maps"
                       target="_blank"
                     >
-                      Найти магазин
+                      {t('Find store')}
                     </a>
                   </div>
                 </div>

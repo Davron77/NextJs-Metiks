@@ -21,7 +21,6 @@ function ButtonFilter({ setProducts }) {
     }
   }
 
-  console.log('idCheckbox', idCheckbox)
   return (
     <>
       <div

@@ -17,6 +17,7 @@ const banner = '/banner'
 const products = '/products/'
 const message = '/message'
 const addToCart = '/add-to-cart'
+const cart = '/cart'
 
 export const authAPI = {
   register: (props) => http.post(register, props),
@@ -39,14 +40,15 @@ export const productAPI = {
   banner: () => http.get(banner),
   products: () => http.get(products),
   product: (id) => http.get(products + id),
-  addToCart: (props) => http.post(addToCart, props),
   filter: (category_id, property_id) =>
     http.get(
       `products?filter[category_id]=${category_id}${
         property_id.length > 0
           ? `&filter[property_id]=${property_id.join('')}`
           : ''
-      }`
+      }`  
     ),
   search: (search) => http.get(`products?filter[search]=${search}`),
+  addToCart: (props) => http.post(addToCart, props),
+  cart: () => http.post(cart),
 }

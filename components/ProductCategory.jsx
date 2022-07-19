@@ -21,23 +21,27 @@ function ProductCategory({ category, products, setProducts }) {
     } catch (err) {
       console.log(err)
     }
-    console.log('getFilter')
     setLoading(false)
   }
 
   useEffect(() => {
     getFilter()
-    console.log('useEffect')
   }, [getId, idCheckbox])
 
-  console.log('idCheckbox', idCheckbox)
+  useEffect(() => {
+    setIdCheckbox([])
+  }, [getId])
+
+  let title = category.filter((item) => {
+    return item.id === getId
+  })
 
   return (
     <div className="ProductCategory">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="my-7 flex items-center justify-between">
           <h1 className="font-Bebas text-lg sm:text-3xl xl:text-[44px]">
-            Рулон из оцинкованной стали с полимерным покрытием
+            {title[0]?.name}
           </h1>
           <span className="hidden font-bold text-[#00000080] lg:block">
             <span className="!text-black">Показано:</span> 1-12 из 16

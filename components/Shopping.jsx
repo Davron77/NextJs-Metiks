@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaTag } from 'react-icons/fa'
 import { BsCheck2 } from 'react-icons/bs'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import { TrashIcon } from '@heroicons/react/outline'
-import SliderProducts from '../data/data-sliderProducts'
+//API
+import { productAPI } from '../api'
 
 const productCounter = 19
 const allPrice = 152000000000
@@ -15,6 +16,24 @@ function Shopping({ setCheck }) {
   const handleOnChange = (e) => {
     setCount(+e.target.value)
   }
+
+  const onSubmit = async () => {
+    // setLoading(true)
+    try {
+      const res = await productAPI.cart()
+
+      console.log('res', res)
+    } catch (e) {
+      if (e.response && e.response.data) {
+        console.log(e.response.data.message) // some reason error message
+      }
+    }
+    // setLoading(false)
+  }
+
+  useEffect(() => {
+    onSubmit()
+  }, [])
 
   return (
     <div className="mx-auto mt-8 max-w-7xl py-0 lg:py-5 lg:px-4">

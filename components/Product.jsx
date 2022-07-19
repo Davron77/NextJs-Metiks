@@ -317,15 +317,19 @@ function Product({ products, productId }) {
               </button>
             </div>
             <div className="mt-9 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              <button className="btn rounded-sm" onClick={() => onSubmit()}>
+              <button
+                className="btn flex items-center justify-center rounded-sm disabled:opacity-75 "
+                onClick={() => onSubmit()}
+                disabled={loading}
+              >
                 {loading ? (
-                  <div className="mr-5">
-                    <img src="/loading_2.svg" alt="Loading" />
+                  <div className="mr-5 w-5">
+                    <img src="/loading_4.svg" alt="Loading" />
                   </div>
                 ) : (
                   ''
                 )}
-                Добавить в корзину
+                <span>Добавить в корзину</span>
               </button>
               <button
                 className="btn flex !cursor-not-allowed items-center justify-center rounded-sm !bg-[#F0F0F0] !text-[#434343]"

@@ -9,18 +9,13 @@ import Telegram from '../public/svg/Telegram.svg'
 import Instagram from '../public/svg/Instagram.svg'
 // API
 import { productAPI } from '../api'
-const navigation = [
-  { name: 'Каталог', href: '#', current: false },
-  { name: 'О нас', href: '#', current: false },
-  { name: 'Услуги', href: '#', current: false },
-  { name: 'Производство', href: '#', current: false },
-  { name: 'Калькулятор', href: '#', current: false },
-  { name: 'Где купить', href: '#', current: false },
-  { name: 'Контакт', href: '#', current: false },
-]
+
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function Footer() {
   const [data, setData] = useState([])
+  const { t } = useTranslation()
 
   useEffect(async () => {
     const res = await productAPI.settings()
@@ -32,6 +27,15 @@ function Footer() {
       second
     }
   }, [])
+
+  const navigation = [
+    { name: t('Products'), href: '/products', current: false },
+    { name: t('Services'), href: '/services', current: false },
+    { name: t('Calculator'), href: '/calculator', current: false },
+    { name: t('Production'), href: '/production', current: false },
+    { name: t('About'), href: '/about', current: false },
+    { name: t('Contact'), href: '/contact', current: false },
+  ]
 
   return (
     <div className="footer w-full bg-black text-white">
@@ -87,7 +91,7 @@ function Footer() {
                   href={data.address_store}
                   target="_blank"
                 >
-                  Найти магазин
+                  {t('Find store')}
                 </a>
               </div>
             </div>
@@ -97,7 +101,16 @@ function Footer() {
       <div className="footer-social">
         <div className="mx-auto h-full max-w-7xl px-10 lg:px-6">
           <div className="flex h-full items-center justify-between">
-            <h4 className="font-Inter text-xs font-normal">© METIKS 2022</h4>
+            <h4 className="font-Inter text-xs font-normal">
+              © METIKS 2022 by{' '}
+              <a
+                className="font-bold"
+                target="_blank"
+                href="https://www.linkedin.com/in/davron-qodirov-a2a8b3196"
+              >
+                Davron
+              </a>
+            </h4>
             <div className="flex">
               <a href={data.facebook} target="_blank">
                 <Image
