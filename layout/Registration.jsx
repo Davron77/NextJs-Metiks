@@ -6,6 +6,8 @@ import { authAPI } from '../api'
 //REDUX
 import { useDispatch, useSelector } from 'react-redux'
 import { userData } from '../redux/userData'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function Registration({ setIsReg, setIsUser }) {
   const [sentSms, setSentSms] = useState(false)
@@ -14,6 +16,7 @@ function Registration({ setIsReg, setIsUser }) {
   const [againSmsButton, setAgainSmsButton] = useState(false)
   const [counter, setCounter] = useState(60)
   const [errorMessage, setErrorMessage] = useState(null)
+  const { t } = useTranslation()
 
   const dispatch = useDispatch()
   const catalog = useSelector((state) => state)
@@ -114,13 +117,13 @@ function Registration({ setIsReg, setIsUser }) {
       setAgainSmsButton(false)
       setCounter(60)
       clearInterval(intervalId)
-    }, 6000)
+    }, 60000)
   }
 
   return (
     <>
       <div className="form-title">
-        {sentSms ? 'Верификация' : 'Регистрация'}
+        {sentSms ? t('Verification') : t('Registration')}
       </div>
       {errorMessage?.length > 0 ? (
         <span className="text-red-600">{errorMessage}</span>
@@ -137,7 +140,7 @@ function Registration({ setIsReg, setIsUser }) {
                 errorMessage ? 'pt-5' : null
               }`}
             >
-              <span>Ведите отправленный СМС пароль</span>
+              <span>{t('Enter SMS')}</span>
             </div>
           ) : null}
           {sentSms ? (
@@ -146,7 +149,7 @@ function Registration({ setIsReg, setIsUser }) {
                 onSubmit={handleSubmit(onSubmitSms)}
                 className="m-auto grid"
               >
-                <label>Ведите пароль</label>
+                <label>{t('Enter password')}</label>
                 <input
                   type="text"
                   placeholder="12345"
@@ -167,26 +170,25 @@ function Registration({ setIsReg, setIsUser }) {
                   <div className="mt-2 flex">
                     <img src="/svg/error.svg" alt="" />
                     <p className="pl-2 text-xs font-normal text-red-600">
-                      Вы не правильно вели смс пароль, ведите правильный смс
-                      пароль
+                      {t('Sms Error')}
                     </p>
                   </div>
                 ) : null}
 
                 <button className="btn font-Inter mt-8 rounded-sm">
-                  Подтвердить
+                  {t('Confirm')}
                 </button>
                 <button
                   className="btn font-Inter mt-2.5 rounded-sm !bg-white !text-black"
                   onClick={() => setIsReg(false)}
                 >
-                  Логин
+                  {t('Login')}
                 </button>
               </form>
               {againSmsButton ? (
                 <div className="pt-6">
                   <span className="text-red-600 ">
-                    отправить смс еще раз через {counter} секунд
+                    {t('Send sms again')} {counter} {t('Seconds')}
                   </span>
                 </div>
               ) : null}
@@ -197,15 +199,15 @@ function Registration({ setIsReg, setIsUser }) {
                   handleCounter(), onSubmitReturn()
                 }}
               >
-                Отправить новый пароль
+                {t('Send new password')}
               </button>
             </>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="m-auto grid">
-              <label>Имя</label>
+              <label>{t('name')}</label>
               <input
                 type="text"
-                placeholder="Имя"
+                placeholder={t('name')}
                 className={`form-control ${
                   errors.name && 'invalid text-red-600'
                 }`}
@@ -219,7 +221,7 @@ function Registration({ setIsReg, setIsUser }) {
                   {errors.name.message}
                 </small>
               )}
-              <label>Телефон</label>
+              <label>{t('Phone')}</label>
               <input
                 type="text"
                 className={`form-control ${
@@ -243,13 +245,13 @@ function Registration({ setIsReg, setIsUser }) {
                   {errors.phone.message}
                 </small>
               )}
-              <label>Пароль</label>
+              <label>{t('Password')}</label>
               <input
                 type="password"
                 className={`form-control ${
                   errors.password && 'invalid text-red-600'
                 }`}
-                placeholder="Пароль"
+                placeholder={t('Password')}
                 {...register('password', {
                   required: 'password is Required',
                   minLength: {
@@ -271,27 +273,22 @@ function Registration({ setIsReg, setIsUser }) {
                 className="btn font-Inter mt-8 rounded-sm"
                 onClick={() => handleCounter()}
               >
-                Регистрация
+                {t('Registration')}
               </button>
               <button
                 className="btn font-Inter mt-2.5 rounded-sm !bg-white !text-black"
                 onClick={() => setIsReg(false)}
               >
-                Логин
+                {t('Login')}
               </button>
               <div className="mt-8 flex font-normal">
                 <FiCheck className=" mr-2 text-[40px]" />
-                <p className=" text-xs">
-                  Согласен с условиями{' '}
-                  <span className=" text-neutral-600">
-                    Правил пользования торговой площадкой и правилами возврата
-                  </span>
-                </p>
+                <p className=" text-xs">{t('I agree')}</p>
               </div>
               <div className="mt-6 flex">
                 <MdOutlineHelp className="text-[30px]" />
                 <a href="#" className=" mt-[3px] ml-2 font-normal">
-                  Забыли пароль?
+                  {t('Forgot password')}
                 </a>
               </div>
             </form>

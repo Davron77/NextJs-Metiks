@@ -1,8 +1,13 @@
+import { t } from 'i18next'
 import React from 'react'
 import { MdExitToApp } from 'react-icons/md'
 import { authAPI } from '../api/'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function User({ setIsUser, setOpen }) {
+  const { t } = useTranslation()
+
   const Logout = async () => {
     console.log('Logout')
     try {
@@ -41,7 +46,7 @@ function User({ setIsUser, setOpen }) {
         </div>
       </div>
       <button className="btn mt-[30px] flex w-full rounded-sm" onClick={Logout}>
-        <MdExitToApp className=" mr-2 text-2xl" /> Выйти
+        <MdExitToApp className=" mr-2 text-2xl" /> {t('Logout')}
       </button>
     </div>
   )

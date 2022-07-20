@@ -3,10 +3,14 @@ import { useForm } from 'react-hook-form'
 import { FiCheck } from 'react-icons/fi'
 import { MdOutlineHelp } from 'react-icons/md'
 import { authAPI } from '../api'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 export default function Login({ setIsUser, setIsReg }) {
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
+
+  const { t } = useTranslation()
 
   const {
     register,
@@ -54,7 +58,7 @@ export default function Login({ setIsUser, setIsReg }) {
   }
   return (
     <>
-      <div className="form-title">Логин</div>
+      <div className="form-title">{t('Login')}</div>
       {errorMessage?.length > 0 ? (
         <span className="text-red-600">{errorMessage}</span>
       ) : null}
@@ -64,7 +68,7 @@ export default function Login({ setIsUser, setIsReg }) {
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="m-auto grid">
-          <label>Телефон</label>
+          <label>{t('Phone')}</label>
           <input
             type="text"
             className={`form-control ${errors.phone && 'invalid text-red-600'}`}
@@ -84,13 +88,13 @@ export default function Login({ setIsUser, setIsReg }) {
           {errors.phone && (
             <small className="mt-1 text-red-600">{errors.phone.message}</small>
           )}
-          <label>Пароль</label>
+          <label>{t('Password')}</label>
           <input
             type="password"
             className={`form-control ${
               errors.password && 'invalid text-red-600'
             }`}
-            placeholder="Пароль"
+            placeholder={t('Password')}
             {...register('password', {
               required: 'password is Required',
               minLength: {
@@ -108,35 +112,23 @@ export default function Login({ setIsUser, setIsReg }) {
             </small>
           )}
 
-          {/* <label className="flex items-center font-normal">
-            <input
-              className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
-              type="checkbox"
-              default
-            />
-            Запомните меня
-          </label> */}
-
-          <button className="btn font-Inter mt-8 rounded-sm">Логин</button>
+          <button className="btn font-Inter mt-8 rounded-sm">
+            {t('Login')}
+          </button>
           <button
             className="btn font-Inter mt-2.5 rounded-sm !bg-white !text-black"
             onClick={() => setIsReg(true)}
           >
-            Регистрация
+            {t('Registration')}
           </button>
           <div className="mt-8 flex font-normal">
             <FiCheck className=" mr-2 text-[40px]" />
-            <p className=" text-xs">
-              Согласен с условиями{' '}
-              <span className=" text-neutral-600">
-                Правил пользования торговой площадкой и правилами возврата
-              </span>
-            </p>
+            <p className=" text-xs">{t('I agree')}</p>
           </div>
           <div className="mt-6 flex">
             <MdOutlineHelp className="text-[30px]" />
             <a href="#" className=" mt-[3px] ml-2 font-normal">
-              Забыли пароль?
+              {t('Forgot password')}
             </a>
           </div>
         </form>

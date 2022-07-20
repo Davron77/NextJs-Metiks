@@ -22,6 +22,7 @@ function Header() {
   const [openMenu, setOpenMenu] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [user, setUser] = useState(null)
+  const [data, setData] = useState([])
 
   const handleLangUpdate = (e, lang) => {
     e.preventDefault()
@@ -32,7 +33,7 @@ function Header() {
     try {
       const res = await productAPI.cart()
 
-      console.log('res', res.data.data)
+      setData(res.data.data)
     } catch (e) {
       if (e.response && e.response.data) {
         console.log(e.response.data.message) // some reason error message
@@ -45,8 +46,8 @@ function Header() {
   }, [])
 
   const options = [
-    { name: 'RU', value: 'ru', active: 'true' },
-    { name: 'EN', value: 'en', active: 'false' },
+    { name: 'RU', value: 'ru', active: 'false' },
+    { name: 'EN', value: 'en', active: 'true' },
   ]
 
   const navigation = [
@@ -108,7 +109,7 @@ function Header() {
             <div className="relative flex items-center justify-end">
               <div>
                 <span className="absolute left-1/2 top-5 h-4 w-4 rounded-full bg-red-600 text-center text-xs text-white">
-                  9
+                  {data?.length}
                 </span>
                 <SearchIcon
                   className={`cursor-pointer transition-all duration-300 ease-in-out hover:text-neutral-500 ${

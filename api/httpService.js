@@ -7,7 +7,9 @@ axios.interceptors.request.use(
     config.headers.Authorization = `Bearer ${
       config.method === 'post' ? localStorage.getItem('token') : ''
     }`
-    // OR config.headers.common['Authorization'] = `Bearer ${your_token}`;
+
+    // config.headers.common['X-Language-Code'] =
+    //   typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : ''
 
     config.baseURL = 'https://api.metiks.uz/api/'
 

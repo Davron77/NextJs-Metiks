@@ -84,7 +84,7 @@ function Product({ products, productId }) {
         notifySuccess()
       }
 
-      console.log('res', res)
+      console.log('resComp', res)
     } catch (e) {
       if (e.response && e.response.data && e.response.status === 401) {
         notifyErorr()
@@ -107,7 +107,6 @@ function Product({ products, productId }) {
               '--swiper-pagination-color': '#fff',
               marginBottom: '20px',
             }}
-            loop={true}
             spaceBetween={10}
             navigation={true}
             thumbs={{ swiper: thumbsSwiper }}
@@ -115,37 +114,13 @@ function Product({ products, productId }) {
             className="mySwiper2"
           >
             <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
+              <img className="w-full rounded-lg" src={products.media} />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
+              <img className="w-full rounded-lg" src={products.media} />
             </SwiperSlide>
           </Swiper>
-          <Swiper
+          {/* <Swiper
             onSwiper={setThumbsSwiper}
             loop={true}
             spaceBetween={20}
@@ -185,7 +160,7 @@ function Product({ products, productId }) {
             <SwiperSlide>
               <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
-          </Swiper>
+          </Swiper> */}
         </div>
         <div className="mx-auto max-w-[646px] lg:mx-0 lg:max-w-full">
           <div className="page-title pt-5 leading-6 sm:leading-[44px] lg:pt-0">
@@ -227,6 +202,7 @@ function Product({ products, productId }) {
                 </span>
               </div>
             </div>
+            {products?.cart_items?.length > 0 ? 'bor' : products?.cart_items}
             <div className="mt-7">
               <form>
                 {counts.map((item, index) => (
