@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Head from 'next/head'
+import React, { useEffect } from 'react'
 import Breadcrumb from '../components/Breadcrumb'
 import AboutInfo from '../components/AboutInfo'
 import VideoContent from '../components/VideoContent'
@@ -7,6 +6,7 @@ import VideoContent from '../components/VideoContent'
 import { productAPI } from '../api'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/router'
 
 export async function getStaticProps() {
   const res = await productAPI.about()
@@ -20,10 +20,20 @@ export async function getStaticProps() {
   }
 }
 const About = ({ data, Settings }) => {
+  const router = useRouter()
+
+  const refreshData = () => {
+    router.replace(router.asPath)
+  }
+
+  useEffect(() => {
+    refreshData()
+  }, [])
+
+  console.log('router.replace(router.asPath)', router?.asPath)
+
   const { t } = useTranslation()
   const page = t('About')
-
-  console.log('data', data)
 
   return (
     <>
@@ -33,6 +43,7 @@ const About = ({ data, Settings }) => {
       </div>
       <VideoContent Settings={Settings} />
       <AboutInfo data={data} />
+      <button onClick={() => refreshData()}>Click me</button>
     </>
   )
 }
