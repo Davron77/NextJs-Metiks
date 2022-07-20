@@ -57,4 +57,5 @@ export const productAPI = {
   removeFromCart: (props) => http.post(removeFromCart, props),
   clearCart: () => http.post(clearCart),
   cartCheckout: (props) => http.post(cartCheckout, props),
+  productPost: (id) => http.post(products + id),
 }

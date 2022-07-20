@@ -15,6 +15,8 @@ import Modal from '../layout/Modal'
 import Search from '../components/Search'
 //API
 import { productAPI } from '../api'
+//REDUX
+import { useSelector } from 'react-redux'
 
 function Header() {
   const { t, i18n } = useTranslation()
@@ -23,6 +25,9 @@ function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [data, setData] = useState([])
+  const [isSelect, setSelect] = useState(false)
+
+  const cartCount = useSelector((state) => state.cart)
 
   const handleLangUpdate = (e, lang) => {
     e.preventDefault()
@@ -43,12 +48,11 @@ function Header() {
 
   useEffect(() => {
     onSubmit()
-  }, [])
+    typeof window !== 'undefined' && setSelect(true)
+  }, [cartCount])
 
-  const options = [
-    { name: 'RU', value: 'ru', active: 'false' },
-    { name: 'EN', value: 'en', active: 'true' },
-  ]
+  const select_type =
+    typeof window !== 'undefined' && localStorage.getItem('i18nextLng')
 
   const navigation = [
     { name: t('Products'), href: '/products', current: false },
@@ -65,24 +69,20 @@ function Header() {
         <div className="mx-auto h-20 max-w-7xl px-2 sm:px-6">
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">
-              <select
-                onChange={(e) => {
-                  handleLangUpdate(e, e.target.value), setOpenMenu(false)
-                }}
-                className={`cursor-pointer bg-black lg:block ${
-                  openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
-                }`}
-              >
-                {options.map((item, index) => {
-                  return item.active ? (
-                    <option value={item.value} key={index}>
-                      {item.name}
-                    </option>
-                  ) : (
-                    ''
-                  )
-                })}
-              </select>
+              {isSelect && (
+                <select
+                  onChange={(e) => {
+                    handleLangUpdate(e, e.target.value), setOpenMenu(false)
+                  }}
+                  className={`cursor-pointer bg-black lg:block ${
+                    openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
+                  }`}
+                  defaultValue={select_type}
+                >
+                  <option value="ru">RU</option>
+                  <option value="en">EN</option>
+                </select>
+              )}
               <div className="lg:hidden">
                 {openMenu ? (
                   <XIcon

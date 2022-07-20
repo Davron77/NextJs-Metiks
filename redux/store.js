@@ -4,6 +4,7 @@ import catalog from './catalog'
 import product from './product'
 import userData from './userData'
 import isOpen from './openCatalog'
+import cart from './cart'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     product,
     userData,
     isOpen,
+    cart,
   },
 })
 

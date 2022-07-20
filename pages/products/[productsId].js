@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import Breadcrumb from '../../components/Breadcrumb'
 import Product from '../../components/Product'
 import { useRouter } from 'next/router'
@@ -25,7 +24,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      products: res.data.data,
+      products: res?.data?.data,
     },
   }
 }

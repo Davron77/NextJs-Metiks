@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -22,11 +22,15 @@ import { productAPI } from '../api'
 //REACT TOASTIFY
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+//REDUX
+import { useDispatch, useSelector } from 'react-redux'
+import { CartCount } from '../redux/cart'
 
-function Product({ products, productId }) {
+function Product({ productId }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [showDelete, setShowDelete] = useState(1)
   const [loading, setLoading] = useState(false)
+  const [products, setProducts] = useState([])
   const [counts, setCounts] = useState([
     {
       id: uuidv4(),
@@ -35,8 +39,12 @@ function Product({ products, productId }) {
     },
   ])
 
+  const dispatch = useDispatch()
+  const cartCount = useSelector((state) => state.cart)
+
   const notifyErorr = () => toast.error('Erorr Login')
   const notifySuccess = () => toast.success('add Cart Success')
+  const notifyRemove = () => toast.success('Remove Cart Success')
 
   const getInputData = (e, index) => {
     const value = 0
@@ -61,7 +69,7 @@ function Product({ products, productId }) {
     })
     console.log('id', id)
     setCounts(filterInput)
-    setShowDelete(counts.length)
+    setShowDelete(counts.length - 1)
   }
 
   const sumCount = counts.map((a) => a.count).reduce((a, b) => a + b)
@@ -71,6 +79,27 @@ function Product({ products, productId }) {
     mm_per_piece: item.metr,
     qty: item.count,
   }))
+
+  const getProductData = async () => {
+    try {
+      let res = []
+
+      if (typeof window !== 'undefined' && localStorage.getItem('token')) {
+        res = await productAPI.productPost(productId)
+        console.log('if post')
+      } else {
+        res = await productAPI.product(productId)
+        console.log('if get')
+      }
+
+      setProducts(res.data.data)
+    } catch (e) {
+      if (e.response && e.response.data && e.response.status === 401) {
+        notifyErorr()
+        console.log(e.response.data.message)
+      }
+    }
+  }
 
   const onSubmit = async () => {
     setLoading(true)
@@ -82,9 +111,9 @@ function Product({ products, productId }) {
 
       if (res.status === 200) {
         notifySuccess()
+        dispatch(CartCount(cartCount + 1))
+        getProductData()
       }
-
-      console.log('resComp', res)
     } catch (e) {
       if (e.response && e.response.data && e.response.status === 401) {
         notifyErorr()
@@ -93,6 +122,32 @@ function Product({ products, productId }) {
     }
     setLoading(false)
   }
+
+  const removeCartItem = async (id) => {
+    try {
+      const res = await productAPI.removeFromCart({
+        product_id: productId,
+        cart_item_id: id,
+      })
+
+      if (res.status === 200) {
+        notifyRemove()
+        getProductData()
+        dispatch(CartCount(cartCount + 1))
+      }
+    } catch (e) {
+      if (e.response && e.response.data && e.response.status === 401) {
+        notifyErorr()
+        console.log(e.response.data.message)
+      }
+    }
+  }
+
+  useEffect(() => {
+    getProductData()
+  }, [])
+
+  console.log('showDelete', showDelete)
 
   return (
     <div
@@ -114,10 +169,10 @@ function Product({ products, productId }) {
             className="mySwiper2"
           >
             <SwiperSlide>
-              <img className="w-full rounded-lg" src={products.media} />
+              <img className="w-full rounded-lg" src={products?.media} />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="w-full rounded-lg" src={products.media} />
+              <img className="w-full rounded-lg" src={products?.media} />
             </SwiperSlide>
           </Swiper>
           {/* <Swiper
@@ -202,7 +257,49 @@ function Product({ products, productId }) {
                 </span>
               </div>
             </div>
-            {products?.cart_items?.length > 0 ? 'bor' : products?.cart_items}
+            {products?.cart_items?.length > 0 ? (
+              <div className="mt-7">
+                <h3 className=" font-Bebas text-2xl font-bold">
+                  Cart Products
+                </h3>
+                {products.cart_items.map((item, index) => (
+                  <div className="mt-4" id="product" key={index}>
+                    <div className="relative flex max-w-[638px] gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
+                      <div>
+                        <div>
+                          <span className="mr-1 text-base font-normal">
+                            Количество листов:
+                          </span>
+                          <span>
+                            {(+item?.mm_per_piece).toLocaleString('en-ZA')}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="mr-1 text-base font-normal">
+                            Выберите длину, мм:
+                          </span>
+                          <span>{item?.qty}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <span>
+                          {(+item?.amount).toLocaleString('en-ZA')} UZS
+                        </span>
+                      </div>
+                      <button
+                        className="absolute right-2 top-2"
+                        type="button"
+                        onClick={() => removeCartItem(item.cart_item_id)}
+                      >
+                        <MdDeleteOutline className="text-xl text-red-600" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              products?.cart_items
+            )}
             <div className="mt-7">
               <form>
                 {counts.map((item, index) => (
@@ -252,21 +349,25 @@ function Product({ products, productId }) {
                           </button>
                         </div>
                       </div>
-                      <div className="grid">
-                        <label className="!mt-0 text-base font-normal">
-                          Выберите длину, мм:
-                        </label>
-                        <input
-                          type="number"
-                          min="1"
-                          max="5"
-                          value={counts[index].metr || ''}
-                          onChange={(e) => {
-                            getInputData(e, index)
-                          }}
-                          className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
-                        />
-                      </div>
+                      {products?.sell_by_qty ? (
+                        null && !products?.has_min_max_for_one_qty
+                      ) : (
+                        <div className="grid">
+                          <label className="!mt-0 text-base font-normal">
+                            Выберите длину, мм:
+                          </label>
+                          <input
+                            type="number"
+                            min="1"
+                            max="5"
+                            value={counts[index].metr || ''}
+                            onChange={(e) => {
+                              getInputData(e, index)
+                            }}
+                            className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
+                          />
+                        </div>
+                      )}
                       {showDelete != 1 ? (
                         <button
                           className="absolute right-2 top-2"

@@ -19,10 +19,11 @@ export async function getStaticProps() {
     },
   }
 }
-
 const About = ({ data, Settings }) => {
   const { t } = useTranslation()
   const page = t('About')
+
+  console.log('data', data)
 
   return (
     <>

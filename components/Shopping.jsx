@@ -8,11 +8,17 @@ import { useTranslation } from 'react-i18next'
 //REACT TOASTIFY
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+//REDUX
+import { useDispatch, useSelector } from 'react-redux'
+import { CartCount } from '../redux/cart'
 
 function Shopping({ setCheck, setSum }) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const { t } = useTranslation()
+
+  const dispatch = useDispatch()
+  const cartCount = useSelector((state) => state.cart)
 
   const notifyCartClear = () => toast.success('Cart clear Success')
 
@@ -36,6 +42,8 @@ function Shopping({ setCheck, setSum }) {
     try {
       const res = await productAPI.removeFromCart({ product_id: productId })
 
+      dispatch(CartCount(cartCount - 1))
+
       onSubmit()
     } catch (e) {
       if (e.response && e.response.data) {
@@ -51,6 +59,7 @@ function Shopping({ setCheck, setSum }) {
 
       notifyCartClear()
       onSubmit()
+      dispatch(CartCount(0))
 
       console.log('card clear', res.status)
       if (res.status === 200) {

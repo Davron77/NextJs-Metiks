@@ -6,6 +6,7 @@ import Checkout from '../components/Checkout'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
+
 const Basket = () => {
   const [check, setCheck] = useState(false)
   const [sum, setSum] = useState(0)
