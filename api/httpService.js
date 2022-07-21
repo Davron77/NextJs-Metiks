@@ -8,11 +8,11 @@ axios.interceptors.request.use(
       config.method === 'post' ? localStorage.getItem('token') : ''
     }`
 
-    config.headers.common['X-Language-Code'] =
-      typeof window !== 'undefined' && localStorage.getItem('i18nextLng')
     // typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : ''
 
-    config.baseURL = 'https://api.metiks.uz/api/'
+    config.baseURL = `https://api.metiks.uz/api/`
+
+    console.log('config', config)
 
     return config
   },

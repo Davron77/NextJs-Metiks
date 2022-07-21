@@ -1,4 +1,5 @@
 import http from './httpService'
+// import http from './instance'
 
 const register = '/register'
 const login = '/login'
@@ -7,7 +8,7 @@ const sendVerificationCode = '/send-verification-code'
 const checkVerificationCode = '/check-verification-code'
 const logout = '/logout'
 const services = '/services'
-const instagram = '/instagram'
+const instagram = '/ru/instagram'
 const settings = '/settings'
 const about = '/about'
 const manufacture = '/manufacture'
@@ -33,15 +34,15 @@ export const authAPI = {
 }
 
 export const productAPI = {
-  services: () => http.get(services),
-  instagram: () => http.get(instagram),
-  settings: () => http.get(settings),
-  about: () => http.get(about),
-  manufacture: () => http.get(manufacture),
-  category: () => http.get(category),
-  reviews: () => http.get(reviews),
-  banner: () => http.get(banner),
-  products: () => http.get(products),
+  services: (lang) => http.get(lang + '/' + services),
+  instagram: (lang) => http.get(instagram),
+  settings: (lang) => http.get(settings),
+  about: (lang) => http.get(about),
+  manufacture: (lang) => http.get(manufacture),
+  category: (lang) => http.get('/' + lang + category),
+  reviews: (lang) => http.get(reviews),
+  banner: (lang) => http.get(banner),
+  products: (lang) => http.get(products),
   product: (id) => http.get(products + id),
   filter: (category_id, property_id) =>
     http.get(

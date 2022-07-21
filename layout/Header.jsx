@@ -30,7 +30,7 @@ function Header() {
   const cartCount = useSelector((state) => state.cart)
 
   const handleLangUpdate = (e, lang) => {
-    e.preventDefault()
+    window.location.reload()
     i18n.changeLanguage(lang)
   }
 

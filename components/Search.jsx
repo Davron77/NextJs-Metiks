@@ -23,7 +23,7 @@ function Search({ open, setOpen }) {
       setData(res.data.data)
     } catch (e) {
       if (e.response && e.response.data) {
-        setErrorMessage(e.response.data.message)
+        console.log(e.response.data.message)
       }
     }
   }

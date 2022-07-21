@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Head from 'next/head'
 import Breadcrumb from '../../components/Breadcrumb'
 import ProductCategory from '../../components/ProductCategory'
 import ButtonCatalog from '../../components/ButtonCatalog'
@@ -28,6 +27,8 @@ const Products = ({ category, product }) => {
 
   const page = title
   const dispatch = useDispatch()
+
+  console.log('product', product)
 
   dispatch(dataCatalog(category))
 
