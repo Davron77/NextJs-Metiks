@@ -12,11 +12,7 @@ function Modal({ open, setOpen, settings }) {
 
   const modalContent = (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-10"
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -54,7 +50,7 @@ function Modal({ open, setOpen, settings }) {
                     className="h-[250px] w-[100%] sm:h-[350px] lg:h-[500px]"
                     controls
                   >
-                    <source src={settings.about_video} type="video/mp4" />
+                    <source src={settings?.about_video} type="video/mp4" />
                   </video>
                 </div>
               </Dialog.Panel>

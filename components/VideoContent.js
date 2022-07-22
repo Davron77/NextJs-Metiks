@@ -3,7 +3,7 @@ import VideoModal from './VideoModal'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
-export default function VideoContent({ Settings }) {
+export default function VideoContent({ settings }) {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
 
@@ -50,7 +50,7 @@ export default function VideoContent({ Settings }) {
           </div>
         </div>
       </div>
-      <VideoModal setOpen={setOpen} open={open} settings={Settings} />
+      <VideoModal setOpen={setOpen} open={open} settings={settings} />
     </div>
   )
 }

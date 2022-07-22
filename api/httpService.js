@@ -8,11 +8,7 @@ axios.interceptors.request.use(
       config.method === 'post' ? localStorage.getItem('token') : ''
     }`
 
-    // typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : ''
-
-    config.baseURL = `https://api.metiks.uz/api/`
-
-    console.log('config', config)
+    config.baseURL = `https://api.metiks.uz/api`
 
     return config
   },

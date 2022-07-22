@@ -113,6 +113,13 @@ function Product({ productId }) {
         notifySuccess()
         dispatch(CartCount(cartCount + 1))
         getProductData()
+        setCounts([
+          {
+            id: uuidv4(),
+            count: 1,
+            metr: 100,
+          },
+        ])
       }
     } catch (e) {
       if (e.response && e.response.data && e.response.status === 401) {

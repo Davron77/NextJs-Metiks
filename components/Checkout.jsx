@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Modall from './CheckoutModal'
 //API
 import { productAPI } from '../api'
+//REDUX
+import { useDispatch } from 'react-redux'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
@@ -13,6 +15,7 @@ function Checkout({ setCheck, sum }) {
   const [delivery_type, setDelivery_type] = useState(1)
   const [payment_type, setPayment_type] = useState(1)
   const [comment, setComment] = useState(null)
+  const dispatch = useDispatch()
 
   const { t } = useTranslation()
 
@@ -26,6 +29,7 @@ function Checkout({ setCheck, sum }) {
 
       if (res.data.status && res.status) {
         setOpen(true)
+        dispatch(CartCount(0))
       }
       onSubmit()
     } catch (e) {
