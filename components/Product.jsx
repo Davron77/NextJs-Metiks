@@ -1,5 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import { useEffect, useState } from 'react'
+import Bestsellers from './Bestsellers'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -25,6 +26,8 @@ import 'react-toastify/dist/ReactToastify.css'
 //REDUX
 import { useDispatch, useSelector } from 'react-redux'
 import { CartCount } from '../redux/cart'
+//REACT - I18NEXT
+import { useTranslation } from 'react-i18next'
 
 function Product({ productId }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -41,10 +44,11 @@ function Product({ productId }) {
 
   const dispatch = useDispatch()
   const cartCount = useSelector((state) => state.cart)
+  const { t } = useTranslation()
 
-  const notifyErorr = () => toast.error('Erorr Login')
-  const notifySuccess = () => toast.success('add Cart Success')
-  const notifyRemove = () => toast.success('Remove Cart Success')
+  const notifyErorr = () => toast.error(t('Error Card add'))
+  const notifySuccess = () => toast.success(t('Added successfully'))
+  const notifyRemove = () => toast.success(t('removed successfully'))
 
   const getInputData = (e, index) => {
     const value = 0
@@ -154,35 +158,34 @@ function Product({ productId }) {
     getProductData()
   }, [])
 
-  console.log('showDelete', showDelete)
-
   return (
-    <div
-      id="product"
-      className="mx-auto mt-5 max-w-7xl px-2 sm:mt-10 sm:px-6 lg:px-8"
-    >
-      <div className="grid-cols-2 gap-5 lg:grid">
-        <div>
-          <Swiper
-            style={{
-              '--swiper-navigation-color': '#fff',
-              '--swiper-pagination-color': '#fff',
-              marginBottom: '20px',
-            }}
-            spaceBetween={10}
-            navigation={true}
-            thumbs={{ swiper: thumbsSwiper }}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper2"
-          >
-            <SwiperSlide>
-              <img className="w-full rounded-lg" src={products?.media} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="w-full rounded-lg" src={products?.media} />
-            </SwiperSlide>
-          </Swiper>
-          {/* <Swiper
+    <>
+      <div
+        id="product"
+        className="mx-auto mt-5 max-w-7xl px-2 sm:mt-10 sm:px-6 lg:px-8"
+      >
+        <div className="grid-cols-2 gap-5 lg:grid">
+          <div>
+            <Swiper
+              style={{
+                '--swiper-navigation-color': '#fff',
+                '--swiper-pagination-color': '#fff',
+                marginBottom: '20px',
+              }}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper }}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="mySwiper2"
+            >
+              <SwiperSlide>
+                <img className="w-full rounded-lg" src={products?.media} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="w-full rounded-lg" src={products?.media} />
+              </SwiperSlide>
+            </Swiper>
+            {/* <Swiper
             onSwiper={setThumbsSwiper}
             loop={true}
             spaceBetween={20}
@@ -223,340 +226,356 @@ function Product({ productId }) {
               <img className="rounded-lg" src="/product-slider/1.png" />
             </SwiperSlide>
           </Swiper> */}
-        </div>
-        <div className="mx-auto max-w-[646px] lg:mx-0 lg:max-w-full">
-          <div className="page-title pt-5 leading-6 sm:leading-[44px] lg:pt-0">
-            <h1>{products?.name}</h1>
           </div>
-          <div>
-            <div className="justify-between xl:flex">
-              <div className="mt-6 flex flex-col">
-                <span className="font-bold text-[#434343] ">
-                  <RiCheckDoubleFill className="inline h-6 w-6 text-[#016059]" />
-                  <span className="text-[#016059]">Товар:</span> В наличии
-                </span>
-                {products?.price_for_m > 0 ? (
-                  <span className="mt-3 flex items-center text-2xl font-bold">
-                    {products?.price_for_m.toLocaleString('en-ZA')} UZS{' '}
-                    <span className="ml-2 text-[#016059]">метр</span>
-                  </span>
-                ) : null}
-                {products?.price_for_kg > 0 ? (
-                  <span className="mt-3 flex items-center text-2xl font-bold">
-                    {products?.price_for_kg.toLocaleString('en-ZA')} UZS{' '}
-                    <span className="ml-2 text-[#016059]">килограмм</span>
-                  </span>
-                ) : null}
-                {products?.price_for_qty > 0 ? (
-                  <span className="mt-3 flex items-center text-2xl font-bold">
-                    {products?.price_for_qty.toLocaleString('en-ZA')} UZS{' '}
-                    <span className="ml-2 text-[#016059]">количество</span>
-                  </span>
-                ) : null}
-              </div>
-              <div className="mt-6 flex flex-col">
-                <span className="mt-3 text-2xl font-bold">
-                  {(
-                    (sumMetr / 1000 + sumCount) *
-                    products?.price_for_m
-                  ).toLocaleString('en-ZA')}{' '}
-                  UZS
-                </span>
-              </div>
+          <div className="mx-auto mb-[50px] max-w-[646px] sm:mb-[100px] lg:mx-0 lg:max-w-full">
+            <div className="page-title pt-5 leading-6 sm:leading-[44px] lg:pt-0">
+              <h1>{products?.name}</h1>
             </div>
-            {products?.cart_items?.length > 0 ? (
-              <div className="mt-7">
-                <h3 className=" font-Bebas text-2xl font-bold">
-                  Cart Products
-                </h3>
-                {products.cart_items.map((item, index) => (
-                  <div className="mt-4" id="product" key={index}>
-                    <div className="relative flex max-w-[638px] gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
-                      <div>
-                        <div>
-                          <span className="mr-1 text-base font-normal">
-                            Количество листов:
-                          </span>
-                          <span>
-                            {(+item?.mm_per_piece).toLocaleString('en-ZA')}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="mr-1 text-base font-normal">
-                            Выберите длину, мм:
-                          </span>
-                          <span>{item?.qty}</span>
-                        </div>
-                      </div>
-                      <div>
-                        <span>
-                          {(+item?.amount).toLocaleString('en-ZA')} UZS
-                        </span>
-                      </div>
-                      <button
-                        className="absolute right-2 top-2"
-                        type="button"
-                        onClick={() => removeCartItem(item.cart_item_id)}
-                      >
-                        <MdDeleteOutline className="text-xl text-red-600" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
+            <div>
+              <div className="justify-between xl:flex">
+                <div className="mt-6 flex flex-col">
+                  <span className="font-bold text-[#434343] ">
+                    <RiCheckDoubleFill className="inline h-6 w-6 text-[#016059]" />
+                    <span className="text-[#016059]">{t('Product')}:</span>{' '}
+                    {t('in stock')}
+                  </span>
+                  {products?.price_for_m > 0 ? (
+                    <span className="mt-3 flex items-center text-2xl font-bold">
+                      {products?.price_for_m.toLocaleString('en-ZA')} UZS{' '}
+                      <span className="ml-2 text-[#016059]">{t('meter')}</span>
+                    </span>
+                  ) : null}
+                  {products?.price_for_kg > 0 ? (
+                    <span className="mt-3 flex items-center text-2xl font-bold">
+                      {products?.price_for_kg.toLocaleString('en-ZA')} UZS{' '}
+                      <span className="ml-2 text-[#016059]">
+                        {t('kilogram')}
+                      </span>
+                    </span>
+                  ) : null}
+                  {products?.price_for_qty > 0 ? (
+                    <span className="mt-3 flex items-center text-2xl font-bold">
+                      {products?.price_for_qty.toLocaleString('en-ZA')} UZS{' '}
+                      <span className="ml-2 text-[#016059]">{t('amount')}</span>
+                    </span>
+                  ) : null}
+                </div>
+                <div className="mt-6 flex flex-col">
+                  <span className="mt-3 text-2xl font-bold">
+                    {products?.price_for_m?.length > 0
+                      ? (
+                          (sumMetr / 1000 + sumCount) *
+                          products?.price_for_m
+                        ).toLocaleString('en-ZA')
+                      : (sumCount * products?.price_for_qty).toLocaleString(
+                          'en-ZA'
+                        )}{' '}
+                    UZS
+                  </span>
+                </div>
               </div>
-            ) : (
-              products?.cart_items
-            )}
-            <div className="mt-7">
-              <form>
-                {counts.map((item, index) => (
-                  <div className="mt-4" id="product" key={index}>
-                    <div className="relative flex max-w-[638px] flex-row-reverse justify-end gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
-                      <div>
-                        <label className="text-base font-normal">
-                          Количество листов:
-                        </label>
-                        <div className="mt-2 flex h-11 w-[160px] justify-between rounded-sm border-2 border-[#434343] xs:w-[184px]">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              if (item.count > 1) {
-                                let prevCounts = [...counts]
-                                prevCounts[index].count =
-                                  prevCounts[index].count - 1
-                                setCounts(prevCounts)
-                              }
-                            }}
-                            className="px-[18px]"
-                          >
-                            <AiOutlineMinus />
-                          </button>
-                          <input
-                            id="myNumber"
-                            value={counts[index].count || ''}
-                            onChange={(e) => {
-                              let prevCounts = [...counts]
-                              prevCounts[index].count = e.target.value
-                              setCounts(prevCounts)
-                            }}
-                            className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
-                          />
-
-                          <button
-                            type="button"
-                            className="px-[18px]"
-                            onClick={() => {
-                              let prevCounts = [...counts]
-                              prevCounts[index].count =
-                                prevCounts[index].count + 1
-                              setCounts(prevCounts)
-                            }}
-                          >
-                            <AiOutlinePlus />
-                          </button>
+              {products?.cart_items?.length > 0 ? (
+                <div className="mt-7">
+                  <h3 className=" font-Bebas text-2xl font-bold">
+                    {t('Cart Products')}
+                  </h3>
+                  {products.cart_items.map((item, index) => (
+                    <div className="mt-4" id="product" key={index}>
+                      <div className="relative flex max-w-[638px] gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
+                        <div>
+                          <div>
+                            <span className="mr-1 text-base font-normal">
+                              {t('amount')}:
+                            </span>
+                            <span>
+                              {(+item?.mm_per_piece).toLocaleString('en-ZA')}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="mr-1 text-base font-normal">
+                              {t('length')}:
+                            </span>
+                            <span>{item?.qty}</span>
+                          </div>
                         </div>
-                      </div>
-                      {products?.sell_by_qty ? (
-                        null && !products?.has_min_max_for_one_qty
-                      ) : (
-                        <div className="grid">
-                          <label className="!mt-0 text-base font-normal">
-                            Выберите длину, мм:
-                          </label>
-                          <input
-                            type="number"
-                            min="1"
-                            max="5"
-                            value={counts[index].metr || ''}
-                            onChange={(e) => {
-                              getInputData(e, index)
-                            }}
-                            className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
-                          />
+                        <div>
+                          <span>
+                            {(+item?.amount).toLocaleString('en-ZA')} UZS
+                          </span>
                         </div>
-                      )}
-                      {showDelete != 1 ? (
                         <button
                           className="absolute right-2 top-2"
                           type="button"
-                          onClick={() => removeInput(item.id)}
+                          onClick={() => removeCartItem(item.cart_item_id)}
                         >
                           <MdDeleteOutline className="text-xl text-red-600" />
                         </button>
-                      ) : null}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </form>
-            </div>
-            <div className="mt-4 flex flex-wrap justify-between gap-y-4 font-normal">
-              <button
-                className="flex"
-                onClick={() => {
-                  let prevcounts = [...counts]
-                  prevcounts.push({
-                    id: uuidv4(),
-                    count: 1,
-                    metr: 100,
-                  })
-                  setCounts(prevcounts)
-                  setShowDelete(counts.length + 1)
-                }}
-              >
-                <PlusIcon width={24} className="mr-2 text-[#D6A300]" />
-                <span className="border-b border-transparent hover:border-[#434343]">
-                  Добавить лист другой длины
-                </span>
-              </button>
-            </div>
-            <div className="mt-9 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              <button
-                className="btn flex items-center justify-center rounded-sm disabled:opacity-75 "
-                onClick={() => onSubmit()}
-                disabled={loading}
-              >
-                {loading ? (
-                  <div className="mr-5 w-5">
-                    <img src="/loading_4.svg" alt="Loading" />
-                  </div>
-                ) : (
-                  ''
-                )}
-                <span>Добавить в корзину</span>
-              </button>
-              <button
-                className="btn flex !cursor-not-allowed items-center justify-center rounded-sm !bg-[#F0F0F0] !text-[#434343]"
-                disabled
-              >
-                <img
-                  className="mr-2 h-5 w-5"
-                  src="/svg/calculator.svg"
-                  alt="Calculator"
-                />
-                <span className="border-b border-transparent">
-                  {/* hover:border-[#434343] */}
-                  Рассчитать в калькуляторе
-                </span>
-              </button>
-            </div>
-            <div className="my-7">
-              <dl className=" text-base text-[#434343]">
-                {products?.properties?.map((item) => (
-                  <div
-                    className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6"
-                    key={item.value}
-                  >
-                    <dt>{item.type}</dt>
-                    <dd>{item.label}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-            <div className="mt-7 hidden justify-between gap-5 font-normal lg:flex">
-              <div>
-                <img className=" mr-2.5 inline" src="/svg/1.svg" alt="svg" />
-                <span>Быстрое доставка</span>
+                  ))}
+                </div>
+              ) : (
+                products?.cart_items
+              )}
+              <div className="mt-7">
+                <form>
+                  {counts.map((item, index) => (
+                    <div className="mt-4" id="product" key={index}>
+                      <div className="relative flex max-w-[638px] flex-row-reverse justify-end gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
+                        <div>
+                          <label className="text-base font-normal">
+                            {t('Number of sheets')}
+                          </label>
+                          <div className="mt-2 flex h-11 w-[160px] justify-between rounded-sm border-2 border-[#434343] xs:w-[184px]">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (item.count > 1) {
+                                  let prevCounts = [...counts]
+                                  prevCounts[index].count =
+                                    prevCounts[index].count - 1
+                                  setCounts(prevCounts)
+                                }
+                              }}
+                              className="px-[18px]"
+                            >
+                              <AiOutlineMinus />
+                            </button>
+                            <input
+                              id="myNumber"
+                              value={counts[index].count || ''}
+                              onChange={(e) => {
+                                let prevCounts = [...counts]
+                                prevCounts[index].count = e.target.value
+                                setCounts(prevCounts)
+                              }}
+                              className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
+                            />
+
+                            <button
+                              type="button"
+                              className="px-[18px]"
+                              onClick={() => {
+                                let prevCounts = [...counts]
+                                prevCounts[index].count =
+                                  prevCounts[index].count + 1
+                                setCounts(prevCounts)
+                              }}
+                            >
+                              <AiOutlinePlus />
+                            </button>
+                          </div>
+                        </div>
+                        {products?.sell_by_qty ? (
+                          null && !products?.has_min_max_for_one_qty
+                        ) : (
+                          <div className="grid">
+                            <label className="!mt-0 text-base font-normal">
+                              {t('Select length')}
+                            </label>
+                            <input
+                              type="number"
+                              min="1"
+                              max="5"
+                              value={counts[index].metr || ''}
+                              onChange={(e) => {
+                                getInputData(e, index)
+                              }}
+                              className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
+                            />
+                          </div>
+                        )}
+                        {showDelete != 1 ? (
+                          <button
+                            className="absolute right-2 top-2"
+                            type="button"
+                            onClick={() => removeInput(item.id)}
+                          >
+                            <MdDeleteOutline className="text-xl text-red-600" />
+                          </button>
+                        ) : null}
+                      </div>
+                    </div>
+                  ))}
+                </form>
               </div>
-              <div>
-                <img className=" mr-2.5 inline" src="/svg/2.svg" alt="svg" />
-                <span>Онлайн-поддержка</span>
+              <div className="mt-4 flex flex-wrap justify-between gap-y-4 font-normal">
+                <button
+                  className="flex"
+                  onClick={() => {
+                    let prevcounts = [...counts]
+                    prevcounts.push({
+                      id: uuidv4(),
+                      count: 1,
+                      metr: 100,
+                    })
+                    setCounts(prevcounts)
+                    setShowDelete(counts.length + 1)
+                  }}
+                >
+                  <PlusIcon width={24} className="mr-2 text-[#D6A300]" />
+                  <span className="border-b border-transparent hover:border-[#434343]">
+                    {t('Add length')}
+                  </span>
+                </button>
               </div>
-              <div>
-                <img className=" mr-2.5 inline" src="/svg/3.svg" alt="svg" />
-                <span>Гибкая Оплата</span>
+              <div className="mt-9 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <button
+                  className="btn flex items-center justify-center rounded-sm disabled:opacity-75 "
+                  onClick={() => onSubmit()}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <div className="mr-5 w-5">
+                      <img src="/loading_4.svg" alt="Loading" />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  <span>{t('Add to Cart')}</span>
+                </button>
+                <button
+                  className="btn flex !cursor-not-allowed items-center justify-center rounded-sm !bg-[#F0F0F0] !text-[#434343]"
+                  disabled
+                >
+                  <img
+                    className="mr-2 h-5 w-5"
+                    src="/svg/calculator.svg"
+                    alt="Calculator"
+                  />
+                  <span className="border-b border-transparent">
+                    {t('Calculate')}
+                  </span>
+                </button>
               </div>
-            </div>
-            <div className="mt-8 border-t border-[#00000033]">
-              <Disclosure as="div" className="border-b border-[#00000033] py-3">
-                {({ open }) => (
-                  <>
-                    <h3 className="-my-3 flow-root">
-                      <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-base text-gray-400 hover:text-gray-500">
-                        <span className="font-semibold uppercase text-[#016059]">
-                          Информация о доставке
-                        </span>
-                        <span className="ml-6 flex items-center">
-                          {open ? (
-                            <HiMinus
-                              className="h-5 w-5 text-[#016059]"
-                              aria-hidden="true"
-                            />
-                          ) : (
-                            <HiPlus
-                              className="h-5 w-5 text-[#016059]"
-                              aria-hidden="true"
-                            />
-                          )}
-                        </span>
-                      </Disclosure.Button>
-                    </h3>
-                    <Disclosure.Panel className="pt-6">
-                      <dl className=" text-base text-[#434343]">
-                        <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                          <dt>Full name</dt>
-                          <dd>Margot Foster</dd>
-                        </div>
-                        <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                          <dt>Application for</dt>
-                          <dd>Backend Developer</dd>
-                        </div>
-                        <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                          <dt>Email address</dt>
-                          <dd>margotfoster@example.com</dd>
-                        </div>
-                      </dl>
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-              <Disclosure as="div" className="border-b border-[#00000033] py-3">
-                {({ open }) => (
-                  <>
-                    <h3 className="-my-3 flow-root">
-                      <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-base text-gray-400 hover:text-gray-500">
-                        <span className="font-semibold uppercase text-[#016059]">
-                          Варианты оплаты
-                        </span>
-                        <span className="ml-6 flex items-center">
-                          {open ? (
-                            <MinusSmIcon
-                              className="h-5 w-5 text-[#016059]"
-                              aria-hidden="true"
-                            />
-                          ) : (
-                            <PlusIcon
-                              className="h-5 w-5 text-[#016059]"
-                              aria-hidden="true"
-                            />
-                          )}
-                        </span>
-                      </Disclosure.Button>
-                    </h3>
-                    <Disclosure.Panel className="pt-6">
-                      <dl className=" text-base text-[#434343]">
-                        <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                          <dt>Full name</dt>
-                          <dd>Margot Foster</dd>
-                        </div>
-                        <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                          <dt>Application for</dt>
-                          <dd>Backend Developer</dd>
-                        </div>
-                        <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                          <dt>Email address</dt>
-                          <dd>margotfoster@example.com</dd>
-                        </div>
-                      </dl>
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
+              <div className="my-7">
+                <dl className=" text-base text-[#434343]">
+                  {products?.properties?.map((item) => (
+                    <div
+                      className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6"
+                      key={item.value}
+                    >
+                      <dt>{item.type}</dt>
+                      <dd>{item.label}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+              <div className="mt-7 hidden justify-between gap-5 font-normal lg:flex">
+                <div>
+                  <img className=" mr-2.5 inline" src="/svg/1.svg" alt="svg" />
+                  <span>{t('Fast delivery')}</span>
+                </div>
+                <div>
+                  <img className=" mr-2.5 inline" src="/svg/2.svg" alt="svg" />
+                  <span>{t('Online support')}</span>
+                </div>
+                <div>
+                  <img className=" mr-2.5 inline" src="/svg/3.svg" alt="svg" />
+                  <span>{t('Flexible Payment')}</span>
+                </div>
+              </div>
+              <div className="mt-8 border-t border-[#00000033]">
+                <Disclosure
+                  as="div"
+                  className="border-b border-[#00000033] py-3"
+                >
+                  {({ open }) => (
+                    <>
+                      <h3 className="-my-3 flow-root">
+                        <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-base text-gray-400 hover:text-gray-500">
+                          <span className="font-semibold uppercase text-[#016059]">
+                            {t('Information delivery')}
+                          </span>
+                          <span className="ml-6 flex items-center">
+                            {open ? (
+                              <HiMinus
+                                className="h-5 w-5 text-[#016059]"
+                                aria-hidden="true"
+                              />
+                            ) : (
+                              <HiPlus
+                                className="h-5 w-5 text-[#016059]"
+                                aria-hidden="true"
+                              />
+                            )}
+                          </span>
+                        </Disclosure.Button>
+                      </h3>
+                      <Disclosure.Panel className="pt-6">
+                        <dl className=" text-base text-[#434343]">
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Full name</dt>
+                            <dd>Margot Foster</dd>
+                          </div>
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Application for</dt>
+                            <dd>Backend Developer</dd>
+                          </div>
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Email address</dt>
+                            <dd>margotfoster@example.com</dd>
+                          </div>
+                        </dl>
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+                <Disclosure
+                  as="div"
+                  className="border-b border-[#00000033] py-3"
+                >
+                  {({ open }) => (
+                    <>
+                      <h3 className="-my-3 flow-root">
+                        <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-base text-gray-400 hover:text-gray-500">
+                          <span className="font-semibold uppercase text-[#016059]">
+                            {t('Payment Options')}
+                          </span>
+                          <span className="ml-6 flex items-center">
+                            {open ? (
+                              <MinusSmIcon
+                                className="h-5 w-5 text-[#016059]"
+                                aria-hidden="true"
+                              />
+                            ) : (
+                              <PlusIcon
+                                className="h-5 w-5 text-[#016059]"
+                                aria-hidden="true"
+                              />
+                            )}
+                          </span>
+                        </Disclosure.Button>
+                      </h3>
+                      <Disclosure.Panel className="pt-6">
+                        <dl className=" text-base text-[#434343]">
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Full name</dt>
+                            <dd>Margot Foster</dd>
+                          </div>
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Application for</dt>
+                            <dd>Backend Developer</dd>
+                          </div>
+                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
+                            <dt>Email address</dt>
+                            <dd>margotfoster@example.com</dd>
+                          </div>
+                        </dl>
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+              </div>
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
-      <ToastContainer />
-    </div>
+      {products?.recommend_products?.length > 0 && (
+        <Bestsellers products={products?.recommend_products} />
+      )}
+    </>
   )
 }
 

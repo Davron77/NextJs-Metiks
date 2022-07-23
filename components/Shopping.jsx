@@ -20,7 +20,9 @@ function Shopping({ setCheck, setSum }) {
   const dispatch = useDispatch()
   const cartCount = useSelector((state) => state.cart)
 
-  const notifyCartClear = () => toast.success('Cart clear Success')
+  const notifyErorr = () => toast.error(t('Error Card add'))
+
+  const notifyCartClear = () => toast.success(t('Cleared successfully'))
 
   const onSubmit = async () => {
     setLoading(true)
@@ -30,8 +32,9 @@ function Shopping({ setCheck, setSum }) {
       console.log('res', res.data.data)
       setData(res?.data.data)
     } catch (e) {
-      if (e.response && e.response.data) {
-        console.log(e.response.data.message) // some reason error message
+      if (e.response && e.response.data && e.response.status === 401) {
+        notifyErorr()
+        console.log(e.response.data.message)
       }
     }
     setLoading(false)
