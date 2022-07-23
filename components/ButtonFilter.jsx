@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Category from './Category'
 import { MdFilterAlt } from 'react-icons/md'
 //API
@@ -14,7 +14,9 @@ function ButtonFilter({ setProducts }) {
       const res = await productAPI.filter(getId, idCheckbox)
 
       if (res.status === 200) {
-        setProducts(res.data.data)
+        useEffect(() => {
+          setProducts(res.data.data)
+        })
       }
     } catch (err) {
       console.log(err)

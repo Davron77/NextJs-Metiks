@@ -34,13 +34,12 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
 
   useEffect(() => {
     setIdCheckbox([])
+    setTitle(findTitle[0]?.name)
   }, [getId])
 
   let findTitle = category.filter((item) => {
     return item.id === getId
   })
-
-  setTitle(findTitle[0]?.name)
 
   return (
     <div className="ProductCategory">

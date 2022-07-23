@@ -28,8 +28,6 @@ const Products = ({ category, product }) => {
   const page = title
   const dispatch = useDispatch()
 
-  console.log('product', product)
-
   dispatch(dataCatalog(category))
 
   return (

@@ -20,7 +20,7 @@ export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
           : 'catalogAnimationend hidden'
       }`}
     >
-      <div className="mx-auto max-w-7xl px-8 pb-7 sm:px-6 lg:py-6">
+      {/* <div className="mx-auto max-w-7xl px-8 pb-7 sm:px-6 lg:py-6">
         <div className="flex items-center justify-between border-b border-black lg:hidden">
           <div className="flex items-center py-7 text-lg">
             <img src="/svg/catalog-dark.svg" alt="Icon" className="mr-2" />
@@ -54,7 +54,7 @@ export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
             </Link>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

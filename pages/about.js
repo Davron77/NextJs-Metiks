@@ -6,7 +6,6 @@ import VideoContent from '../components/VideoContent'
 import { productAPI } from '../api'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
-import { useRouter } from 'next/router'
 
 export async function getStaticProps() {
   const res = await productAPI.about()
@@ -20,18 +19,6 @@ export async function getStaticProps() {
   }
 }
 const About = ({ data, Settings }) => {
-  const router = useRouter()
-
-  const refreshData = () => {
-    router.replace(router.asPath)
-  }
-
-  useEffect(() => {
-    refreshData()
-  }, [])
-
-  console.log('router.replace(router.asPath)', router?.asPath)
-
   const { t } = useTranslation()
   const page = t('About')
 

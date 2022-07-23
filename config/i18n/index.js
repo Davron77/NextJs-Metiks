@@ -20,7 +20,7 @@ i18n
       /* translation file path */
       loadPath: `/assets/locales/{{lng}}.json`,
     },
-    fallbackLng: 'en',
+    fallbackLng: 'ru',
     debug: false,
     keySeparator: false,
     react: {
