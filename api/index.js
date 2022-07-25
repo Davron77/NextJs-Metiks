@@ -48,7 +48,7 @@ export const productAPI = {
     http.get(
       `products?filter[category_id]=${category_id}${
         property_id.length > 0
-          ? `&filter[property_id]=${property_id.join('')}`
+          ? `&filter[property_id]=${property_id.join(',')}`
           : ''
       }`
     ),
