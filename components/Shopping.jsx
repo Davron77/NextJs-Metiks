@@ -60,12 +60,10 @@ function Shopping({ setCheck, setSum }) {
     try {
       const res = await productAPI.clearCart()
 
-      notifyCartClear()
-      onSubmit()
-      dispatch(CartCount(0))
-
-      console.log('card clear', res.status)
       if (res.status === 200) {
+        notifyCartClear()
+        onSubmit()
+        dispatch(CartCount(0))
       }
     } catch (e) {
       if (e.response && e.response.data) {
@@ -102,7 +100,7 @@ function Shopping({ setCheck, setSum }) {
               disabled={!data.length > 0}
               onClick={() => CardClear()}
             >
-              Clear Cart
+              {t('Clear Cart')}
             </button>
           </div>
           <div>

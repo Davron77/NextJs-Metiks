@@ -1,4 +1,3 @@
-import { t } from 'i18next'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 //API
@@ -85,6 +84,11 @@ function ContactForm({ settings }) {
                   trigger('name')
                 }}
               />
+              {errors.name && (
+                <small className="mt-1 text-red-600">
+                  {errors.name.message}
+                </small>
+              )}
             </div>
             <div>
               <input
@@ -105,6 +109,11 @@ function ContactForm({ settings }) {
                   trigger('phone')
                 }}
               />
+              {errors.phone && (
+                <small className="mt-1 text-red-600">
+                  {errors.phone.message}
+                </small>
+              )}
             </div>
             <div>
               <input
@@ -114,7 +123,7 @@ function ContactForm({ settings }) {
                 }`}
                 placeholder="E-mail"
                 {...register('email', {
-                  required: 'email is Required',
+                  required: `${t('Company name')} is Required`,
                   minLength: {
                     value: 8,
                     message: 'Minimum email length is 8',
@@ -124,6 +133,11 @@ function ContactForm({ settings }) {
                   trigger('email')
                 }}
               />
+              {errors.email && (
+                <small className="mt-1 text-red-600">
+                  {errors.email.message}
+                </small>
+              )}
             </div>
             <div>
               <input
@@ -133,12 +147,17 @@ function ContactForm({ settings }) {
                 }`}
                 placeholder={t('Company name')}
                 {...register('text', {
-                  required: 'text is Required',
+                  required: `${t('Company name')} is Required`,
                 })}
                 onKeyUp={() => {
                   trigger('text')
                 }}
               />
+              {errors.text && (
+                <small className="mt-1 text-red-600">
+                  {errors.text.message}
+                </small>
+              )}
             </div>
             <textarea
               rows={6}
@@ -151,7 +170,6 @@ function ContactForm({ settings }) {
                 trigger('textarea')
               }}
             />
-
             <button className="btn font-Inter mt-2.5 w-[200px] rounded-sm !py-4">
               {t('Send')}
             </button>

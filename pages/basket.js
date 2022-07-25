@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
 import Shopping from '../components/Shopping'
 import Checkout from '../components/Checkout'

@@ -4,7 +4,8 @@ import Modall from './CheckoutModal'
 //API
 import { productAPI } from '../api'
 //REDUX
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { CartCount } from '../redux/cart'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
@@ -27,11 +28,10 @@ function Checkout({ setCheck, sum }) {
         comment: comment,
       })
 
-      if (res.data.status && res.status) {
+      if (res.data.status && res.status === 200) {
         setOpen(true)
         dispatch(CartCount(0))
       }
-      onSubmit()
     } catch (e) {
       if (e.response && e.response.data) {
         console.log(e.response.data.message) // some reason error message

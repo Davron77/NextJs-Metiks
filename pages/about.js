@@ -30,7 +30,6 @@ const About = ({ data, Settings }) => {
       </div>
       <VideoContent Settings={Settings} />
       <AboutInfo data={data} />
-      <button onClick={() => refreshData()}>Click me</button>
     </>
   )
 }

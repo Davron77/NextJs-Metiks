@@ -1,16 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import Link from 'next/link'
 
 export default function CheckoutModal({ open, setOpen, setCheck }) {
-
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-10"
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -48,12 +44,14 @@ export default function CheckoutModal({ open, setOpen, setCheck }) {
                     Наши менеджеры свяжется с вами в ближайшее время
                   </p>
                   <div className="flex flex-col">
-                    <button
-                      className="btn rounded-sm !bg-[#016059]"
-                      onClick={() => setOpen(false)}
-                    >
-                      Продолжить покупку
-                    </button>
+                    <Link href="/products">
+                      <button
+                        className="btn rounded-sm !bg-[#016059]"
+                        onClick={() => setOpen(false)}
+                      >
+                        Продолжить покупку
+                      </button>
+                    </Link>
                     <button
                       className="btn mt-2.5 rounded-sm"
                       onClick={() => setCheck(false)}
