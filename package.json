@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": " node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.1",
