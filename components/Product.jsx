@@ -33,6 +33,7 @@ function Product({ productId }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [showDelete, setShowDelete] = useState(1)
   const [loading, setLoading] = useState(false)
+  // const [sum, setSum] = useState('')
   const [products, setProducts] = useState([])
   const [counts, setCounts] = useState([
     {
@@ -50,18 +51,10 @@ function Product({ productId }) {
   const notifyErorr = () => toast.error(t('Error Card add'))
   const notifySuccess = () => toast.success(t('Added successfully'))
   const notifyRemove = () => toast.success(t('removed successfully'))
+  const notifyAddErorr = (props) => toast.error(props)
 
   const getInputData = (e, index) => {
-    const value = 0
-
-    if (products.has_min_max_for_one_qty) {
-      const min = products.min_m
-      const max = products.max_m
-
-      value = Math.max(min, Math.min(max, Number(e.target.value)))
-    } else {
-      value = +e.target.value
-    }
+    const value = +e.target.value
 
     let prevCounts = [...counts]
     prevCounts[index].metr = value
@@ -79,10 +72,35 @@ function Product({ productId }) {
   const sumCount = counts.map((a) => a.count).reduce((a, b) => a + b)
   const sumMetr = counts.map((a) => a.metr).reduce((a, b) => a + b)
 
-  let cartItems = counts.map((item) => ({
-    mm_per_piece: item.metr,
-    qty: item.count,
-  }))
+  let cartItems = []
+
+  if (products?.sell_by_qty && products?.has_min_max_for_one_qty) {
+    cartItems = counts.map((item) => ({
+      mm_per_piece: item.metr,
+      qty: item.count,
+    }))
+  } else if (!products?.has_min_max_for_one_qty && products?.sell_by_qty) {
+    cartItems = counts.map((item) => ({
+      qty: item.count,
+    }))
+  } else if (!products?.sell_by_qty && !products?.has_min_max_for_one_qty) {
+    cartItems = counts.map((item) => ({
+      mm_per_piece: item.metr,
+      qty: 1,
+    }))
+  }
+
+  let lre = ''
+
+  if (products?.sell_by_qty && products?.has_min_max_for_one_qty) {
+    lre = ((sumMetr / 1000) * sumCount * products?.price_for_m).toLocaleString(
+      'en-ZA'
+    )
+  } else if (!products?.has_min_max_for_one_qty && products?.sell_by_qty) {
+    lre = (sumCount * products?.price_for_qty).toLocaleString('en-ZA')
+  } else if (!products?.sell_by_qty && !products?.has_min_max_for_one_qty) {
+    lre = ((sumMetr / 1000) * 1 * products?.price_for_m).toLocaleString('en-ZA')
+  }
 
   const getProductData = async () => {
     try {
@@ -123,8 +141,11 @@ function Product({ productId }) {
         ])
       }
     } catch (e) {
+      console.log(e.response.data.message)
       if (e.response && e.response.data && e.response.status === 401) {
         notifyErorr()
+      } else if (e.response && e.response.data && e.response.status === 422) {
+        notifyAddErorr(e.response.data.message)
       }
     }
     setLoading(false)
@@ -257,14 +278,7 @@ function Product({ productId }) {
                 </div>
                 <div className="mt-6 flex flex-col">
                   <span className="mt-3 text-2xl font-bold">
-                    {products?.sell_by_qty
-                      ? (sumCount * products?.price_for_qty).toLocaleString(
-                          'en-ZA'
-                        )
-                      : (
-                          (sumMetr / 1000 + sumCount) *
-                          products?.price_for_m
-                        ).toLocaleString('en-ZA')}{' '}
+                    {lre}
                     UZS{' '}
                     <span className="ml-2 text-[#016059]">{t('Total')}</span>
                   </span>
@@ -318,68 +332,148 @@ function Product({ productId }) {
                   {counts.map((item, index) => (
                     <div className="mt-4" id="product" key={index}>
                       <div className="relative flex max-w-[638px] flex-row-reverse justify-end gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
-                        <div>
-                          <label className="text-base font-normal">
-                            {t('Number of sheets')}
-                          </label>
-                          <div className="mt-2 flex h-11 w-[160px] justify-between rounded-sm border-2 border-[#434343] xs:w-[184px]">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                if (item.count > 1) {
+                        {products?.sell_by_qty &&
+                        products?.has_min_max_for_one_qty ? (
+                          <>
+                            <div>
+                              <label className="text-base font-normal">
+                                {t('Number of sheets')}
+                              </label>
+                              <div className="mt-2 flex h-11 w-[160px] justify-between rounded-sm border-2 border-[#434343] xs:w-[184px]">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    if (item.count > 1) {
+                                      let prevCounts = [...counts]
+                                      prevCounts[index].count =
+                                        prevCounts[index].count - 1
+                                      setCounts(prevCounts)
+                                    }
+                                  }}
+                                  className="px-[18px]"
+                                >
+                                  <AiOutlineMinus />
+                                </button>
+                                <input
+                                  id="myNumber"
+                                  value={counts[index].count || ''}
+                                  onChange={(e) => {
+                                    let prevCounts = [...counts]
+                                    prevCounts[index].count = e.target.value
+                                    setCounts(prevCounts)
+                                  }}
+                                  className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
+                                />
+
+                                <button
+                                  type="button"
+                                  className="px-[18px]"
+                                  onClick={() => {
+                                    let prevCounts = [...counts]
+                                    prevCounts[index].count =
+                                      prevCounts[index].count + 1
+                                    setCounts(prevCounts)
+                                  }}
+                                >
+                                  <AiOutlinePlus />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="grid">
+                              <label className="!mt-0 text-base font-normal">
+                                {t('Select length')}
+                              </label>
+                              <input
+                                type="number"
+                                value={counts[index].metr || ''}
+                                onChange={(e) => {
+                                  getInputData(e, index)
+                                }}
+                                className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
+                              />
+                              {products?.has_min_max_for_one_qty && (
+                                <div className="mt-2 text-red-600">
+                                  min <span>{+products.min_m * 1000}</span>, max{' '}
+                                  <span>{+products.max_m * 1000}</span>
+                                </div>
+                              )}
+                            </div>
+                          </>
+                        ) : (
+                          ''
+                        )}
+                        {!products?.has_min_max_for_one_qty &&
+                        products?.sell_by_qty ? (
+                          <div>
+                            <label className="text-base font-normal">
+                              {t('Number of sheets')}
+                            </label>
+                            <div className="mt-2 flex h-11 w-[160px] justify-between rounded-sm border-2 border-[#434343] xs:w-[184px]">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  if (item.count > 1) {
+                                    let prevCounts = [...counts]
+                                    prevCounts[index].count =
+                                      prevCounts[index].count - 1
+                                    setCounts(prevCounts)
+                                  }
+                                }}
+                                className="px-[18px]"
+                              >
+                                <AiOutlineMinus />
+                              </button>
+                              <input
+                                id="myNumber"
+                                value={counts[index].count || ''}
+                                onChange={(e) => {
+                                  let prevCounts = [...counts]
+                                  prevCounts[index].count = e.target.value
+                                  setCounts(prevCounts)
+                                }}
+                                className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
+                              />
+
+                              <button
+                                type="button"
+                                className="px-[18px]"
+                                onClick={() => {
                                   let prevCounts = [...counts]
                                   prevCounts[index].count =
-                                    prevCounts[index].count - 1
+                                    prevCounts[index].count + 1
                                   setCounts(prevCounts)
-                                }
-                              }}
-                              className="px-[18px]"
-                            >
-                              <AiOutlineMinus />
-                            </button>
-                            <input
-                              id="myNumber"
-                              value={counts[index].count || ''}
-                              onChange={(e) => {
-                                let prevCounts = [...counts]
-                                prevCounts[index].count = e.target.value
-                                setCounts(prevCounts)
-                              }}
-                              className="mt-0 w-[60px] border-none bg-[#F0F0F0] text-center text-base text-black !outline-none"
-                            />
-
-                            <button
-                              type="button"
-                              className="px-[18px]"
-                              onClick={() => {
-                                let prevCounts = [...counts]
-                                prevCounts[index].count =
-                                  prevCounts[index].count + 1
-                                setCounts(prevCounts)
-                              }}
-                            >
-                              <AiOutlinePlus />
-                            </button>
+                                }}
+                              >
+                                <AiOutlinePlus />
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                        {products?.sell_by_qty ? (
-                          null && !products?.has_min_max_for_one_qty
                         ) : (
+                          ''
+                        )}
+                        {!products?.sell_by_qty &&
+                        !products?.has_min_max_for_one_qty ? (
                           <div className="grid">
                             <label className="!mt-0 text-base font-normal">
                               {t('Select length')}
                             </label>
                             <input
                               type="number"
-                              min="1"
-                              max="5"
                               value={counts[index].metr || ''}
                               onChange={(e) => {
                                 getInputData(e, index)
                               }}
                               className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
                             />
+                            {products?.has_min_max_for_one_qty && (
+                              <div className="mt-2 text-red-600">
+                                min <span>{+products.min_m * 1000}</span>, max{' '}
+                                <span>{+products.max_m * 1000}</span>
+                              </div>
+                            )}
                           </div>
+                        ) : (
+                          ''
                         )}
                         {showDelete != 1 ? (
                           <button

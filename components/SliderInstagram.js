@@ -42,14 +42,17 @@ export default function SliderInstagram({ data }) {
           >
             {data.map((item) => (
               <SwiperSlide key={item.id}>
-                <figure>
-                  <img
-                    src={item.media}
-                    className="cursor-pointer rounded-lg transition-all duration-300 ease-in-out hover:scale-125"
-                    alt="img"
-                  />
-                </figure>
+                <a href="https://www.instagram.com/metiks.ru/" target="_blank">
+                  <figure>
+                    <img
+                      src={item.media}
+                      className="cursor-pointer rounded-lg transition-all duration-300 ease-in-out hover:scale-125"
+                      alt="img"
+                    />
+                  </figure>
+                </a>
               </SwiperSlide>
+              
             ))}
           </Swiper>
         </div>
