@@ -44,6 +44,7 @@ function Product({ productId }) {
 
   const dispatch = useDispatch()
   const cartCount = useSelector((state) => state.cart)
+
   const { t } = useTranslation()
 
   const notifyErorr = () => toast.error(t('Error Card add'))
@@ -262,15 +263,16 @@ function Product({ productId }) {
                 </div>
                 <div className="mt-6 flex flex-col">
                   <span className="mt-3 text-2xl font-bold">
-                    {products?.price_for_m?.length > 0
-                      ? (
+                    {!products?.sell_by_qty
+                      ? (sumCount * products?.price_for_qty).toLocaleString(
+                          'en-ZA'
+                        )
+                      : (
                           (sumMetr / 1000 + sumCount) *
                           products?.price_for_m
-                        ).toLocaleString('en-ZA')
-                      : (sumCount * products?.price_for_qty).toLocaleString(
-                          'en-ZA'
-                        )}{' '}
-                    UZS
+                        ).toLocaleString('en-ZA')}{' '}
+                    UZS{' '}
+                    <span className="ml-2 text-[#016059]">{t('Total')}</span>
                   </span>
                 </div>
               </div>
@@ -285,7 +287,7 @@ function Product({ productId }) {
                         <div>
                           <div>
                             <span className="mr-1 text-base font-normal">
-                              {t('amount')}:
+                              {t('length')}:
                             </span>
                             <span>
                               {(+item?.mm_per_piece).toLocaleString('en-ZA')}
@@ -293,7 +295,7 @@ function Product({ productId }) {
                           </div>
                           <div>
                             <span className="mr-1 text-base font-normal">
-                              {t('length')}:
+                              {t('amount')}:
                             </span>
                             <span>{item?.qty}</span>
                           </div>
@@ -504,18 +506,14 @@ function Product({ productId }) {
                       </h3>
                       <Disclosure.Panel className="pt-6">
                         <dl className=" text-base text-[#434343]">
-                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                            <dt>Full name</dt>
-                            <dd>Margot Foster</dd>
-                          </div>
-                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                            <dt>Application for</dt>
-                            <dd>Backend Developer</dd>
-                          </div>
-                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                            <dt>Email address</dt>
-                            <dd>margotfoster@example.com</dd>
-                          </div>
+                          Lorem ipsum dolor sit amet consectetur, adipisicing
+                          elit. Dolore, incidunt magni. Ea officia asperiores,
+                          suscipit nulla blanditiis officiis numquam iure
+                          aliquid incidunt, accusantium vero magni ab veniam
+                          eaque beatae consectetur nemo reiciendis culpa saepe?
+                          Odit possimus voluptatum nemo, earum natus optio
+                          corrupti aperiam, voluptatem vitae minus facilis ab
+                          neque repudiandae.
                         </dl>
                       </Disclosure.Panel>
                     </>
@@ -549,18 +547,14 @@ function Product({ productId }) {
                       </h3>
                       <Disclosure.Panel className="pt-6">
                         <dl className=" text-base text-[#434343]">
-                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                            <dt>Full name</dt>
-                            <dd>Margot Foster</dd>
-                          </div>
-                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                            <dt>Application for</dt>
-                            <dd>Backend Developer</dd>
-                          </div>
-                          <div className="flex justify-between px-4 py-3 odd:bg-white even:bg-slate-100 sm:gap-4 sm:px-6">
-                            <dt>Email address</dt>
-                            <dd>margotfoster@example.com</dd>
-                          </div>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Molestias aperiam alias nisi quaerat reiciendis,
+                          impedit, optio id soluta fugiat assumenda iste eaque
+                          perspiciatis sequi. Exercitationem temporibus
+                          accusamus dolores harum quas deleniti eveniet libero,
+                          optio vitae alias nostrum nobis qui at incidunt
+                          distinctio reprehenderit! Quisquam, atque voluptates!
+                          Doloremque nobis alias nihil.
                         </dl>
                       </Disclosure.Panel>
                     </>

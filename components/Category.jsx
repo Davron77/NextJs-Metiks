@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import 'react-accessible-accordion/dist/fancy-example.css'
 import { IoMdClose } from 'react-icons/io'
 import { FiChevronDown } from 'react-icons/fi'
@@ -15,6 +15,9 @@ function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
   const { t } = useTranslation()
 
   const catalog = useSelector((state) => state.dataCatalog)
+  const catalogId = useSelector((state) => state.catalogId)
+
+  console.log('INcatalogId', catalogId)
 
   const getIdRadio = (id, index) => {
     setIdRadio(index + 1)
@@ -31,6 +34,8 @@ function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
       setIdCheckbox((oldArray) => [...oldArray, id])
     }
   }
+
+  console.log('catalogId ?', catalogId ? 'bir' : 'ikki')
 
   return (
     <div
@@ -67,7 +72,7 @@ function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
                     id={item.id + 'e'}
                     name="radio"
                     onClick={() => getIdRadio(item.id, index)}
-                    defaultChecked={!index}
+                    defaultChecked={catalogId ? catalogId === item.id : !index}
                     value={item.id}
                     className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
                   />

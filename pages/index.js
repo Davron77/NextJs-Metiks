@@ -6,8 +6,6 @@ import Recommendations from '../components/Recommendations'
 import SliderInstagram from '../components/SliderInstagram'
 import VideoContent from '../components/VideoContent'
 import ButtonCatalog from '../components/ButtonCatalog'
-import Bestsellers from '../components/Bestsellers'
-import Interested from '../components/Interested'
 //REDUX
 import { useDispatch } from 'react-redux'
 import { dataCatalog } from '../redux/catalog'
@@ -46,8 +44,6 @@ const Home = ({ data, settings, category, reviews, banner, products }) => {
       <ButtonCatalog />
       <HomeBanner settings={settings} banner={banner} />
       <Products category={category} />
-      <Bestsellers />
-      <Interested />
       <Services />
       <Recommendations reviews={reviews} />
       <SliderInstagram data={data} />

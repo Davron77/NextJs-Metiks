@@ -2,10 +2,17 @@ import { FaAngleRight } from 'react-icons/fa'
 import { IoMdClose } from 'react-icons/io'
 import Link from 'next/link'
 // REDUX
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { CatalogId } from '../redux/catalogId'
 
 export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
   const catalog = useSelector((state) => state.dataCatalog)
+  const dispatch = useDispatch()
+
+  const getCatalogId = (id) => {
+    console.log('id', id)
+    dispatch(CatalogId(id))
+  }
 
   const handle = () => {
     console.log('hi', isOpenCatalog)
@@ -36,7 +43,12 @@ export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
         <div className="font-Bebas mt-7 grid grid-cols-1 gap-y-5 gap-x-6 transition-all delay-150 ease-in-out sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {catalog.map((item) => (
             <Link href="/products" key={item.id}>
-              <a className="group" onClick={() => handle()}>
+              <a
+                className="group"
+                onClick={() => {
+                  handle(), getCatalogId(item.id)
+                }}
+              >
                 <div className="aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8 h-[200px] w-full cursor-pointer overflow-hidden rounded-lg group-hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]">
                   <img
                     src={item.media}

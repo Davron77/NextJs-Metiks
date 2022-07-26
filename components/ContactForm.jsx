@@ -2,11 +2,16 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 //API
 import { authAPI } from '../api/'
+//REACT TOASTIFY
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
 function ContactForm({ settings }) {
   const { t } = useTranslation()
+
+  const notifyContact = () => toast.success(t('Contact successfully'))
 
   const {
     register,
@@ -26,11 +31,10 @@ function ContactForm({ settings }) {
         email: data.email,
       })
       console.log('res', res)
-      if (res.status === 200) {
-        // Cookies.set('token', res.data.data.token)
-        //localStorage.setItem('token', res.data.data.token)
+      if (res.data.success) {
+        notifyContact()
+        console.log('success')
       }
-      console.log(data)
       reset()
     } catch (err) {
       console.log(err)
@@ -176,6 +180,7 @@ function ContactForm({ settings }) {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

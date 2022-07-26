@@ -4,6 +4,8 @@ import { productAPI } from '../api'
 import { useEffect, useState } from 'react'
 //COMPONENTS
 import Empty from './Empty'
+//REDUX
+import { useSelector } from 'react-redux'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
@@ -13,6 +15,9 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
   const [loading, setLoading] = useState(false)
 
   const { t } = useTranslation()
+  const catalogId = useSelector((state) => state.catalogId)
+
+  console.log('catalogId', catalogId)
 
   const getFilter = async () => {
     setLoading(true)
@@ -27,6 +32,13 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
     }
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (catalogId) {
+      setGetId(catalogId)
+      console.log('setGetId')
+    }
+  }, [])
 
   useEffect(() => {
     getFilter()
@@ -94,17 +106,46 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
                         ) : (
                           ''
                         )}
-                        <div className=" mt-[285px] px-5">
+                        <div className="mt-[285px] px-5 pb-5">
                           <p className="text-sm text-[#016059]">
                             {product.category}
                           </p>
                           <h4 className=" mt-1 h-10 overflow-hidden text-lg font-normal leading-5">
                             {product.name}
                           </h4>
-                          <p className=" mt-3 mb-5 text-sm text-neutral-500">
-                            {product.price_for_kg.toLocaleString('en-ZA')}
-                            UZS
-                          </p>
+                          {product?.price_for_m ? (
+                            <p className="mt-2 text-sm text-neutral-500">
+                              {product.price_for_m?.toLocaleString('en-ZA')} UZS
+                              /{' '}
+                              <span className="text-[#016059]">
+                                {t('meter')}
+                              </span>
+                            </p>
+                          ) : (
+                            ''
+                          )}
+                          {product?.price_for_kg ? (
+                            <p className="mt-2 text-sm text-neutral-500">
+                              {product.price_for_kg?.toLocaleString('en-ZA')}{' '}
+                              UZS /{' '}
+                              <span className="text-[#016059]">
+                                {t('kilogram')}
+                              </span>{' '}
+                            </p>
+                          ) : (
+                            ''
+                          )}
+                          {product?.price_for_qty ? (
+                            <p className="mt-2 text-sm text-neutral-500">
+                              {product.price_for_qty?.toLocaleString('en-ZA')}{' '}
+                              UZS /{' '}
+                              <span className="text-[#016059]">
+                                {t('amount')}
+                              </span>{' '}
+                            </p>
+                          ) : (
+                            ''
+                          )}
                         </div>
                       </div>
                     </Link>
