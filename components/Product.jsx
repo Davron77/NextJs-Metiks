@@ -257,7 +257,7 @@ function Product({ productId }) {
                 </div>
                 <div className="mt-6 flex flex-col">
                   <span className="mt-3 text-2xl font-bold">
-                    {!products?.sell_by_qty
+                    {products?.sell_by_qty
                       ? (sumCount * products?.price_for_qty).toLocaleString(
                           'en-ZA'
                         )
