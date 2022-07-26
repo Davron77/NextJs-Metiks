@@ -69,20 +69,7 @@ function Header() {
         <div className="mx-auto h-20 max-w-7xl px-2 sm:px-6">
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">
-              {isSelect && (
-                <select
-                  onChange={(e) => {
-                    handleLangUpdate(e, e.target.value), setOpenMenu(false)
-                  }}
-                  className={`cursor-pointer bg-black lg:block ${
-                    openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
-                  }`}
-                  defaultValue={select_type}
-                >
-                  <option value="ru">RU</option>
-                  <option value="en">EN</option>
-                </select>
-              )}
+              <a href="https://metiks.uz/">EN</a>
               <div className="lg:hidden">
                 {openMenu ? (
                   <XIcon
