@@ -29,12 +29,10 @@ function Shopping({ setCheck, setSum }) {
     try {
       const res = await productAPI.cart()
 
-      console.log('res', res.data.data)
       setData(res?.data.data)
     } catch (e) {
       if (e.response && e.response.data && e.response.status === 401) {
         notifyErorr()
-        console.log(e.response.data.message)
       }
     }
     setLoading(false)

@@ -8,15 +8,12 @@ const instance = axios.create({
 const AxiosInterceptor = ({ children }) => {
   useEffect(() => {
     const reqInterceptor = (request) => {
-      //console.log('config', request)
       request.headers.Authorization = `Bearer ${
         request.method === 'post' ? localStorage.getItem('token') : ''
       }`
 
       request.headers.common['X-Language-Code'] =
         localStorage.getItem('i18nextLng')
-
-      console.log('request', request)
 
       return request
     }

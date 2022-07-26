@@ -15,7 +15,6 @@ function Modal({ open, setOpen, setUser, user }) {
     setIsBrowser(true)
     if (localStorage.getItem('token')) {
       setIsUser(true)
-      console.log('isUser')
     }
   }, [])
 

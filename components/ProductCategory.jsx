@@ -17,7 +17,6 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
   const { t } = useTranslation()
   const catalogId = useSelector((state) => state.catalogId)
 
-  console.log('catalogId', catalogId)
 
   const getFilter = async () => {
     setLoading(true)
@@ -36,7 +35,6 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
   useEffect(() => {
     if (catalogId) {
       setGetId(catalogId)
-      console.log('setGetId')
     }
   }, [])
 

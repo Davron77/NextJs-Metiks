@@ -72,7 +72,6 @@ function Product({ productId }) {
     const filterInput = counts.filter((item) => {
       return item.id !== id
     })
-    console.log('id', id)
     setCounts(filterInput)
     setShowDelete(counts.length - 1)
   }
@@ -91,17 +90,14 @@ function Product({ productId }) {
 
       if (typeof window !== 'undefined' && localStorage.getItem('token')) {
         res = await productAPI.productPost(productId)
-        console.log('if post')
       } else {
         res = await productAPI.product(productId)
-        console.log('if get')
       }
 
       setProducts(res.data.data)
     } catch (e) {
       if (e.response && e.response.data && e.response.status === 401) {
         notifyErorr()
-        console.log(e.response.data.message)
       }
     }
   }
@@ -129,7 +125,6 @@ function Product({ productId }) {
     } catch (e) {
       if (e.response && e.response.data && e.response.status === 401) {
         notifyErorr()
-        console.log(e.response.data.message)
       }
     }
     setLoading(false)
@@ -150,7 +145,6 @@ function Product({ productId }) {
     } catch (e) {
       if (e.response && e.response.data && e.response.status === 401) {
         notifyErorr()
-        console.log(e.response.data.message)
       }
     }
   }

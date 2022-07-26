@@ -9,7 +9,6 @@ function User({ setIsUser, setOpen }) {
   const { t } = useTranslation()
 
   const Logout = async () => {
-    console.log('Logout')
     try {
       const res = await authAPI.logout()
       if (res.status === 200) {

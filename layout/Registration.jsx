@@ -35,7 +35,6 @@ function Registration({ setIsReg, setIsUser }) {
       const res = await authAPI.sendVerificationCode({
         phone: data.phone,
       })
-      console.log('res', res)
       if (res.status === 200) {
         setSentSms(true)
       }
@@ -54,10 +53,6 @@ function Registration({ setIsReg, setIsUser }) {
       const res = await authAPI.sendVerificationCode({
         phone: catalog.userData.phone,
       })
-      console.log('res', res)
-      if (res.status === 200) {
-        console.log('return')
-      }
     } catch (err) {
       console.log(err)
     }

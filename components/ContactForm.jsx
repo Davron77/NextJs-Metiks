@@ -30,10 +30,8 @@ function ContactForm({ settings }) {
         comment: data.textarea,
         email: data.email,
       })
-      console.log('res', res)
       if (res.data.success) {
         notifyContact()
-        console.log('success')
       }
       reset()
     } catch (err) {

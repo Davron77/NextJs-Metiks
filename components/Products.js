@@ -12,7 +12,6 @@ export default function Products({ category }) {
   const dispatch = useDispatch()
 
   const getCatalogId = (id) => {
-    console.log('id', id)
     dispatch(CatalogId(id))
   }
 

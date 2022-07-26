@@ -10,12 +10,10 @@ export default function Catalog({ isOpenCatalog, setIsOpenCatalog }) {
   const dispatch = useDispatch()
 
   const getCatalogId = (id) => {
-    console.log('id', id)
     dispatch(CatalogId(id))
   }
 
   const handle = () => {
-    console.log('hi', isOpenCatalog)
     setIsOpenCatalog(false)
   }
 

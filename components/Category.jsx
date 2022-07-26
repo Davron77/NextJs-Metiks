@@ -17,8 +17,6 @@ function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
   const catalog = useSelector((state) => state.dataCatalog)
   const catalogId = useSelector((state) => state.catalogId)
 
-  console.log('INcatalogId', catalogId)
-
   const getIdRadio = (id, index) => {
     setIdRadio(index + 1)
     setGetId(id)
@@ -34,8 +32,6 @@ function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
       setIdCheckbox((oldArray) => [...oldArray, id])
     }
   }
-
-  console.log('catalogId ?', catalogId ? 'bir' : 'ikki')
 
   return (
     <div
