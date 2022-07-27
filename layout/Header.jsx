@@ -51,9 +51,6 @@ function Header() {
     typeof window !== 'undefined' && setSelect(true)
   }, [cartCount])
 
-  const select_type =
-    typeof window !== 'undefined' && localStorage.getItem('i18nextLng')
-
   const navigation = [
     { name: t('Products'), href: '/products', current: false },
     { name: t('Services'), href: '/services', current: false },
@@ -69,7 +66,7 @@ function Header() {
         <div className="mx-auto h-20 max-w-7xl px-2 sm:px-6">
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">
-              <a href="https://en.metiks.uz/">EN</a>
+              <a href="https://metiks.uz/">RU</a>
               <div className="lg:hidden">
                 {openMenu ? (
                   <XIcon
