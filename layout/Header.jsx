@@ -69,7 +69,14 @@ function Header() {
         <div className="mx-auto h-20 max-w-7xl px-2 sm:px-6">
           <div className="flex h-full justify-between">
             <div className="flex items-center justify-start">
-              <a href="https://en.metiks.uz/">EN</a>
+              <a
+                className={`cursor-pointer bg-black lg:block ${
+                  openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
+                }`}
+                href="https://en.metiks.uz/"
+              >
+                EN
+              </a>
               <div className="lg:hidden">
                 {openMenu ? (
                   <XIcon
