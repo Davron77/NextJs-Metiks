@@ -8,8 +8,6 @@ axios.interceptors.request.use(
       config.method === 'post' ? localStorage.getItem('token') : ''
     }`
 
-    config.headers.common['X-Language-Code'] = 'en'
-
     config.baseURL = `https://api.metiks.uz/api`
 
     return config
