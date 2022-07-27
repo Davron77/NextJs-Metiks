@@ -14,9 +14,8 @@ function ButtonFilter({ setProducts }) {
       const res = await productAPI.filter(getId, idCheckbox)
 
       if (res.status === 200) {
-        useEffect(() => {
-          setProducts(res.data.data)
-        })
+        setProducts(res.data.data)
+        console.log(res.data.data)
       }
     } catch (err) {
       console.log(err)
