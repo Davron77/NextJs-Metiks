@@ -29,11 +29,6 @@ function Header() {
 
   const cartCount = useSelector((state) => state.cart)
 
-  const handleLangUpdate = (e, lang) => {
-    // window.location.reload()
-    i18n.changeLanguage(lang)
-  }
-
   const onSubmit = async () => {
     try {
       const res = await productAPI.cart()
@@ -50,9 +45,6 @@ function Header() {
     onSubmit()
     typeof window !== 'undefined' && setSelect(true)
   }, [cartCount])
-
-  const select_type =
-    typeof window !== 'undefined' && localStorage.getItem('i18nextLng')
 
   const navigation = [
     { name: t('Products'), href: '/products', current: false },
