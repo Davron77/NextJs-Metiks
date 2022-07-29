@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next'
 function Recommendations({ reviews }) {
   const { t } = useTranslation()
 
+  console.log('reviews', reviews)
+
   return (
     <div className="Recommendations">
       <div className="mx-auto max-w-7xl py-12 px-4 sm:px-8">
@@ -27,11 +29,10 @@ function Recommendations({ reviews }) {
           </div>
           <div className="w-full md:col-span-2">
             <Swiper
-              slidesPerView={1.7}
-              spaceBetween={20}
+              slidesPerView={'auto'}
+              centeredSlides={true}
+              spaceBetween={0}
               slidesPerGroup={1}
-              loop={true}
-              loopFillGroupWithBlank={true}
               navigation={true}
               breakpoints={{
                 0: {
@@ -46,16 +47,13 @@ function Recommendations({ reviews }) {
                 1000: {
                   slidesPerView: 1.5,
                 },
-                1200: {
-                  slidesPerView: 1.7,
-                },
               }}
               modules={[Navigation]}
               className="mySwiper !static"
             >
               {reviews.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <div className="max-w-[530px] rounded-lg bg-black p-8 text-white">
+                  <div className="min-w-full rounded-lg bg-black p-8 text-white">
                     <div className="flex">
                       {Array(5)
                         .fill(0)
@@ -68,7 +66,7 @@ function Recommendations({ reviews }) {
                           />
                         ))}
                     </div>
-                    <div className=" mt-5 text-left text-sm sm:text-lg">
+                    <div className="mt-5 text-left text-sm sm:text-lg">
                       <span>{item.description}</span>
                     </div>
                     <div className="mt-20 flex sm:mt-28">
