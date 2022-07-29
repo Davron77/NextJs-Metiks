@@ -65,9 +65,9 @@ function Header() {
                 className={`cursor-pointer bg-black lg:block ${
                   openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
                 }`}
-                href="https://en.metiks.uz/"
+                href="https://metiks.uz/"
               >
-                EN
+                RU
               </a>
               <div className="lg:hidden">
                 {openMenu ? (
