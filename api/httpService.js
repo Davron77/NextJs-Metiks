@@ -6,9 +6,8 @@ axios.interceptors.request.use(
     // Do something before request is sent
     config.headers.Authorization = `Bearer ${
       config.method === 'post' ? localStorage.getItem('token') : ''
-    }`
-
-    config.headers.common['X-Language-Code'] = 'en'
+      }`
+    
     config.baseURL = `https://api.metiks.uz/api`
 
     return config
