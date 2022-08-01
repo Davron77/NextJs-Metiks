@@ -9,7 +9,7 @@ import { productAPI } from '../../api'
 import { useDispatch } from 'react-redux'
 import { dataCatalog } from '../../redux/catalog'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const resCtg = await productAPI.category()
   const resPro = await productAPI.products()
 

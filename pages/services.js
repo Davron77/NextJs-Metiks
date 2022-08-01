@@ -6,7 +6,7 @@ import { productAPI } from '../api'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { data } = await productAPI.services()
 
   return {
