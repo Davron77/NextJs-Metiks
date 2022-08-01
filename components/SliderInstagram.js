@@ -9,6 +9,8 @@ import 'swiper/css/pagination'
 import { FreeMode } from 'swiper'
 
 export default function SliderInstagram({ data }) {
+  console.log('data', data)
+
   return (
     <>
       <div className="mx-auto mb-12 max-w-7xl py-3 px-4 sm:py-12 sm:px-8">
@@ -42,11 +44,11 @@ export default function SliderInstagram({ data }) {
           >
             {data.map((item) => (
               <SwiperSlide key={item.id}>
-                <a href="https://www.instagram.com/metiks.ru/" target="_blank">
-                  <figure>
+                <a className="h-full w-full" href={item.url} target="_blank">
+                  <figure className="h-full w-full">
                     <img
                       src={item.media}
-                      className="cursor-pointer rounded-lg transition-all duration-300 ease-in-out hover:scale-125"
+                      className="h-full w-full cursor-pointer rounded-lg object-cover transition-all duration-300 ease-in-out hover:scale-125"
                       alt="img"
                     />
                   </figure>
