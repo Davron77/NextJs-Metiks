@@ -9,8 +9,6 @@ import 'swiper/css/pagination'
 import { FreeMode } from 'swiper'
 
 export default function SliderInstagram({ data }) {
-  console.log('data', data)
-
   return (
     <>
       <div className="mx-auto mb-12 max-w-7xl py-3 px-4 sm:py-12 sm:px-8">

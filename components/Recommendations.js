@@ -11,8 +11,6 @@ import { useTranslation } from 'react-i18next'
 function Recommendations({ reviews }) {
   const { t } = useTranslation()
 
-  console.log('reviews', reviews)
-
   return (
     <div className="Recommendations">
       <div className="mx-auto max-w-7xl py-12 px-4 sm:px-8">
