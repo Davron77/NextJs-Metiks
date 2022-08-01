@@ -71,7 +71,7 @@ function Recommendations({ reviews }) {
                     </div>
                     <div className="mt-20 flex sm:mt-28">
                       <img
-                        className="h-12 w-12 rounded-full lg:h-16 lg:w-16"
+                        className="h-12 w-12 rounded-full object-cover lg:h-16 lg:w-16"
                         src={item.media}
                         alt="user"
                       />

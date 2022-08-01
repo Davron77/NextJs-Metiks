@@ -24,7 +24,10 @@ function ProductionInfo({ data, resSettings }) {
               className="grid-cols-2 gap-10 rounded-lg lg:grid"
               key={item.id}
             >
-              <img className="mb-5 w-full lg:mb-0" src={item.media} />
+              <img
+                className="mb-5 w-full rounded-lg lg:mb-0"
+                src={item.media}
+              />
               <div className="text-[#434343]">
                 <h3 className=" font-Bebas mb-5 text-[20px] font-bold leading-[26px] text-black sm:text-[40px] sm:leading-[50px]">
                   {item.title}
