@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const res = await productAPI.product(params.productsId)
 
   return {
