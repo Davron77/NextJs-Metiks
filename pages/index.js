@@ -13,7 +13,7 @@ import { product } from '../redux/product'
 // API
 import { productAPI } from '../api'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await productAPI.instagram()
   const resSet = await productAPI.settings()
   const resCtg = await productAPI.category()

@@ -52,7 +52,6 @@ export default function SliderInstagram({ data }) {
                   </figure>
                 </a>
               </SwiperSlide>
-              
             ))}
           </Swiper>
         </div>

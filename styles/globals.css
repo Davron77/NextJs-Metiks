@@ -286,7 +286,7 @@ form input:focus-visible {
   height: 440px;
 }
 
-.swiper-wrapper {
+.Recommendations .swiper-wrapper {
   gap: 20px;
 }
 
