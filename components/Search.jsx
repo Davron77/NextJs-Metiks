@@ -31,7 +31,9 @@ function Search({ open, setOpen }) {
   const router = useRouter()
 
   useEffect(() => {
-    onSubmit()
+    if (searchText) {
+      onSubmit()
+    }
   }, [searchText])
 
   useEffect(() => {

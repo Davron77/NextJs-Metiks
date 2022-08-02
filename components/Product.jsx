@@ -1,6 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { useEffect, useState } from 'react'
 import Bestsellers from './Bestsellers'
+import Select, { NonceProvider } from 'react-select'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -47,6 +48,13 @@ function Product({ productId }) {
   const cartCount = useSelector((state) => state.cart)
 
   const { t } = useTranslation()
+
+  const colourOptions = [
+    { value: '20 000mm', label: '20 000mm', color: '#00B8D9', isFixed: true },
+    { value: '500mm', label: '500mm', color: '#0052CC', isDisabled: true },
+    { value: '250mm', label: '250mm', color: '#5243AA' },
+    { value: '100mm', label: '100mm', color: '#FF5630' },
+  ]
 
   const notifyErorr = () => toast.error(t('Error Card add'))
   const notifySuccess = () => toast.success(t('Added successfully'))
@@ -201,47 +209,6 @@ function Product({ productId }) {
                 <img className="w-full rounded-lg" src={products?.media} />
               </SwiperSlide>
             </Swiper>
-            {/* <Swiper
-            onSwiper={setThumbsSwiper}
-            loop={true}
-            spaceBetween={20}
-            slidesPerView={3}
-            freeMode={true}
-            watchSlidesProgress={true}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper hidden lg:flex"
-          >
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg" src="/product-slider/1.png" />
-            </SwiperSlide>
-          </Swiper> */}
           </div>
           <div className="mx-auto mb-[50px] max-w-[646px] sm:mb-[100px] lg:mx-0 lg:max-w-full">
             <div className="page-title pt-5 leading-6 sm:leading-[44px] lg:pt-0">
@@ -475,6 +442,23 @@ function Product({ productId }) {
                         ) : (
                           ''
                         )}
+                        <label className="text-base font-normal">
+                          Выберите длину:
+                        </label>
+                        <Select
+                          defaultValue={colourOptions[0]}
+                          options={colourOptions}
+                          className="mt-2"
+                          theme={(theme) => ({
+                            ...theme,
+                            borderRadius: 2,
+                            borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
+                            colors: {
+                              ...theme.colors,
+                              primary: 'black',
+                            },
+                          })}
+                        />
                         {showDelete != 1 ? (
                           <button
                             className="absolute right-2 top-2"
