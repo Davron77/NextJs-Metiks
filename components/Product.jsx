@@ -1,7 +1,8 @@
 import { Disclosure } from '@headlessui/react'
 import { useEffect, useState } from 'react'
 import Bestsellers from './Bestsellers'
-import Select, { NonceProvider } from 'react-select'
+import Select from 'react-select'
+import chroma from 'chroma-js'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -34,7 +35,6 @@ function Product({ productId }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [showDelete, setShowDelete] = useState(1)
   const [loading, setLoading] = useState(false)
-  // const [sum, setSum] = useState('')
   const [products, setProducts] = useState([])
   const [counts, setCounts] = useState([
     {
@@ -44,17 +44,85 @@ function Product({ productId }) {
     },
   ])
 
+  console.log('filter', products.filter)
+
   const dispatch = useDispatch()
   const cartCount = useSelector((state) => state.cart)
 
   const { t } = useTranslation()
 
-  const colourOptions = [
-    { value: '20 000mm', label: '20 000mm', color: '#00B8D9', isFixed: true },
-    { value: '500mm', label: '500mm', color: '#0052CC', isDisabled: true },
-    { value: '250mm', label: '250mm', color: '#5243AA' },
-    { value: '100mm', label: '100mm', color: '#FF5630' },
+  const detailOptions = [
+    { value: '20 000mm', label: '20 000mm' },
+    { value: '500mm', label: '500mm' },
+    { value: '250mm', label: '250mm' },
+    { value: '100mm', label: '100mm' },
   ]
+
+  const colourOptions = [
+    { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
+    { value: 'blue', label: 'Blue', color: '#0052CC' },
+    { value: 'purple', label: 'Purple', color: '#5243AA' },
+    { value: 'red', label: 'Red', color: '#FF5630' },
+    { value: 'orange', label: 'Orange', color: '#FF8B00' },
+    { value: 'yellow', label: 'Yellow', color: '#FFC400' },
+    { value: 'green', label: 'Green', color: '#36B37E' },
+    { value: 'forest', label: 'Forest', color: '#00875A' },
+    { value: 'slate', label: 'Slate', color: '#253858' },
+    { value: 'silver', label: 'Silver', color: '#666666' },
+  ]
+
+  const colourStyles = {
+    control: (styles) => ({ ...styles, backgroundColor: 'white' }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = chroma(data.color)
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? undefined
+          : isSelected
+          ? data.color
+          : isFocused
+          ? color.alpha(0.1).css()
+          : undefined,
+        color: isDisabled
+          ? '#ccc'
+          : isSelected
+          ? chroma.contrast(color, 'white') > 2
+            ? 'white'
+            : 'black'
+          : data.color,
+        cursor: isDisabled ? 'not-allowed' : 'default',
+
+        ':active': {
+          ...styles[':active'],
+          backgroundColor: !isDisabled
+            ? isSelected
+              ? data.color
+              : color.alpha(0.3).css()
+            : undefined,
+        },
+      }
+    },
+    multiValue: (styles, { data }) => {
+      const color = chroma(data.color)
+      return {
+        ...styles,
+        backgroundColor: color.alpha(0.1).css(),
+      }
+    },
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      color: data.color,
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: data.color,
+      ':hover': {
+        backgroundColor: data.color,
+        color: 'white',
+      },
+    }),
+  }
 
   const notifyErorr = () => toast.error(t('Error Card add'))
   const notifySuccess = () => toast.success(t('Added successfully'))
@@ -203,10 +271,16 @@ function Product({ productId }) {
               className="mySwiper2"
             >
               <SwiperSlide>
-                <img className="w-full rounded-lg" src={products?.media} />
+                <img
+                  className="h-full w-full rounded-lg"
+                  src={products?.media}
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="w-full rounded-lg" src={products?.media} />
+                <img
+                  className="h-full w-full rounded-lg"
+                  src={products?.media}
+                />
               </SwiperSlide>
             </Swiper>
           </div>
@@ -298,11 +372,11 @@ function Product({ productId }) {
                 <form>
                   {counts.map((item, index) => (
                     <div className="mt-4" id="product" key={index}>
-                      <div className="relative flex max-w-[638px] flex-row-reverse justify-end gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
+                      <div className="relative grid max-w-[638px] grid-cols-3 gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
                         {products?.sell_by_qty &&
                         products?.has_min_max_for_one_qty ? (
                           <>
-                            <div>
+                            <div className="basis-1/3">
                               <label className="text-base font-normal">
                                 {t('Number of sheets')}
                               </label>
@@ -346,7 +420,7 @@ function Product({ productId }) {
                                 </button>
                               </div>
                             </div>
-                            <div className="grid">
+                            <div className="grid basis-1/3">
                               <label className="!mt-0 text-base font-normal">
                                 {t('Select length')}
                               </label>
@@ -356,10 +430,10 @@ function Product({ productId }) {
                                 onChange={(e) => {
                                   getInputData(e, index)
                                 }}
-                                className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
+                                className="mt-2 h-[44px] w-full rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-full"
                               />
                               {products?.has_min_max_for_one_qty && (
-                                <div className="mt-2 text-red-600">
+                                <div className="text-center text-red-600">
                                   min <span>{+products.min_m * 1000}</span>, max{' '}
                                   <span>{+products.max_m * 1000}</span>
                                 </div>
@@ -371,7 +445,7 @@ function Product({ productId }) {
                         )}
                         {!products?.has_min_max_for_one_qty &&
                         products?.sell_by_qty ? (
-                          <div>
+                          <div className="basis-1/3">
                             <label className="text-base font-normal">
                               {t('Number of sheets')}
                             </label>
@@ -420,7 +494,7 @@ function Product({ productId }) {
                         )}
                         {!products?.sell_by_qty &&
                         !products?.has_min_max_for_one_qty ? (
-                          <div className="grid">
+                          <div className="grid basis-1/3">
                             <label className="!mt-0 text-base font-normal">
                               {t('Select length')}
                             </label>
@@ -430,10 +504,10 @@ function Product({ productId }) {
                               onChange={(e) => {
                                 getInputData(e, index)
                               }}
-                              className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-[168px]"
+                              className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-full"
                             />
                             {products?.has_min_max_for_one_qty && (
-                              <div className="mt-2 text-red-600">
+                              <div className="text-center text-red-600">
                                 min <span>{+products.min_m * 1000}</span>, max{' '}
                                 <span>{+products.max_m * 1000}</span>
                               </div>
@@ -442,23 +516,6 @@ function Product({ productId }) {
                         ) : (
                           ''
                         )}
-                        <label className="text-base font-normal">
-                          Выберите длину:
-                        </label>
-                        <Select
-                          defaultValue={colourOptions[0]}
-                          options={colourOptions}
-                          className="mt-2"
-                          theme={(theme) => ({
-                            ...theme,
-                            borderRadius: 2,
-                            borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                            colors: {
-                              ...theme.colors,
-                              primary: 'black',
-                            },
-                          })}
-                        />
                         {showDelete != 1 ? (
                           <button
                             className="absolute right-2 top-2"
@@ -472,6 +529,66 @@ function Product({ productId }) {
                     </div>
                   ))}
                 </form>
+              </div>
+              <div className="flex gap-5 py-4">
+                <div className="basis-1/3">
+                  <label className="text-base font-normal">
+                    Выберите длину:
+                  </label>
+                  <Select
+                    defaultValue={detailOptions[0]}
+                    options={detailOptions}
+                    className="mt-2"
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 2,
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
+                      colors: {
+                        ...theme.colors,
+                        primary: 'black',
+                      },
+                    })}
+                  />
+                </div>
+                <div className="basis-1/3">
+                  <label className="text-base font-normal">
+                    Выберите длину:
+                  </label>
+                  <Select
+                    defaultValue={detailOptions[0]}
+                    options={detailOptions}
+                    className="mt-2"
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 2,
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
+                      colors: {
+                        ...theme.colors,
+                        primary: 'black',
+                      },
+                    })}
+                  />
+                </div>
+                <div className="basis-1/3">
+                  <label className="text-base font-normal">
+                    Выберите длину:
+                  </label>
+                  <Select
+                    defaultValue={colourOptions[0]}
+                    options={colourOptions}
+                    className="mt-2"
+                    styles={colourStyles}
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 2,
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
+                      colors: {
+                        ...theme.colors,
+                        primary: 'black',
+                      },
+                    })}
+                  />
+                </div>
               </div>
               <div className="mt-4 flex flex-wrap justify-between gap-y-4 font-normal">
                 <button

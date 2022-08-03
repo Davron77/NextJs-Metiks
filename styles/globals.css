@@ -112,14 +112,16 @@ ul {
   padding-left: 40px;
 }
 
-.css-1nxb8fi-control {
-  @apply max-w-[184px];
+.css-1nxb8fi-control,
+.css-1bj249b-control {
+  @apply w-full;
   border: 2px solid #434343 !important;
   background: #f0f0f0 !important;
   padding: 2px;
 }
 
-.css-1disym4-control {
+.css-1disym4-control,
+.css-15k6kgq-control {
   border-width: 2px !important;
   padding: 2px;
 }
