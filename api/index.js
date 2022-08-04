@@ -52,6 +52,10 @@ export const productAPI = {
           : ''
       }`
     ),
+  singleProductFilter: (category_id, property_id) =>
+    http.get(
+      `products?filter[category_id]=${category_id}${`&filter[property_id]=${property_id}`}`
+    ),
   search: (search) => http.get(`products?filter[search]=${search}`),
   addToCart: (props) => http.post(addToCart, props),
   cart: () => http.post(cart),

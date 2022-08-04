@@ -138,9 +138,3 @@ function Search({ open, setOpen }) {
 }
 
 export default Search
-
-// href={`${
-//                             router?.query.productsId?.length > 0
-//                               ? null
-//                               : 'products/'
-//                           }${item.id}`}

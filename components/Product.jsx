@@ -1,8 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { useEffect, useState } from 'react'
 import Bestsellers from './Bestsellers'
-import Select from 'react-select'
-import chroma from 'chroma-js'
+import ProductSelect from './ProductSelect'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -44,85 +43,10 @@ function Product({ productId }) {
     },
   ])
 
-  console.log('filter', products.filter)
-
   const dispatch = useDispatch()
   const cartCount = useSelector((state) => state.cart)
 
   const { t } = useTranslation()
-
-  const detailOptions = [
-    { value: '20 000mm', label: '20 000mm' },
-    { value: '500mm', label: '500mm' },
-    { value: '250mm', label: '250mm' },
-    { value: '100mm', label: '100mm' },
-  ]
-
-  const colourOptions = [
-    { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
-    { value: 'blue', label: 'Blue', color: '#0052CC' },
-    { value: 'purple', label: 'Purple', color: '#5243AA' },
-    { value: 'red', label: 'Red', color: '#FF5630' },
-    { value: 'orange', label: 'Orange', color: '#FF8B00' },
-    { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-    { value: 'green', label: 'Green', color: '#36B37E' },
-    { value: 'forest', label: 'Forest', color: '#00875A' },
-    { value: 'slate', label: 'Slate', color: '#253858' },
-    { value: 'silver', label: 'Silver', color: '#666666' },
-  ]
-
-  const colourStyles = {
-    control: (styles) => ({ ...styles, backgroundColor: 'white' }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      const color = chroma(data.color)
-      return {
-        ...styles,
-        backgroundColor: isDisabled
-          ? undefined
-          : isSelected
-          ? data.color
-          : isFocused
-          ? color.alpha(0.1).css()
-          : undefined,
-        color: isDisabled
-          ? '#ccc'
-          : isSelected
-          ? chroma.contrast(color, 'white') > 2
-            ? 'white'
-            : 'black'
-          : data.color,
-        cursor: isDisabled ? 'not-allowed' : 'default',
-
-        ':active': {
-          ...styles[':active'],
-          backgroundColor: !isDisabled
-            ? isSelected
-              ? data.color
-              : color.alpha(0.3).css()
-            : undefined,
-        },
-      }
-    },
-    multiValue: (styles, { data }) => {
-      const color = chroma(data.color)
-      return {
-        ...styles,
-        backgroundColor: color.alpha(0.1).css(),
-      }
-    },
-    multiValueLabel: (styles, { data }) => ({
-      ...styles,
-      color: data.color,
-    }),
-    multiValueRemove: (styles, { data }) => ({
-      ...styles,
-      color: data.color,
-      ':hover': {
-        backgroundColor: data.color,
-        color: 'white',
-      },
-    }),
-  }
 
   const notifyErorr = () => toast.error(t('Error Card add'))
   const notifySuccess = () => toast.success(t('Added successfully'))
@@ -372,7 +296,7 @@ function Product({ productId }) {
                 <form>
                   {counts.map((item, index) => (
                     <div className="mt-4" id="product" key={index}>
-                      <div className="relative grid max-w-[638px] grid-cols-3 gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] lg:max-w-full">
+                      <div className="relative grid max-w-[638px] grid-cols-2 gap-5 rounded-lg bg-[#F0F0F0] p-2.5 xs:p-[18px] md:grid-cols-3 lg:max-w-full lg:grid-cols-2 xl:grid-cols-3">
                         {products?.sell_by_qty &&
                         products?.has_min_max_for_one_qty ? (
                           <>
@@ -380,7 +304,7 @@ function Product({ productId }) {
                               <label className="text-base font-normal">
                                 {t('Number of sheets')}
                               </label>
-                              <div className="mt-2 flex h-11 w-[160px] justify-between rounded-sm border-2 border-[#434343] xs:w-[184px]">
+                              <div className="mt-2 flex h-11 w-full justify-between rounded-sm border-2 border-[#434343]">
                                 <button
                                   type="button"
                                   onClick={() => {
@@ -430,7 +354,7 @@ function Product({ productId }) {
                                 onChange={(e) => {
                                   getInputData(e, index)
                                 }}
-                                className="mt-2 h-[44px] w-full rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-full"
+                                className="mt-2 h-[44px] w-full rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black"
                               />
                               {products?.has_min_max_for_one_qty && (
                                 <div className="text-center text-red-600">
@@ -449,7 +373,7 @@ function Product({ productId }) {
                             <label className="text-base font-normal">
                               {t('Number of sheets')}
                             </label>
-                            <div className="mt-2 flex h-11 w-[160px] justify-between rounded-sm border-2 border-[#434343] xs:w-[184px]">
+                            <div className="mt-2 flex h-11 w-full justify-between rounded-sm border-2 border-[#434343]">
                               <button
                                 type="button"
                                 onClick={() => {
@@ -504,7 +428,7 @@ function Product({ productId }) {
                               onChange={(e) => {
                                 getInputData(e, index)
                               }}
-                              className="mt-2 h-[44px] w-[160px] rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black xs:w-full"
+                              className="mt-2 h-[44px] w-full rounded-sm border-2 border-[#434343] bg-[#F0F0F0] p-1 text-center text-base text-black"
                             />
                             {products?.has_min_max_for_one_qty && (
                               <div className="text-center text-red-600">
@@ -530,66 +454,6 @@ function Product({ productId }) {
                   ))}
                 </form>
               </div>
-              <div className="flex gap-5 py-4">
-                <div className="basis-1/3">
-                  <label className="text-base font-normal">
-                    Выберите длину:
-                  </label>
-                  <Select
-                    defaultValue={detailOptions[0]}
-                    options={detailOptions}
-                    className="mt-2"
-                    theme={(theme) => ({
-                      ...theme,
-                      borderRadius: 2,
-                      borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                      colors: {
-                        ...theme.colors,
-                        primary: 'black',
-                      },
-                    })}
-                  />
-                </div>
-                <div className="basis-1/3">
-                  <label className="text-base font-normal">
-                    Выберите длину:
-                  </label>
-                  <Select
-                    defaultValue={detailOptions[0]}
-                    options={detailOptions}
-                    className="mt-2"
-                    theme={(theme) => ({
-                      ...theme,
-                      borderRadius: 2,
-                      borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                      colors: {
-                        ...theme.colors,
-                        primary: 'black',
-                      },
-                    })}
-                  />
-                </div>
-                <div className="basis-1/3">
-                  <label className="text-base font-normal">
-                    Выберите длину:
-                  </label>
-                  <Select
-                    defaultValue={colourOptions[0]}
-                    options={colourOptions}
-                    className="mt-2"
-                    styles={colourStyles}
-                    theme={(theme) => ({
-                      ...theme,
-                      borderRadius: 2,
-                      borderBottom: '1px solid rgba(0, 0, 0, 0.125)',
-                      colors: {
-                        ...theme.colors,
-                        primary: 'black',
-                      },
-                    })}
-                  />
-                </div>
-              </div>
               <div className="mt-4 flex flex-wrap justify-between gap-y-4 font-normal">
                 <button
                   className="flex"
@@ -609,6 +473,13 @@ function Product({ productId }) {
                     {t('Add length')}
                   </span>
                 </button>
+              </div>
+              <div className="py-4">
+                <ProductSelect
+                  data={products?.filter.props}
+                  filterId={products?.filter.id}
+                  productId={products?.id}
+                />
               </div>
               <div className="mt-9 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                 <button

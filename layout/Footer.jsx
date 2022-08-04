@@ -106,9 +106,9 @@ function Footer() {
               <a
                 className="font-bold"
                 target="_blank"
-                href="https://www.linkedin.com/in/davron-qodirov-a2a8b3196"
+                href="https://pss-it.uz/"
               >
-                Davron
+                PSS
               </a>
             </h4>
             <div className="flex">

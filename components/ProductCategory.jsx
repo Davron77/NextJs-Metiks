@@ -17,7 +17,6 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
   const { t } = useTranslation()
   const catalogId = useSelector((state) => state.catalogId)
 
-
   const getFilter = async () => {
     setLoading(true)
     try {

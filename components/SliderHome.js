@@ -18,7 +18,7 @@ export default function SliderHome({ banner }) {
           clickable: true,
         }}
         autoplay={{
-          delay: 100000,
+          delay: 2000,
         }}
         modules={[EffectFade, Autoplay, Pagination]}
         className="mySwiper w-full"

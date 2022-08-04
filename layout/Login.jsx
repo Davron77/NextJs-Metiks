@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { FiCheck } from 'react-icons/fi'
 import { MdOutlineHelp } from 'react-icons/md'
 import { authAPI } from '../api'
+import Cookies from 'js-cookie'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
@@ -26,11 +27,13 @@ export default function Login({ setIsUser, setIsReg }) {
       if (res.status === 200) {
         localStorage.setItem('userName', res.data.data.name)
         localStorage.setItem('userPhone', res.data.data.phone)
+        Cookies.set('userName', res.data.data.name)
+        Cookies.set('userPhone', res.data.data.phone)
         setIsUser(true)
       }
     } catch (e) {
       if (e.response && e.response.data) {
-        setErrorMessage(e.response.data.message) // some reason error message
+        setErrorMessage(e.response.data.message)
       }
     }
   }
@@ -46,6 +49,7 @@ export default function Login({ setIsUser, setIsReg }) {
 
       if (res?.status === 200 && res?.data.data.token) {
         localStorage.setItem('token', res.data.data.token)
+        Cookies.set('token', res.data.data.token)
         getMe()
       }
       reset()
