@@ -1,13 +1,14 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 // Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     config.headers.Authorization = `Bearer ${
-      config.method === 'post' ? localStorage.getItem('token') : ''
-      }`
-    
+      config.method === 'post' ? Cookies.get('token') : ''
+    }`
+
     config.baseURL = `https://api.metiks.uz/api`
 
     return config
@@ -33,7 +34,7 @@ axios.interceptors.response.use(
       })
     }
     if (error.response.status === 403 || error.response.status === 401) {
-      localStorage.removeItem('token')
+      Cookies.remove('token')
       // window.location = '/login';
     } else {
       return new Promise((resolve, reject) => {

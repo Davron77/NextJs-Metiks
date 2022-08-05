@@ -1,7 +1,7 @@
-import { t } from 'i18next'
 import React from 'react'
 import { MdExitToApp } from 'react-icons/md'
 import { authAPI } from '../api/'
+import Cookies from 'js-cookie'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
 
@@ -13,9 +13,10 @@ function User({ setIsUser, setOpen }) {
       const res = await authAPI.logout()
       if (res.status === 200) {
         setIsUser(false)
-        localStorage.removeItem('token')
-        localStorage.removeItem('userName')
-        localStorage.removeItem('userPhone')
+
+        Cookies.remove('token')
+        Cookies.remove('userName')
+        Cookies.remove('userPhone')
       }
     } catch (err) {
       console.log(err)
@@ -32,14 +33,14 @@ function User({ setIsUser, setOpen }) {
         />
         <div className=" flex flex-col justify-center pl-3">
           <h5 className=" text-xl font-bold tracking-wide">
-            {localStorage.getItem('userName')}
+            {Cookies.get('userName')}
           </h5>
           <div className="mt-1 flex">
             <a
               className="border-b border-transparent text-[#434343] outline-none transition-all duration-500 ease-in-out hover:border-b-white"
               href="tel:+998998974504"
             >
-              +{localStorage.getItem('userPhone')}
+              +{Cookies.get('userPhone')}
             </a>
           </div>
         </div>

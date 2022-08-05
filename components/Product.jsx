@@ -29,6 +29,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CartCount } from '../redux/cart'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
+import Cookies from 'js-cookie'
 
 function Product({ productId }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -106,7 +107,7 @@ function Product({ productId }) {
     try {
       let res = []
 
-      if (typeof window !== 'undefined' && localStorage.getItem('token')) {
+      if (typeof window !== 'undefined' && Cookies.get('token')) {
         res = await productAPI.productPost(productId)
       } else {
         res = await productAPI.product(productId)

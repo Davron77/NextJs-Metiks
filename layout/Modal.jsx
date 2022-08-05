@@ -5,6 +5,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import Login from './Login'
 import Registration from './Registration'
 import User from './User'
+import Cookies from 'js-cookie'
 
 function Modal({ open, setOpen, setUser, user }) {
   const [isBrowser, setIsBrowser] = useState(false)
@@ -13,7 +14,7 @@ function Modal({ open, setOpen, setUser, user }) {
 
   useEffect(() => {
     setIsBrowser(true)
-    if (localStorage.getItem('token')) {
+    if (Cookies.get('token')) {
       setIsUser(true)
     }
   }, [])
