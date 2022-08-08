@@ -9,7 +9,7 @@ axios.interceptors.request.use(
       config.method === 'post' ? Cookies.get('token') : ''
     }`
 
-    config.headers.common['X-Language-Code'] = 'en'
+    // config.headers.common['X-Language-Code'] = 'en'
 
     config.baseURL = `https://api.metiks.uz/api`
 
