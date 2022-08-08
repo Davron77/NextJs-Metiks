@@ -15,7 +15,6 @@ function ButtonFilter({ setProducts }) {
 
       if (res.status === 200) {
         setProducts(res.data.data)
-        console.log(res.data.data)
       }
     } catch (err) {
       console.log(err)

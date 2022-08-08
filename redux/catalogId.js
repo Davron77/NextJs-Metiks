@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const catalogId = createSlice({
   name: 'CatalogId',
-  initialState: 0,
+  initialState: 1,
   reducers: {
     CatalogId: (state, action) => {
       return (state = action.payload)

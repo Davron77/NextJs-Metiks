@@ -35,7 +35,7 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
     if (catalogId) {
       setGetId(catalogId)
     }
-  }, [])
+  }, [catalogId])
 
   useEffect(() => {
     getFilter()

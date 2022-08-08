@@ -26,17 +26,14 @@ function ProductSelect({ data, filterId, productId }) {
       if (res.status) {
         if (res.data.data.length) {
           if (productId === res.data.data[0].id) {
-            console.log('same')
             notifyErorr()
           } else {
-            console.log('not same')
             router.push({
               pathname: '/products/[pid]',
               query: { pid: res.data.data[0].id },
             })
           }
         } else {
-          console.log('empty')
           notifyErorr()
         }
       }

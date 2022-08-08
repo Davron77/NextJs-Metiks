@@ -25,10 +25,14 @@ export default function Login({ setIsUser, setIsReg }) {
     try {
       const res = await authAPI.me()
       if (res.status === 200) {
-        localStorage.setItem('userName', res.data.data.name)
-        localStorage.setItem('userPhone', res.data.data.phone)
-        Cookies.set('userName', res.data.data.name)
-        Cookies.set('userPhone', res.data.data.phone)
+        // Cookies.set('userName', res.data.data.name)
+        // Cookies.set('userPhone', res.data.data.phone)
+        Cookies.set('userName', res.data.data.name, {
+          domain: 'metiks.uz',
+        })
+        Cookies.set('userPhone', res.data.data.phone, {
+          domain: 'metiks.uz',
+        })
         setIsUser(true)
       }
     } catch (e) {
@@ -48,8 +52,10 @@ export default function Login({ setIsUser, setIsReg }) {
       })
 
       if (res?.status === 200 && res?.data.data.token) {
-        localStorage.setItem('token', res.data.data.token)
-        Cookies.set('token', res.data.data.token)
+        // Cookies.set('token', res.data.data.token)
+        Cookies.set('token', res.data.data.token, {
+          domain: 'metiks.uz',
+        })
         getMe()
       }
       reset()

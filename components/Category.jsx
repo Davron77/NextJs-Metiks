@@ -12,10 +12,16 @@ import { useTranslation } from 'react-i18next'
 
 function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
   const [idRadio, setIdRadio] = useState(1)
+  const [isCheck, setIsCheck] = useState(1)
   const { t } = useTranslation()
 
   const catalog = useSelector((state) => state.dataCatalog)
   const catalogId = useSelector((state) => state.catalogId)
+
+  useEffect(() => {
+    setIdRadio(catalogId)
+    setIsCheck(catalogId)
+  }, [catalogId])
 
   const getIdRadio = (id, index) => {
     setIdRadio(index + 1)
@@ -68,7 +74,8 @@ function Category({ open, setOpen, setGetId, idCheckbox, setIdCheckbox }) {
                     id={item.id + 'e'}
                     name="radio"
                     onClick={() => getIdRadio(item.id, index)}
-                    defaultChecked={catalogId ? catalogId === item.id : !index}
+                    checked={+isCheck == item.id}
+                    onChange={(e) => setIsCheck(e.target.value)}
                     value={item.id}
                     className="mt-0 mr-2 h-[18px] w-[18px] accent-[#016059]"
                   />

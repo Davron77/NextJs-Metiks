@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next'
 function Search({ open, setOpen }) {
   const [isBrowser, setIsBrowser] = useState(false)
   const [searchText, setSearchText] = useState(null)
-  const [data, setData] = useState(null)
+  const [data, setData] = useState([])
 
   const { t } = useTranslation()
 
@@ -96,11 +96,10 @@ function Search({ open, setOpen }) {
                     <div>
                       {data?.map((item) => (
                         <Link
-                          href={`${
-                            router?.query.productsId?.length > 0
-                              ? ''
-                              : 'products/'
-                          }${item.id}`}
+                          href={{
+                            pathname: '/products/[slug]',
+                            query: { slug: `${item.id}` },
+                          }}
                           key={item.id}
                         >
                           <span
