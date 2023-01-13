@@ -38,7 +38,7 @@ function User({ setIsUser, setOpen }) {
           <div className="mt-1 flex">
             <a
               className="border-b border-transparent text-[#434343] outline-none transition-all duration-500 ease-in-out hover:border-b-white"
-              href="tel:+998998974504"
+              href={`tel:${Cookies.get('userPhone')}`}
             >
               +{Cookies.get('userPhone')}
             </a>

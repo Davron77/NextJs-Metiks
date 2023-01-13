@@ -75,7 +75,7 @@ function Footer() {
                 />
                 <a
                   className="border-b border-transparent transition-all duration-500 ease-in-out group-hover:border-b-white"
-                  href="tel:+998998974504"
+                  href={`tel:${data.support_phone}`}
                 >
                   Tel: {data.support_phone}
                 </a>

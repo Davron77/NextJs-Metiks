@@ -32,8 +32,11 @@ export default function Products({ category }) {
           {category.map((item) => (
             <Link key={item.id} href="/products">
               <a
-                className={`group h-60 w-full rounded bg-[#F0F0F0] bg-right bg-no-repeat p-6 hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]`}
-                style={{ backgroundImage: `url(${item.media})` }}
+                className={`group h-60 w-full rounded bg-[#F0F0F0] bg-cover p-6 hover:drop-shadow-[0_2px_12px_rgba(0,0,0,0.14)]`}
+                style={{
+                  backgroundImage: `url(${item.media})`,
+                  filter: `brightness(80%)`,
+                }}
                 onClick={() => getCatalogId(item.id)}
               >
                 {item.is_new ? (

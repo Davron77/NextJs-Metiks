@@ -31,7 +31,10 @@ function ContactBanner({ settings }) {
               <span className="text-neutral-400">{t('Banner info')}</span>
             </h1>
             <div className=" mt-14">
-              <a href="tel:+998998974504" className="group flex cursor-pointer">
+              <a
+                href={`tel:${settings.support_phone}`}
+                className="group flex cursor-pointer"
+              >
                 <img
                   className="h-12 w-12 rounded-full lg:h-16 lg:w-16"
                   src="/user.png"
