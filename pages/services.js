@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import Head from 'next/head'
+import React from 'react'
 import Breadcrumb from '../components/Breadcrumb'
 import ServicesInfo from '../components/ServicesInfo'
 import { productAPI } from '../api'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
-
-export async function getServerSideProps() {
-  const { data } = await productAPI.services()
-
-  return {
-    props: {
-      data: data.data,
-    },
-  }
-}
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Services = ({ data }) => {
   const { t } = useTranslation()
@@ -30,3 +20,14 @@ const Services = ({ data }) => {
 }
 
 export default Services
+
+export async function getServerSideProps({ locale }) {
+  const { data } = await productAPI.services()
+
+  return {
+    props: {
+      data: data.data,
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
+}

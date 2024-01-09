@@ -12,29 +12,16 @@ import { dataCatalog } from '../redux/catalog'
 import { product } from '../redux/product'
 // API
 import { productAPI } from '../api'
-import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-const Home = ({
-  data,
-  settings,
-  category,
-  reviews,
-  banner,
-  products,
-  locale,
-}) => {
-  const { t } = useTranslation('common')
+const Home = ({ data, settings, category, reviews, banner, products }) => {
   const dispatch = useDispatch()
 
   dispatch(dataCatalog(category))
   dispatch(product(products))
 
-  console.log('locale', locale)
-
   return (
     <>
-      <p>{t('davron')}</p>
       <ButtonCatalog />
       <HomeBanner settings={settings} banner={banner} />
       <Products category={category} />
@@ -64,7 +51,6 @@ export async function getServerSideProps({ locale }) {
       reviews: resRev.data.data,
       banner: resBan.data.data,
       products: resPro.data.data,
-      locale,
       ...(await serverSideTranslations(locale, ['common'])),
     },
   }

@@ -4,7 +4,7 @@ import Shopping from '../components/Shopping'
 import Checkout from '../components/Checkout'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Basket = () => {
   const [check, setCheck] = useState(false)
@@ -26,3 +26,11 @@ const Basket = () => {
 }
 
 export default Basket
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
+}

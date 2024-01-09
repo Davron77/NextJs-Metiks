@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Breadcrumb from '../components/Breadcrumb'
 import AboutInfo from '../components/AboutInfo'
 import VideoContent from '../components/VideoContent'
@@ -6,18 +6,8 @@ import VideoContent from '../components/VideoContent'
 import { productAPI } from '../api'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-export async function getServerSideProps() {
-  const res = await productAPI.about()
-  const resSet = await productAPI.settings()
-
-  return {
-    props: {
-      data: res.data.data,
-      Settings: resSet.data.data,
-    },
-  }
-}
 const About = ({ data, Settings }) => {
   const { t } = useTranslation()
   const page = t('About')
@@ -35,3 +25,16 @@ const About = ({ data, Settings }) => {
 }
 
 export default About
+
+export async function getServerSideProps({ locale }) {
+  const res = await productAPI.about()
+  const resSet = await productAPI.settings()
+
+  return {
+    props: {
+      data: res.data.data,
+      Settings: resSet.data.data,
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
+}

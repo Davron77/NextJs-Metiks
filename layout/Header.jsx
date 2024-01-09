@@ -33,7 +33,7 @@ function Header() {
 
   const changeLanh = () => {
     router.push(asPath, undefined, {
-      locale: locale === 'uz' ? 'ru' : 'uz',
+      locale: locale === 'en' ? 'ru' : 'en',
     })
   }
 
@@ -77,7 +77,7 @@ function Header() {
                 }`}
                 onClick={changeLanh}
               >
-                {locale === 'uz' ? 'RU' : 'UZ'}
+                {locale === 'en' ? 'RU' : 'EN'}
               </a>
               <div className="lg:hidden">
                 {openMenu ? (

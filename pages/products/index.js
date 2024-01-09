@@ -8,18 +8,7 @@ import { productAPI } from '../../api'
 //REDUX
 import { useDispatch } from 'react-redux'
 import { dataCatalog } from '../../redux/catalog'
-
-export async function getServerSideProps() {
-  const resCtg = await productAPI.category()
-  const resPro = await productAPI.products()
-
-  return {
-    props: {
-      category: resCtg.data.data,
-      product: resPro.data.data,
-    },
-  }
-}
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Products = ({ category, product }) => {
   const [products, setProducts] = useState(product)
@@ -49,3 +38,16 @@ const Products = ({ category, product }) => {
 }
 
 export default Products
+
+export async function getServerSideProps({ locale }) {
+  const resCtg = await productAPI.category()
+  const resPro = await productAPI.products()
+
+  return {
+    props: {
+      category: resCtg.data.data,
+      product: resPro.data.data,
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
+}

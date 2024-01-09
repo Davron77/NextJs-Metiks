@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import Breadcrumb from '../components/Breadcrumb'
 import SliderInstagram from '../components/SliderInstagram'
 import ContactBanner from '../components/ContactBanner'
@@ -8,18 +7,7 @@ import ContactForm from '../components/ContactForm'
 import { productAPI } from '../api'
 //REACT - I18NEXT
 import { useTranslation } from 'react-i18next'
-
-export async function getServerSideProps() {
-  const res = await productAPI.instagram()
-  const resSettings = await productAPI.settings()
-
-  return {
-    props: {
-      data: res.data.data,
-      settings: resSettings.data.data,
-    },
-  }
-}
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const About = ({ data, settings }) => {
   const { t } = useTranslation()
@@ -37,3 +25,16 @@ const About = ({ data, settings }) => {
 }
 
 export default About
+
+export async function getServerSideProps({ locale }) {
+  const res = await productAPI.instagram()
+  const resSettings = await productAPI.settings()
+
+  return {
+    props: {
+      data: res.data.data,
+      settings: resSettings.data.data,
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
+}
