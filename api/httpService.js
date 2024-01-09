@@ -11,7 +11,7 @@ axios.interceptors.request.use(
 
     config.headers.common['X-Language-Code'] = 'en'
 
-    config.baseURL = `https://api.metiks.uz/api`
+    config.baseURL = `https://admin.grandprofil.uz/api`
 
     return config
   },
