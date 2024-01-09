@@ -2,6 +2,8 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 // Add a request interceptor
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
 axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
@@ -11,7 +13,7 @@ axios.interceptors.request.use(
 
     config.headers.common['X-Language-Code'] = 'en'
 
-    config.baseURL = `https://admin.grandprofil.uz/api`
+    config.baseURL = apiUrl
 
     return config
   },

@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { useEffect } from 'react'
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
 const instance = axios.create({
-  baseURL: 'https://api.metiks.uz/api/ru',
+  baseURL: apiUrl + '/ru',
 })
 
 const AxiosInterceptor = ({ children }) => {
