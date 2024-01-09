@@ -12,8 +12,43 @@ import { dataCatalog } from '../redux/catalog'
 import { product } from '../redux/product'
 // API
 import { productAPI } from '../api'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-export async function getServerSideProps() {
+const Home = ({
+  data,
+  settings,
+  category,
+  reviews,
+  banner,
+  products,
+  locale,
+}) => {
+  const { t } = useTranslation('common')
+  const dispatch = useDispatch()
+
+  dispatch(dataCatalog(category))
+  dispatch(product(products))
+
+  console.log('locale', locale)
+
+  return (
+    <>
+      <p>{t('davron')}</p>
+      <ButtonCatalog />
+      <HomeBanner settings={settings} banner={banner} />
+      <Products category={category} />
+      <Services />
+      <Recommendations reviews={reviews} />
+      <SliderInstagram data={data} />
+      <VideoContent settings={settings} />
+    </>
+  )
+}
+
+export default Home
+
+export async function getServerSideProps({ locale }) {
   const res = await productAPI.instagram()
   const resSet = await productAPI.settings()
   const resCtg = await productAPI.category()
@@ -29,27 +64,8 @@ export async function getServerSideProps() {
       reviews: resRev.data.data,
       banner: resBan.data.data,
       products: resPro.data.data,
+      locale,
+      ...(await serverSideTranslations(locale, ['common'])),
     },
   }
 }
-
-const Home = ({ data, settings, category, reviews, banner, products }) => {
-  const dispatch = useDispatch()
-
-  dispatch(dataCatalog(category))
-  dispatch(product(products))
-
-  return (
-    <>
-      <ButtonCatalog />
-      <HomeBanner settings={settings} banner={banner} />
-      <Products category={category} />
-      <Services />
-      <Recommendations reviews={reviews} />
-      <SliderInstagram data={data} />
-      <VideoContent settings={settings} />
-    </>
-  )
-}
-
-export default Home

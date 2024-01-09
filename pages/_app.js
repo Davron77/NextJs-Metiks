@@ -5,6 +5,7 @@ import { store, wrapper } from '../redux/store'
 import { useSelector } from 'react-redux'
 import '../config/i18n'
 import Cookies from 'js-cookie'
+import { appWithTranslation } from 'next-i18next'
 
 function MyApp({ Component, pageProps }) {
   const selector = useSelector((state) => state.isOpen)
@@ -24,4 +25,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default wrapper.withRedux(WithLayout(MyApp))
+export default wrapper.withRedux(appWithTranslation(WithLayout(MyApp)))

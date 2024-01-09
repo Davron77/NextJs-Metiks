@@ -17,15 +17,25 @@ import Search from '../components/Search'
 import { productAPI } from '../api'
 //REDUX
 import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 
 function Header() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const [isModal, setIsModal] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [data, setData] = useState([])
   const [isSelect, setSelect] = useState(false)
+
+  const router = useRouter()
+  const { asPath, locale } = router
+
+  const changeLanh = () => {
+    router.push(asPath, undefined, {
+      locale: locale === 'uz' ? 'ru' : 'uz',
+    })
+  }
 
   const cartCount = useSelector((state) => state.cart)
 
@@ -65,9 +75,9 @@ function Header() {
                 className={`cursor-pointer bg-black lg:block ${
                   openMenu ? 'absolute left-[63%] flex p-[9px]' : 'hidden'
                 }`}
-                href="https://metiks.uz/"
+                onClick={changeLanh}
               >
-                RU
+                {locale === 'uz' ? 'RU' : 'UZ'}
               </a>
               <div className="lg:hidden">
                 {openMenu ? (
