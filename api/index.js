@@ -1,48 +1,48 @@
 import http from './httpService'
 
-const register = '/register'
-const login = '/login'
-const me = '/me'
-const sendVerificationCode = '/send-verification-code'
-const checkVerificationCode = '/check-verification-code'
-const logout = '/logout'
-const services = '/services'
-const instagram = '/instagram'
-const settings = '/settings'
-const about = '/about'
-const manufacture = '/manufacture'
-const category = '/categories'
-const reviews = '/reviews'
-const banner = '/banner'
-const products = '/products/'
-const message = '/message'
-const addToCart = '/add-to-cart'
-const cart = '/cart'
-const removeFromCart = '/remove-from-cart'
-const clearCart = '/clear-cart'
-const cartCheckout = '/cart/checkout'
+const REGISTER = '/register'
+const LOGIN = '/login'
+const ME = '/me'
+const SEND_VERIFICATION_CODE = '/send-verification-code'
+const CHECK_VERIFICATION_CODE = '/check-verification-code'
+const LOGOUT = '/logout'
+const MESSAGE = '/message'
+const SERVICES = '/services'
+const INSTAGRAM = '/instagram'
+const SETTINGS = '/settings'
+const ABOUT = '/about'
+const MANUFACTURE = '/manufacture'
+const CATEGORY = '/categories'
+const REVIEWS = '/reviews'
+const BANNER = '/banner'
+const PRODUCTS = '/products/'
+const ADD_TO_CART = '/add-to-cart'
+const CART = '/cart'
+const REMOVE_FROM_CART = '/remove-from-cart'
+const CLEAR_CART = '/clear-cart'
+const CART_CHECKOUT = '/cart/checkout'
 
 export const authAPI = {
-  register: (props) => http.post(register, props),
-  login: (props) => http.post(login, props),
-  sendVerificationCode: (props) => http.post(sendVerificationCode, props),
-  checkVerificationCode: (props) => http.post(checkVerificationCode, props),
-  logout: () => http.post(logout),
-  me: () => http.post(me),
-  message: (props) => http.post(message, props),
+  register: (props) => http.post(REGISTER, props),
+  login: (props) => http.post(LOGIN, props),
+  sendVerificationCode: (props) => http.post(SEND_VERIFICATION_CODE, props),
+  checkVerificationCode: (props) => http.post(CHECK_VERIFICATION_CODE, props),
+  logout: () => http.post(LOGOUT),
+  me: () => http.post(ME),
+  message: (props) => http.post(MESSAGE, props),
 }
 
 export const productAPI = {
-  services: () => http.get(services),
-  instagram: () => http.get(instagram),
-  settings: () => http.get(settings),
-  about: () => http.get(about),
-  manufacture: () => http.get(manufacture),
-  category: () => http.get(category),
-  reviews: () => http.get(reviews),
-  banner: () => http.get(banner),
-  products: () => http.get(products),
-  product: (id) => http.get(products + id),
+  services: () => http.get(SERVICES),
+  instagram: () => http.get(INSTAGRAM),
+  settings: () => http.get(SETTINGS),
+  about: () => http.get(ABOUT),
+  manufacture: () => http.get(MANUFACTURE),
+  category: () => http.get(CATEGORY),
+  reviews: () => http.get(REVIEWS),
+  banner: () => http.get(BANNER),
+  products: () => http.get(PRODUCTS),
+  product: (id) => http.get(PRODUCTS + id),
   filter: (category_id, property_id) =>
     http.get(
       `products?filter[category_id]=${category_id}${
@@ -56,10 +56,10 @@ export const productAPI = {
       `products?filter[category_id]=${category_id}${`&filter[property_id]=${property_id}`}`
     ),
   search: (search) => http.get(`products?filter[search]=${search}`),
-  addToCart: (props) => http.post(addToCart, props),
-  cart: () => http.post(cart),
-  removeFromCart: (props) => http.post(removeFromCart, props),
-  clearCart: () => http.post(clearCart),
-  cartCheckout: (props) => http.post(cartCheckout, props),
-  productPost: (id) => http.post(products + id),
+  addToCart: (props) => http.post(ADD_TO_CART, props),
+  cart: () => http.post(CART),
+  removeFromCart: (props) => http.post(REMOVE_FROM_CART, props),
+  clearCart: () => http.post(CLEAR_CART),
+  cartCheckout: (props) => http.post(CART_CHECKOUT, props),
+  productPost: (id) => http.post(PRODUCTS + id),
 }
