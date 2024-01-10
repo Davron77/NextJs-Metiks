@@ -1,5 +1,4 @@
 import http from './httpService'
-// import http from './instance'
 
 const register = '/register'
 const login = '/login'

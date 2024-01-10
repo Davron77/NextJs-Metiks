@@ -1,31 +1,28 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-// Add a request interceptor
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 axios.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
     config.headers.Authorization = `Bearer ${
       config.method === 'post' ? Cookies.get('token') : ''
     }`
 
-    config.headers.common['X-Language-Code'] = 'en'
+    config.headers.common['X-Language-Code'] = 'ru'
 
     config.baseURL = apiUrl
 
     return config
   },
   function (error) {
-    // Do something with request error
     return Promise.reject(error)
   }
 )
 
 axios.interceptors.response.use(
   (response) =>
-    new Promise((resolve, reject) => {
+    new Promise((resolve, _) => {
       resolve(response)
     }),
   (error) => {
@@ -33,13 +30,12 @@ axios.interceptors.response.use(
       return Promise.reject(error)
     }
     if (!error.response) {
-      return new Promise((resolve, reject) => {
+      return new Promise((_, reject) => {
         reject(error)
       })
     }
     if (error.response.status === 403 || error.response.status === 401) {
       Cookies.remove('token')
-      // window.location = '/login';
     } else {
       return new Promise((resolve, reject) => {
         reject(error)

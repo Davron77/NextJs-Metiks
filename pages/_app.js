@@ -3,13 +3,13 @@ import { WithLayout } from '../layout/main/layout'
 import { Provider } from 'react-redux'
 import { store, wrapper } from '../redux/store'
 import { useSelector } from 'react-redux'
-import '../config/i18n'
 import Cookies from 'js-cookie'
 import { appWithTranslation } from 'next-i18next'
 
 function MyApp({ Component, pageProps }) {
   const selector = useSelector((state) => state.isOpen)
   Cookies.set('lang', 'ru')
+
   return (
     <div
       className={`${
