@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { useTranslation } from 'react-i18next'
@@ -26,7 +27,6 @@ function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [data, setData] = useState([])
-  const [isSelect, setSelect] = useState(false)
 
   const router = useRouter()
   const { asPath, locale } = router
@@ -52,8 +52,9 @@ function Header() {
   }
 
   useEffect(() => {
-    onSubmit()
-    typeof window !== 'undefined' && setSelect(true)
+    if (Cookies.get('token')) {
+      onSubmit()
+    }
   }, [cartCount])
 
   const navigation = [
