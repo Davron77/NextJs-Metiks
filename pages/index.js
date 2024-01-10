@@ -37,11 +37,11 @@ export default Home
 
 export async function getServerSideProps({ locale }) {
   const res = await productAPI.instagram()
-  const resSet = await productAPI.settings()
-  const resCtg = await productAPI.category()
-  const resRev = await productAPI.reviews()
-  const resBan = await productAPI.banner()
-  const resPro = await productAPI.products()
+  const resSet = await productAPI.settings(locale)
+  const resCtg = await productAPI.category(locale)
+  const resRev = await productAPI.reviews(locale)
+  const resBan = await productAPI.banner(locale)
+  const resPro = await productAPI.products(locale)
 
   return {
     props: {

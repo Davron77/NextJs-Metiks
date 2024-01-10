@@ -27,8 +27,8 @@ const About = ({ data, Settings }) => {
 export default About
 
 export async function getServerSideProps({ locale }) {
-  const res = await productAPI.about()
-  const resSet = await productAPI.settings()
+  const res = await productAPI.about(locale)
+  const resSet = await productAPI.settings(locale)
 
   return {
     props: {

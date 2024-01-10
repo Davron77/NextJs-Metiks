@@ -23,8 +23,8 @@ const Production = ({ data, resSettings }) => {
 export default Production
 
 export async function getServerSideProps({ locale }) {
-  const res = await productAPI.manufacture()
-  const resSettings = await productAPI.settings()
+  const res = await productAPI.manufacture(locale)
+  const resSettings = await productAPI.settings(locale)
 
   return {
     props: {

@@ -15,7 +15,8 @@ import { CartCount } from '../redux/cart'
 function Shopping({ setCheck, setSum }) {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
 
   const dispatch = useDispatch()
   const cartCount = useSelector((state) => state.cart)
@@ -27,7 +28,7 @@ function Shopping({ setCheck, setSum }) {
   const onSubmit = async () => {
     setLoading(true)
     try {
-      const res = await productAPI.cart()
+      const res = await productAPI.cart(currentLang)
 
       setData(res?.data.data)
     } catch (e) {

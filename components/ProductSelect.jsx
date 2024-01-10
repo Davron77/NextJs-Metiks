@@ -3,7 +3,7 @@ import Select from 'react-select'
 import chroma from 'chroma-js'
 import { productAPI } from '../api'
 import { useRouter } from 'next/router'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useTranslation } from 'react-i18next'
 
@@ -11,7 +11,8 @@ function ProductSelect({ data, filterId, productId }) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
 
   const notifyErorr = () => toast.error(t('Product not found'))
 
@@ -21,7 +22,11 @@ function ProductSelect({ data, filterId, productId }) {
     let idCheckbox = e.id
 
     try {
-      const res = await productAPI.singleProductFilter(filterId, idCheckbox)
+      const res = await productAPI.singleProductFilter(
+        filterId,
+        idCheckbox,
+        currentLang
+      )
 
       if (res.status) {
         if (res.data.data.length) {

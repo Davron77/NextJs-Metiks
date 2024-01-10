@@ -15,11 +15,12 @@ function Search({ open, setOpen }) {
   const [searchText, setSearchText] = useState(null)
   const [data, setData] = useState([])
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
 
   const onSubmit = async () => {
     try {
-      const res = await productAPI.search(searchText)
+      const res = await productAPI.search(searchText, currentLang)
       setData(res.data.data)
     } catch (e) {
       if (e.response && e.response.data) {

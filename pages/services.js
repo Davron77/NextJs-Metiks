@@ -22,7 +22,7 @@ const Services = ({ data }) => {
 export default Services
 
 export async function getServerSideProps({ locale }) {
-  const { data } = await productAPI.services()
+  const { data } = await productAPI.services(locale)
 
   return {
     props: {

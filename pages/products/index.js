@@ -40,8 +40,8 @@ const Products = ({ category, product }) => {
 export default Products
 
 export async function getServerSideProps({ locale }) {
-  const resCtg = await productAPI.category()
-  const resPro = await productAPI.products()
+  const resCtg = await productAPI.category(locale)
+  const resPro = await productAPI.products(locale)
 
   return {
     props: {

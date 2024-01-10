@@ -22,6 +22,14 @@ const REMOVE_FROM_CART = '/remove-from-cart'
 const CLEAR_CART = '/clear-cart'
 const CART_CHECKOUT = '/cart/checkout'
 
+const langAPI = (locale) => {
+  return {
+    headers: {
+      'X-Language-Code': locale ?? 'ru',
+    },
+  }
+}
+
 export const authAPI = {
   register: (props) => http.post(REGISTER, props),
   login: (props) => http.post(LOGIN, props),
@@ -33,33 +41,36 @@ export const authAPI = {
 }
 
 export const productAPI = {
-  services: () => http.get(SERVICES),
+  services: (locale) => http.get(SERVICES, langAPI(locale)),
   instagram: () => http.get(INSTAGRAM),
-  settings: () => http.get(SETTINGS),
-  about: () => http.get(ABOUT),
-  manufacture: () => http.get(MANUFACTURE),
-  category: () => http.get(CATEGORY),
-  reviews: () => http.get(REVIEWS),
-  banner: () => http.get(BANNER),
-  products: () => http.get(PRODUCTS),
-  product: (id) => http.get(PRODUCTS + id),
-  filter: (category_id, property_id) =>
+  settings: (locale) => http.get(SETTINGS, langAPI(locale)),
+  about: (locale) => http.get(ABOUT, langAPI(locale)),
+  manufacture: (locale) => http.get(MANUFACTURE, langAPI(locale)),
+  category: (locale) => http.get(CATEGORY, langAPI(locale)),
+  reviews: (locale) => http.get(REVIEWS, langAPI(locale)),
+  banner: (locale) => http.get(BANNER, langAPI(locale)),
+  products: (locale) => http.get(PRODUCTS, langAPI(locale)),
+  product: (id, locale) => http.get(PRODUCTS + id, langAPI(locale)),
+  filter: (category_id, property_id, locale) =>
     http.get(
       `products?filter[category_id]=${category_id}${
         property_id.length > 0
           ? `&filter[property_id]=${property_id.join(',')}`
           : ''
-      }`
+      }`,
+      langAPI(locale)
     ),
-  singleProductFilter: (category_id, property_id) =>
+  singleProductFilter: (category_id, property_id, locale) =>
     http.get(
-      `products?filter[category_id]=${category_id}${`&filter[property_id]=${property_id}`}`
+      `products?filter[category_id]=${category_id}&filter[property_id]=${property_id}`,
+      langAPI(locale)
     ),
-  search: (search) => http.get(`products?filter[search]=${search}`),
+  search: (search, locale) =>
+    http.get(`products?filter[search]=${search}`, langAPI(locale)),
   addToCart: (props) => http.post(ADD_TO_CART, props),
-  cart: () => http.post(CART),
+  cart: (locale) => http.post(CART, langAPI(locale)),
   removeFromCart: (props) => http.post(REMOVE_FROM_CART, props),
   clearCart: () => http.post(CLEAR_CART),
   cartCheckout: (props) => http.post(CART_CHECKOUT, props),
-  productPost: (id) => http.post(PRODUCTS + id),
+  productPost: (id, locale) => http.post(PRODUCTS + id, langAPI(locale)),
 }

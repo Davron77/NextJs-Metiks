@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Category from './Category'
 import { MdFilterAlt } from 'react-icons/md'
 //API
 import { productAPI } from '../api'
+import { useTranslation } from 'react-i18next'
 
 function ButtonFilter({ setProducts }) {
   const [open, setOpen] = useState(false)
   const [getId, setGetId] = useState(1)
   const [idCheckbox, setIdCheckbox] = useState([])
 
+  const { i18n } = useTranslation()
+  const currentLang = i18n.language
+
   const getFilter = async () => {
     try {
-      const res = await productAPI.filter(getId, idCheckbox)
+      const res = await productAPI.filter(getId, idCheckbox, currentLang)
 
       if (res.status === 200) {
         setProducts(res.data.data)

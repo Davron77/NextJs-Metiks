@@ -21,7 +21,8 @@ import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 
 function Header() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
   const [isModal, setIsModal] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -41,7 +42,7 @@ function Header() {
 
   const onSubmit = async () => {
     try {
-      const res = await productAPI.cart()
+      const res = await productAPI.cart(currentLang)
 
       setData(res.data.data)
     } catch (e) {

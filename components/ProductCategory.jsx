@@ -14,13 +14,15 @@ function ProductCategory({ category, products, setProducts, title, setTitle }) {
   const [idCheckbox, setIdCheckbox] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const catalogId = useSelector((state) => state.catalogId)
+
+  const currentLang = i18n.language
 
   const getFilter = async () => {
     setLoading(true)
     try {
-      const res = await productAPI.filter(getId, idCheckbox)
+      const res = await productAPI.filter(getId, idCheckbox, currentLang)
 
       if (res.status === 200) {
         setProducts(res.data.data)

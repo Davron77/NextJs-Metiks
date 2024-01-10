@@ -15,10 +15,11 @@ import { useTranslation } from 'react-i18next'
 
 function Footer() {
   const [data, setData] = useState([])
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
 
   useEffect(async () => {
-    const res = await productAPI.settings()
+    const res = await productAPI.settings(currentLang)
     if (res.status === 200) {
       setData(res.data.data)
     }

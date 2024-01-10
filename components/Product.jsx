@@ -47,7 +47,8 @@ function Product({ productId }) {
   const dispatch = useDispatch()
   const cartCount = useSelector((state) => state.cart)
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
 
   const notifyErorr = () => toast.error(t('Error Card add'))
   const notifySuccess = () => toast.success(t('Added successfully'))
@@ -108,9 +109,9 @@ function Product({ productId }) {
       let res = []
 
       if (typeof window !== 'undefined' && Cookies.get('token')) {
-        res = await productAPI.productPost(productId)
+        res = await productAPI.productPost(productId, currentLang)
       } else {
-        res = await productAPI.product(productId)
+        res = await productAPI.product(productId, currentLang)
       }
 
       setProducts(res.data.data)

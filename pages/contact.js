@@ -28,7 +28,7 @@ export default About
 
 export async function getServerSideProps({ locale }) {
   const res = await productAPI.instagram()
-  const resSettings = await productAPI.settings()
+  const resSettings = await productAPI.settings(locale)
 
   return {
     props: {
